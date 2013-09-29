@@ -1,0 +1,59 @@
+#nav{
+	width:100%;
+	height:100%;
+	background:url(images/background.png) repeat-x;
+	color:#fff;
+}
+#nav .logo_admin{
+	width:230px;
+	height:42px;
+	background-image:url(images/logo_admin.png);
+	float:left;
+}
+#menu{
+	margin-top:28px;
+	height:30px;
+	float:left;
+}
+#technology{
+	margin:10px 10px 0px 0px;
+	float:right;
+}
+#technology a{
+	text-decoration:none;
+	color:#FFED97;
+}
+#technology a:hover{
+	text-decoration:none;
+	color:#FC8E17;
+}
+.vlist{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.vlist li{
+    width:100%;
+    margin:0;
+    padding:0;
+}
+.vlist li.active{
+    color:#000;
+    background-color:#e5eeff;
+    font-weight:bold;
+}
+.vlist li a{ 
+	width:100%;
+	display:block;
+    padding:3px 0px 3px 0px;
+    text-decoration:none;
+    color:#000;
+    border-bottom:1px #ddd solid;
+}
+.vlist li a:hover{ 
+	background-color:#e5eeff;
+	color:#000;
+	outline:0 none;
+	font-weight:bold;
+}
