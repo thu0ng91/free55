@@ -16,24 +16,47 @@
 
 <?php
     $menus = Category::getMenus();
-
-    $leftItems = array(
-//        array('label'=>'Home', 'url'=>array('/site/index')),
-//        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-//        array('label'=>'Contact', 'url'=>array('/site/contact')),
-//        array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-//        array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-    );
-
+    $leftItems = array();
     foreach ($menus as $v) {
         $item = array(
             'label' => $v['title'],
             'url' => $this->createUrl('category/index', array('title' => $v['shorttitle'])),
             'active' => $_GET['title'] == $v['shorttitle'] ? true : false,
         );
-//        $items[] = $item;
-        array_unshift($leftItems, $item);
+        $leftItems[] = $item;
+
     }
+
+    $rightItems = array(
+        array(
+            'label'=> Yii::app()->user->name,
+            'url'=> '#',
+            'visible' => !Yii::app()->user->isGuest,
+            'active' => $this->id == 'site' && $this->action->id == 'login' ? true : false,
+            'items' => array(
+                array('label'=> '我的收藏', 'url'=> $this->createUrl('user/favorites')),
+                array('label'=> '我的推荐', 'url'=> $this->createUrl('user/like')),
+            ),
+        ),
+        array(
+            'label'=>'登陆',
+            'url'=> $this->createUrl('site/login'),
+            'visible' => Yii::app()->user->isGuest,
+            'active' => $this->id == 'site' && $this->action->id == 'login' ? true : false,
+        ),
+        array(
+            'label'=>'退出',
+            'url'=> $this->createUrl('site/logout'),
+            'visible'=>!Yii::app()->user->isGuest,
+            'active' => $this->id == 'site' && $this->action->id == 'logout' ? true : false,
+        ),
+        array(
+            'label'=>'注册',
+            'url'=> $this->createUrl('site/register'),
+            'visible' => Yii::app()->user->isGuest,
+            'active' => $this->id == 'site' && $this->action->id == 'register' ? true : false,
+        ),
+    );
 
     $this->widget('bootstrap.widgets.TbNavbar',array(
         'type' => 'inverse',
@@ -45,10 +68,7 @@
             array(
                 'class'=>'bootstrap.widgets.TbMenu',
                 'htmlOptions'=>array('class'=>'pull-right'),
-                'items'=> array(
-                    array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-                )
+                'items'=> $rightItems,
             ),
         ),
 )); ?>

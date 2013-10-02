@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends Controller
+class AdminuserController extends Controller
 {
     protected function menus()
     {
@@ -21,9 +21,9 @@ class UserController extends Controller
     	if(!empty($_GET['username']))
     		$criteria->addSearchCondition('username',$_GET['username']);
 
-        $criteria->addNotInCondition('status', Yii::app()->params['status']['isdelete']);
+        $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
 
-	    $dataProvider = new CActiveDataProvider('User',array(
+	    $dataProvider = new CActiveDataProvider('AdminUser',array(
 			'criteria'=> $criteria,
 			'pagination'=>array(
         		'pageSize'=>Yii::app()->params['girdpagesize'],
@@ -39,11 +39,11 @@ class UserController extends Controller
 
 	public function actionCreate()
 	{
-		$model = new User;
+		$model = new AdminUser;
 
-		if(isset($_POST['User']))
+		if(isset($_POST['AdminUser']))
 		{
-			$model->attributes = $_POST['User'];
+			$model->attributes = $_POST['AdminUser'];
 
 			if($model->save()){
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['saveSuccess']);
@@ -68,10 +68,15 @@ class UserController extends Controller
 	{
 		$model = $this->loadModel($id);
 
-		if(!empty($_POST['User']))
+		if(!empty($_POST['AdminUser']))
 		{
             $pwd = $model->password;
-			$model->attributes = $_POST['User'];
+			$model->attributes = $_POST['AdminUser'];
+
+            if(!$model->validate()){
+                Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['updateFail']);
+                $this->redirect(array('adminuser/index'));
+            }
 
             if ($model->password != "password") { // 如果填写了密码则重新设置
                 $model->password = User::encrpyt($model->password);
@@ -81,10 +86,10 @@ class UserController extends Controller
 
 			if($model->save()){
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['updateSuccess']);
-				$this->redirect(array('index','menupanel' => $_GET['menupanel']));
-			}else if($model->validate()){
+				$this->redirect(array('adminuser/index'));
+			}else {
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['updateFail']);
-				$this->redirect(array('index','menupanel' => $_GET['menupanel']));
+				$this->redirect(array('adminuser/index'));
 			}
 		}
 		$this->render('update',array(
@@ -99,7 +104,7 @@ class UserController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->findByPk((int)$id);
+		$model = AdminUser::model()->findByPk((int)$id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

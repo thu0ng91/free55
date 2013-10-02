@@ -2,6 +2,13 @@
 
 class BookController extends Controller
 {
+    protected function menus()
+    {
+        return array(
+            'book',
+        );
+    }
+
 	/**
 	 * Lists all models.
 	 */

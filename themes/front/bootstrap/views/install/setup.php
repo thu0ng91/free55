@@ -3,7 +3,7 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
+$this->pageTitle =  '安装'  . ' - ' . Yii::app()->name;
 //$this->breadcrumbs=array(
 //	'Login',
 //);
@@ -47,7 +47,7 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
     <div class="form form-signin">
     <?php $this->renderPartial('//layouts/flash-message'); ?>
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-      'id'=>'login-form',
+      'id'=>'setup-form',
       'type'=>'horizontal',
       'enableClientValidation'=>true,
       'clientOptions'=>array(
@@ -55,25 +55,23 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
       ),
     )); ?>
 
+        <?php echo $form->textFieldRow($model,'dbhost'); ?>
+        <?php echo $form->textFieldRow($model,'dbname'); ?>
+
       <?php echo $form->textFieldRow($model,'username'); ?>
 
       <?php echo $form->passwordFieldRow($model,'password',array(
             'hint'=>' ',
         )); ?>
-
-      <?php echo $form->textFieldRow($model,'verifyCode', array(
-          'hint' => $this->widget('CCaptcha', array(
-              'buttonLabel' => '　看不清楚？换一个',
-          ), true),
-      )); ?>
-<!--      --><?php //$this->widget('CCaptcha'); ?>
-        <?php // echo $form->checkBoxRow($model,'rememberMe'); ?>
+        <?php echo $form->passwordFieldRow($model,'repassword',array(
+            'hint'=>' ',
+        )); ?>
 
       <div class="form-actions">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType'=>'submit',
                 'type'=>'primary',
-                'label'=>'登陆',
+                'label'=>'安装',
             )); ?>
       </div>
 

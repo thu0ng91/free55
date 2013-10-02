@@ -2,6 +2,13 @@
 
 class ArticleController extends Controller
 {
+    protected function menus()
+    {
+        return array(
+            'book',
+        );
+    }
+
 	/**
 	 * Lists all models.
 	 */
@@ -54,13 +61,15 @@ class ArticleController extends Controller
 		if(isset($_POST['Article']))
 		{
 			$model->attributes = $_POST['Article'];
-			$upload = CUploadedFile::getInstance($model,'imagefile');
-			if(!empty($upload))
-			{
-				$model->imgurl=Upload::createFile($upload,'article','create');
-			}
+//			$upload = CUploadedFile::getInstance($model,'imagefile');
+//			if(!empty($upload))
+//			{
+//				$model->imgurl=Upload::createFile($upload,'article','create');
+//			}
 
 			if($model->save()){
+                // 更新最后章节信息
+                $book->updateLastChapter($model);
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['saveSuccess']);
 				$this->refresh();
 			}else if($model->validate()){
@@ -87,11 +96,11 @@ class ArticleController extends Controller
 		if(!empty($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
-			$upload=CUploadedFile::getInstance($model,'imagefile');
-			if(!empty($upload))
-			{
-				$model->imgurl=Upload::createFile($upload,'article','update',$model->imgurl);
-			}
+//			$upload=CUploadedFile::getInstance($model,'imagefile');
+//			if(!empty($upload))
+//			{
+//				$model->imgurl=Upload::createFile($upload,'article','update',$model->imgurl);
+//			}
 			if($model->save()){
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['updateSuccess']);
 				$this->redirect(array('index','menupanel'=>$_GET['menupanel'],'bid'=>$_GET['bid'],'title'=>$_GET['title']));

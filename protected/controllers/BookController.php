@@ -51,4 +51,46 @@ class BookController extends Controller
             'book' => $book,
         ));
     }
+
+    /**
+     * 用户推荐
+     * @param $id
+     */
+    public function actionLike($id)
+    {
+        if (Yii::app()->user->isGuest) {
+            echo "请先登录";
+            Yii::app()->end();
+        }
+
+        $f = UserBookFavorites::model()->find(
+            'bookid=? and type=?',
+            array(
+                $id,
+                1,
+            )
+        );
+        if ($f) {
+            echo "本书您已经推荐过";
+            Yii::app()->end();
+        }
+
+        $book = Book::model()->findByPk($id);
+        if (!$book) {
+            echo "您推荐的书籍不存在";
+            Yii::app()->end();
+        }
+
+        $f = new UserBookFavorites();
+        $f->bookid = $id;
+        $f->title = $book->title;
+        $f->type = 1;
+        $f->save();
+
+        $book->updateLikeNum(1);
+
+        echo "推荐成功，感谢您的支持！";
+        Yii::app()->end();
+
+    }
 }

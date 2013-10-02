@@ -10,7 +10,14 @@ class UserIdentity extends CUserIdentity
 	private $_id;
 	public function authenticate()
 	{
-		$user=AdminUser::model()->find('LOWER(username)=? and password=?',array(strtolower($this->username),md5($this->password)));
+		$user = AdminUser::model()->find(
+            'LOWER(username)=? and password=? and status=?',
+            array(
+                strtolower($this->username),
+                User::encrpyt($this->password),
+                Yii::app()->params['status']['ischecked'],
+            ));
+
 		if($user===null)
 			return false;
 		else
@@ -21,6 +28,7 @@ class UserIdentity extends CUserIdentity
 			return true;
 		}
 	}
+
 	public function getId()
     {
         return $this->_id;

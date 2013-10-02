@@ -13,13 +13,17 @@
  * @property string $qq
  * @property string $email
  * @property string $address
- * @property integer $create_time
- * @property integer $lastlogin_time
+ * @property integer $createtime
+ * @property integer $lastlogintime
  * @property integer $status
- * @property integer $login_hits
+ * @property integer $loginhits
  */
 class User extends BaseModel
 {
+    public $repassword;
+
+    public $verifyCode;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -45,14 +49,16 @@ class User extends BaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, roleid','required'),
+			array('username, password','required'),
 			array('username','unique'),
-			array('roleid, create_time, lastlogin_time, status, login_hits', 'numerical', 'integerOnly'=>true),
+
+			array('roleid, createtime, lastlogintime, status, loginhits', 'numerical', 'integerOnly'=>true),
 			array('username, password, realname, telephone, qq, email', 'length', 'max'=>32),
 			array('address', 'length', 'max'=>200),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password, realname, roleid, telephone, qq, email, address, create_time, lastlogin_time, status, login_hits', 'safe', 'on'=>'search'),
+			array('id, username, password, realname, roleid, telephone, qq, email, address, createtime, lastlogintime, status, loginhits', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,10 +87,10 @@ class User extends BaseModel
 			'qq' => 'QQ',
 			'email' => '电子邮件',
 			'address' => '地址',
-			'create_time' => '注册时间',
-			'lastlogin_time' => '最近登录时间',
+			'createtime' => '注册时间',
+			'lastlogintime' => '最近登录时间',
 			'status' => '状态',
-			'login_hits' => '登录次数',
+			'loginhits' => '登录次数',
 		);
 	}
 
@@ -94,14 +100,36 @@ class User extends BaseModel
 		{
 			if($this->isNewRecord)
 			{
-				$this->create_time=$this->lastlogin_time=time();
-				$this->status=Yii::app()->params['status']['ischecked'];
-				$this->login_hits=0;
-				$this->password=md5($this->password);
+//				$this->createtime=$this->lastlogintime=time();
+//				$this->status=Yii::app()->params['status']['ischecked'];
+				$this->loginhits = 0;
+				$this->password = self::encrpyt($this->password);
 			}
 			return true;
 		}
 		else
 			return false;
 	}
+
+    /**
+     * 简单密码加密算法
+     * @param $password
+     * @return string
+     */
+    public static function encrpyt($password)
+    {
+        $password = strrev($password) . $password;
+
+        return md5($password);
+    }
+
+    /**
+     * 更新登陆信息
+     */
+    public function updateLoginInfo()
+    {
+        $this->lastlogintime = time();
+        $this->loginhits += 1;
+        $this->save();
+    }
 }

@@ -7,27 +7,30 @@
  */
 class UserIdentity extends CUserIdentity
 {
-	/**
-	 * Authenticates a user.
-	 * The example implementation makes sure if the username and password
-	 * are both 'demo'.
-	 * In practical applications, this should be changed to authenticate
-	 * against some persistent user identity storage (e.g. database).
-	 * @return boolean whether authentication succeeds.
-	 */
+	private $_id;
+
 	public function authenticate()
 	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
-		if(!isset($users[$this->username]))
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if($users[$this->username]!==$this->password)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+		$user= User::model()->find(
+            'LOWER(username)=? and password=? and status=?',
+            array(
+                strtolower($this->username),
+                User::encrpyt($this->password),
+                Yii::app()->params['status']['ischecked'],
+            ));
+		if($user === null)
+			return false;
 		else
-			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
+		{
+			$this->_id = $user->id;
+			$this->setState('userInfo',$user);
+            $user->updateLoginInfo();
+			return true;
+		}
 	}
+
+	public function getId()
+    {
+        return $this->_id;
+    }
 }

@@ -55,7 +55,7 @@ class Book extends BaseModel
 		// will receive user inputs.
 		return array(
 			array('title,author,cid', 'required'),
-			array('cid, lastchapterid,lastchaptertime,createtime,updatetime,recommendlevel, hits, likenum, wordcount, status', 'numerical', 'integerOnly'=>true),
+			array('cid, lastchapterid,lastchaptertime,createtime,updatetime,recommendlevel, hits, likenum, favoritenum, wordcount, status', 'numerical', 'integerOnly'=>true),
 			array('title,lastchaptertitle', 'length', 'max'=>100),
 			array('author', 'length', 'max'=>32),
 			array('sections', 'length', 'max'=>500),
@@ -109,6 +109,7 @@ class Book extends BaseModel
 			'recommendlevel' => '推荐等级',
 			'hits' => '点击数',
 			'likenum' => '用户推荐数',
+			'favoritenum' => '用户收藏数',
 			'wordcount' => '字数',
 			'sections' => '分卷',
 			'status' => '状态',
@@ -289,5 +290,37 @@ class Book extends BaseModel
         }
         $m->hits += 1;
         $m->save();
+    }
+
+    /**
+     * 更新推荐数
+     * @param $num
+     */
+    public function updateLikeNum($num)
+    {
+        $this->likenum += $num;
+        $this->save();
+    }
+
+    /**
+     * 更新小说收藏数
+     * @param $num
+     */
+    public function updateFavoriteNum($num)
+    {
+        $this->favoritenum += $num;
+        $this->save();
+    }
+
+    /**
+     * 更新小说最后章节信息
+     * @param $chapter Article
+     */
+    public function updateLastChapter($chapter)
+    {
+        $this->lastchapterid = $chapter->id;
+        $this->lastchaptertitle = $chapter->title;
+        $this->lastchaptertime = $chapter->createtime;
+        $this->save();
     }
 }

@@ -12,17 +12,18 @@ $basePath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..';
 
 return array(
 	'basePath'=> $basePath,
-	'name'=>'飞舞小说网',
+	'name'=> '飞舞小说网',
 	'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log'),
 	'viewPath'=>'views',
+    'runtimePath'=> dirname(dirname(dirname(__FILE__))) .'/runtime/front',
 	// autoloading model and component classes
 	'import'=>array(
     'application.models.*',
     'application.components.*',
-    'application.extensions.gallerymanager.*',
-    'application.extensions.gallerymanager.models.*',
+//    'application.extensions.gallerymanager.*',
+//    'application.extensions.gallerymanager.models.*',
     'application.extensions.image.*',
 	),
 
@@ -52,7 +53,8 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+            'stateKeyPrefix' => 'free55user',
+			'allowAutoLogin' => true,
 		),
 		// uncomment the following to enable URLs in path-format
 		
@@ -61,20 +63,12 @@ return array(
 			'urlSuffix' => '',
 			'showScriptName' => false,
 			'rules' => array(
-//				'article/index/<cid:\d+>'=>'article/index',
-//        		'article/<id:\d+>'=>'article/view',
-//        		'article/anli/<cid:\d+>'=>'article/anli',
-//        		'anli/<id:\d+>'=>'article/alview',
-//        		'article/blog/<cid:\d+>'=>'article/blog',
-//        		'blog/<id:\d+>'=>'article/bview',
-//        		'baike/<id:\d+>'=>'article/bkview',
-//        		'article/about/<id:\d+>'=>'article/about',
-//        		'product/index/<cid:\d+>'=>'product/index',
-//        		'product/<id:\d+>'=>'product/view',
         		'chapter/<id:\d+>' => 'article/view',
         		'book/<id:\d+>' => 'book/view',
         		'category/<title:\w+>' => 'category/index',
         		'login' => 'site/login',
+        		'logout' => 'site/logout',
+        		'register' => 'site/register',
         	),
 		),
         /*
@@ -86,24 +80,7 @@ return array(
          */
 		// uncomment the following to use a MySQL database
         // 支持读写分离
-		'db'=>array(
-            'class' => 'DbConnectionMan',
-			'connectionString' => 'mysql:host=localhost;dbname=novel',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-            'tablePrefix'=>'',
-            'enableSlave' => true,
-            'slaves'=>array(//slave connection config is same as CDbConnection
-                array(
-                    'connectionString'=>'mysql:host=localhost;dbname=novel',
-                    'charset' => 'utf8',
-                    'username'=> 'root',
-                    'password'=> ''
-                ),
-            ),            
-		),
+		'db'=> include(dirname(dirname(dirname(__FILE__))) . '/runtime/front/db.config.php'),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
             'errorAction'=>'site/error',

@@ -94,10 +94,10 @@ class AdminUser extends BaseModel
 		{
 			if($this->isNewRecord)
 			{
-				$this->createtime = $this->lastlogintime=time();
-				$this->status = Yii::app()->params['status']['ischecked'];
+//				$this->createtime = $this->lastlogintime=time();
+//				$this->status = Yii::app()->params['status']['ischecked'];
 				$this->loginhits = 0;
-				$this->password = md5($this->password);
+                $this->password = User::encrpyt($this->password);
 			}
 			return true;
 		}

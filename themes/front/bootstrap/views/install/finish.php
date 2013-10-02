@@ -3,7 +3,7 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
+$this->pageTitle =  '安装'  . ' - ' . Yii::app()->name;
 //$this->breadcrumbs=array(
 //	'Login',
 //);
@@ -46,37 +46,15 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
 
     <div class="form form-signin">
     <?php $this->renderPartial('//layouts/flash-message'); ?>
-    <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-      'id'=>'login-form',
-      'type'=>'horizontal',
-      'enableClientValidation'=>true,
-      'clientOptions'=>array(
-        'validateOnSubmit'=>true,
-      ),
-    )); ?>
 
-      <?php echo $form->textFieldRow($model,'username'); ?>
-
-      <?php echo $form->passwordFieldRow($model,'password',array(
-            'hint'=>' ',
-        )); ?>
-
-      <?php echo $form->textFieldRow($model,'verifyCode', array(
-          'hint' => $this->widget('CCaptcha', array(
-              'buttonLabel' => '　看不清楚？换一个',
-          ), true),
-      )); ?>
-<!--      --><?php //$this->widget('CCaptcha'); ?>
-        <?php // echo $form->checkBoxRow($model,'rememberMe'); ?>
 
       <div class="form-actions">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType'=>'submit',
+                'buttonType'=>'link',
                 'type'=>'primary',
-                'label'=>'登陆',
+                'url'=> $this->createUrl('site/index'),
+                'label'=>'访问首页',
             )); ?>
       </div>
-
-    <?php $this->endWidget(); ?>
 
     </div><!-- form -->

@@ -20,11 +20,17 @@
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('label'=>'后台首页', 'url'=>array('/site/index')),
-//                array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-//                array('label'=>'Contact', 'url'=>array('/site/contact')),
-                array('label'=>'登录', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
-                array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                array('label'=> '小说管理', 'url'=> $this->createUrl('book/index'), 'active' => $this->menupanel[0] == 'book' ? true : false),
+                array('label'=> '用户管理', 'url'=> $this->createUrl('user/index'), 'active' => $this->menupanel[0] == 'user' ? true : false),
+            )
+        ),
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'htmlOptions'=>array('class'=>'pull-right'),
+            'items'=> array(
+                array('label'=>'浏览网站', 'url'=> Yii::app()->baseUrl, 'visible'=> !Yii::app()->user->isGuest),
+                array('label'=>'登录', 'url'=> $this->createUrl('site/login'), 'visible'=> Yii::app()->user->isGuest),
+                array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=> $this->createUrl('site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
         ),
     ),

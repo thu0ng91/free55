@@ -5,8 +5,10 @@
  */
 class Controller extends CController
 {
-	public $layout='main';
-	public $menupanel;
+	public $layout = 'main';
+
+    public $menupanel;
+
 	public function init()
 	{
 		if(Yii::app()->user->isGuest&&$this->id!=='site'){
@@ -14,14 +16,24 @@ class Controller extends CController
 			$this->redirect(array('site/login'));
 		}
 
-		if(!empty($_GET['menupanel']))
-		{
-			$menupanel=explode('|',$_GET['menupanel']);
-			$this->menupanel=$menupanel;
-		}else{
-			$this->menupanel=explode('|','content|short');;
-		}
+//		if(!empty($_GET['menupanel']))
+//		{
+//			$menupanel = explode('|',$_GET['menupanel']);
+//			$this->menupanel = $menupanel;
+//		}else{
+//			$this->menupanel = explode('|','content|short');;
+//		}
+
+        $this->menupanel = $this->menus();
 	}
+
+    protected function menus()
+    {
+        return array(
+            'content'
+        );
+    }
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

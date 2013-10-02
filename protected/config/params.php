@@ -35,5 +35,9 @@ return array(
         'isdelete' => -1, // 删除
 		'ischecked'=> 1, // 审核通过
 	),
-	'copyrightInfo'=>'Copyright &copy; 2013 by SMG.',
+    'role' => array(
+        '1' => '超级管理员',
+        '2' => '网站管理员',
+        '3' => '网站会员',
+    ),
 );

@@ -33,16 +33,69 @@ $this->pageTitle = $book->title . "-" . Yii::app()->name;
     <?php $this->endWidget(); ?>
 </div>
 <div class="row">
+    <table class="table table-bordered">
+        <tr>
+            <td style="text-align: center">
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                    'buttonType' => 'ajaxButton',
+                    'url' => $this->createUrl('book/like', array('id' => $book->id)),
+                    'label'=> '推荐本书',
+                    'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+                    'size'=> 'normal', // null, 'large', 'small' or 'mini'
+                    'ajaxOptions' => array(
+                        'type' => 'post',
+//                        'url' => $this->createURL('book/like'),
+                        'data' => Yii::app()->request->csrfTokenName."=".Yii::app()->request->getCsrfToken(),
+                        'success'=>"js:function(vals){
+                        alert(vals);
+                     }",
+                    ),
+                )); ?>
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                    'buttonType' => 'ajaxButton',
+                    'url' => $this->createUrl('user/addFavourite', array('id' => $book->id)),
+                    'label'=> '收藏本书',
+                    'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+                    'size'=> 'normal', // null, 'large', 'small' or 'mini'
+                    'ajaxOptions' => array(
+                        'type' => 'post',
+//                        'url' => $this->createURL('book/like'),
+                        'data' => Yii::app()->request->csrfTokenName."=".Yii::app()->request->getCsrfToken(),
+                        'success'=>"js:function(vals){
+                        alert(vals);
+                     }",
+                    ),
+                )); ?>
+           </td>
+        </tr>
+    </table>
+</div>
+<div class="row">
     <table class=" table table-bordered">
         <tbody>
-            <tr>
-            <?php foreach ($book->chapter as $k => $v): ?>
+<!--            --><?php
+//            $sections = explode("\n" , $book->sections);
+//            foreach ($sections as $key => $value):
+//            ?>
+<!--            <tr><td colspan="4">--><?php //echo $value;?><!--</td> </tr>-->
+<!--            <tr>-->
+            <?php
+//                reset($book->chapter);
+                foreach ($book->chapter as $k => $v):
+//                    if ($v->chapter == $key):
+            ?>
                 <?php if (($k + 1) % 4 == 0): ?>
                 </tr><tr>
                 <?php endif;?>
                 <td><a href="<?php echo $this->createUrl('article/view', array('id' => $v->id));?>"><?php echo $v->title;?></a></td>
-            <?php endforeach; ?>
+            <?php
+//                endif;
+                endforeach;
+            ?>
             </tr>
+<!--            --><?php
+//                endforeach;
+//            ?>
         </tbody>
     </table>
 </div>
