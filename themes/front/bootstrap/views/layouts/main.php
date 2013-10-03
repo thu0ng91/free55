@@ -65,6 +65,7 @@
                 'class'=>'bootstrap.widgets.TbMenu',
                 'items'=> $leftItems,
             ),
+            '<form class="navbar-search pull-left" action="' . $this->createUrl('book/search'). '" method="GET"><input type="text" name="title" class="search-query span2" placeholder="输入小说名 按一下回车键"></form>',
             array(
                 'class'=>'bootstrap.widgets.TbMenu',
                 'htmlOptions'=>array('class'=>'pull-right'),

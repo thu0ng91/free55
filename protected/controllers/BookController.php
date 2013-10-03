@@ -26,12 +26,12 @@ class BookController extends Controller
 //            ),
 //        ));
 
-        $m = Book::model();
-		$this->render('index', array(
-            'recommendDataProvider'=>  $m->getRecommendDataProvider(),
-            'newestDataProvider' => $m->getNewestDataProvider(),
-            'lastUpdateDataProvider' => $m->getLastUpdateDataProvider(100),
-        ));
+//        $m = Book::model();
+//		$this->render('index', array(
+//            'recommendDataProvider'=>  $m->getRecommendDataProvider(),
+//            'newestDataProvider' => $m->getNewestDataProvider(),
+//            'lastUpdateDataProvider' => $m->getLastUpdateDataProvider(100),
+//        ));
 	}
 
     /**
@@ -51,6 +51,46 @@ class BookController extends Controller
             'book' => $book,
         ));
     }
+
+    /**
+     * 小说搜索
+     * 根据关键字进行检索
+     */
+    public function actionSearch()
+    {
+//        $m = Book::model();
+
+        $criteria=new CDbCriteria(array(
+            'order' => 'createtime desc',
+        ));
+
+        if (!empty($_GET['title'])) {
+            $criteria->addSearchCondition('title', $_GET['title']);
+        }
+
+        $criteria->compare('status', Yii::app()->params['status']['ischecked']);
+//        $criteria->compare('recommendlevel', 1);
+
+        $dataProvider = new CActiveDataProvider('Book',array(
+            'criteria'=> $criteria,
+            'pagination'=>array(
+                'pageSize'=>Yii::app()->params['girdpagesize'],
+            ),
+        ));
+
+        $s = BookViewStatsByDay::model();
+        $w = BookViewStatsByWeek::model();
+        $mn = BookViewStatsByMonth::model();
+
+        $this->render('search', array(
+            'title' => $_GET['title'],
+            'dataProvider' => $dataProvider,
+            'dayDataProvider' => $s->getTopHitsDataProvider(date('Y-m-d'),0, 4),
+            'weekDataProvider' => $w->getTopHitsDataProvider(date('W'), 0, 4),
+            'monthDataProvider' => $mn->getTopHitsDataProvider(date('Y-m'), 0, 4),
+        ));
+    }
+
 
     /**
      * 用户推荐
