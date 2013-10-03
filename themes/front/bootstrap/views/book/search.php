@@ -15,8 +15,9 @@ $this->pageTitle = "关键字 " . CHtml::encode($title) . "  搜索结果 - " . 
             <div class="span8">
                     <?php
                     $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+                        'encodeLabel' => false,
                         'links'=> array(
-                            "关键字 " .CHtml::encode($title) . "  搜索结果",
+                            "关键字 " . CHtml::tag("b", array(), CHtml::encode($title)) . "  搜索结果",
                         ),
                     ));
                     ?>
