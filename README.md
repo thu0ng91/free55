@@ -32,3 +32,5 @@
 ### 开发者 ###
 
 pizigou <pizigou@yeah.net>
+
+官方QQ群：175977741
