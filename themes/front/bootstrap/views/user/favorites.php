@@ -8,7 +8,7 @@ $this->pageTitle = $type == 1 ? "我的推荐" : "我的收藏" . " - " . Yii::a
 .list-view{padding-top: 0}
 .grid-view{padding-top: 0}
 </style>
-<div class="row">
+
     <?php
 //    $nav1 = "我的收藏";
     $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
@@ -19,7 +19,7 @@ $this->pageTitle = $type == 1 ? "我的推荐" : "我的收藏" . " - " . Yii::a
         ),
     ));
     ?>
-</div>
+
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=> $dataProvider,
