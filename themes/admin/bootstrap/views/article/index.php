@@ -15,6 +15,13 @@ $this->pageTitle = "小说章节管理" . " - " . Yii::app()->name;
     ));
     ?>
 
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=> '添加小说章节',
+        'url' => $this->createUrl('article/create', array('bid' => $book->id)),
+        'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+        'size'=>'null', // null, 'large', 'small' or 'mini'
+    )); ?>
+
 <?php endif; ?>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(

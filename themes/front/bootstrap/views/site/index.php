@@ -61,13 +61,13 @@ $this->pageTitle = Yii::app()->name;
                         array(
                             'name' => 'title',
                             'type' => 'raw',
-                            'value' => '"<a href=\"" . Yii::app()->controller->createUrl("book/view", array("id" => $data->id)) . "\">《" . $data->title . "》</a>" . "<a href=\"" . Yii::app()->controller->createUrl("chapter/view", array("id" => $data->lastchapterid)) . "\">" . $data->lastchaptertitle . "</a>"',
+                            'value' => '"<a href=\"" . Yii::app()->controller->createUrl("book/view", array("id" => $data->id)) . "\">《" . $data->title . "》</a>" . "<a href=\"" . Yii::app()->controller->createUrl("article/view", array("id" => $data->lastchapterid)) . "\">" . $data->lastchaptertitle . "</a>"',
                             'htmlOptions' => array('style' => 'width:65%')
                         ),
                         array(
                             'name' => 'author',
                             'type' => 'raw',
-                            'value' => '$data->author . " (" . date("m-d", $date->lastchaptertime) . ")"',
+                            'value' => '$data->author . " (" . date("m-d", $data->lastchaptertime) . ")"',
                             'htmlOptions' => array('style' => 'width:20%')
                         ),
                         //            array(
