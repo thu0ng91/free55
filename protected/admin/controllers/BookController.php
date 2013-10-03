@@ -33,6 +33,10 @@ class BookController extends Controller
 		    $criteria->addInCondition('cid',$categoryList);
     	}
 
+        if(isset($_GET['Book']['recommendlevel'])){
+            $criteria->compare('recommendlevel', $_GET['Book']['recommendlevel']);
+        }
+
         $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
 
 		$dataProvider=new CActiveDataProvider('Book',array(

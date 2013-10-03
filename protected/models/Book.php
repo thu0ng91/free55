@@ -106,7 +106,7 @@ class Book extends BaseModel
 			'createtime' => '创建时间',
 			'updatetime' => '更新时间',
 //			'recommend' => '编辑推荐',
-			'recommendlevel' => '推荐等级',
+			'recommendlevel' => '推荐类型',
 			'hits' => '点击数',
 			'likenum' => '用户推荐数',
 			'favoritenum' => '用户收藏数',

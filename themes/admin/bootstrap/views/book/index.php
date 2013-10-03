@@ -29,6 +29,7 @@ $this->pageTitle=Yii::app()->name;
         ),
         array('name'=>'author', ),
         array('name'=>'cid', 'value' => '$data->category->title', 'filter' => $categorys),
+        array('name'=> 'recommendlevel', 'value' => 'Yii::app()->params["recommendLevel"][$data->recommendlevel]', 'filter' => Yii::app()->params["recommendLevel"]),
 //        array('name'=>'language', 'header'=>'Language'),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
