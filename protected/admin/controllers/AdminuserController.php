@@ -18,10 +18,14 @@ class AdminuserController extends Controller
         	'order'=>'id desc',
     	));
 
-    	if(!empty($_GET['username']))
-    		$criteria->addSearchCondition('username',$_GET['username']);
+    	if(!empty($_GET['AdminUser']['username']))
+    		$criteria->addSearchCondition('username',$_GET['AdminUser']['username']);
 
-        $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
+        if(isset($_GET['AdminUser']['status'])) {
+            $criteria->compare('status', $_GET['AdminUser']['status']);
+        } else {
+            $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
+        }
 
 	    $dataProvider = new CActiveDataProvider('AdminUser',array(
 			'criteria'=> $criteria,
@@ -33,6 +37,7 @@ class AdminuserController extends Controller
 
 		$this->render('index',array(
 			'dataProvider'=> $dataProvider,
+            'model' => AdminUser::model(),
 //			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
 		));
 	}

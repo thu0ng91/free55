@@ -15,13 +15,14 @@ $this->pageTitle = "会员管理" . " - " . Yii::app()->name;
     'type'=>'striped bordered condensed',
     'dataProvider'=> $dataProvider,
     'template'=>"{items}",
+    'filter' => $model,
     'columns'=>array(
 //        array('name'=>'id', 'header'=>'#'),
-        array('name'=> 'id', 'header' => '#'),
+        array('name'=> 'id', 'header' => '#', 'filter' => false),
         array('name'=> 'username', ),
-        array('name'=> 'createtime', 'value' => 'date("Y-m-d H:i:s", $data->createtime)'),
-        array('name'=> 'lastlogintime', 'value' => 'date("Y-m-d H:i:s", $data->lastlogintime)'),
-        array('name'=> 'status', 'value' => 'Yii::app()->params["statusLabel"][$data->status]'),
+        array('name'=> 'createtime', 'value' => 'date("Y-m-d H:i:s", $data->createtime)', 'filter' => false),
+        array('name'=> 'lastlogintime', 'value' => 'date("Y-m-d H:i:s", $data->lastlogintime)', 'filter' => false),
+        array('name'=> 'status', 'value' => 'Yii::app()->params["statusLabel"][$data->status]', 'filter' => Yii::app()->params['statusAction']),
 //        array('name'=>'bookid', 'value' => '$data->book->title'),
 //        array('name'=>'language', 'header'=>'Language'),
         array(

@@ -20,17 +20,20 @@ class BookController extends Controller
 //        $criteria->addCondition('status=:stauts');
 //        $criteria->params[':status'] = Yii::app()->params['status']['ischecked'];
 
-        $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
+        if(!empty($_GET['Book']['title']))
+            $criteria->addSearchCondition('title',$_GET['Book']['title']);
 
-    	if(!empty($_GET['cid'])){
+        if(!empty($_GET['Book']['author']))
+            $criteria->addSearchCondition('author',$_GET['Book']['author']);
+
+    	if(!empty($_GET['Book']['cid'])){
     		$categoryList=array();
-    		$categoryList[]=$_GET['cid'];
-			Category::model()->getAllCategoryIds($categoryList,Category::model()->findAll(),$_GET['cid']);
+    		$categoryList[] = $_GET['Book']['cid'];
+			Category::model()->getAllCategoryIds($categoryList,Category::model()->findAll(), $_GET['Book']['cid']);
 		    $criteria->addInCondition('cid',$categoryList);
     	}
 
-    	if(!empty($_GET['title']))
-    		$criteria->addSearchCondition('title',$_GET['title']);
+        $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
 
 		$dataProvider=new CActiveDataProvider('Book',array(
 			'criteria'=>$criteria,
@@ -40,7 +43,8 @@ class BookController extends Controller
 		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-			'categorys'=>Category::model()->showAllSelectCategory(Category::SHOW_ALLCATGORY),
+			'categorys'=> Category::model()->showAllSelectCategory(Category::SHOW_ALLCATGORY),
+            'model' => Book::model(),
 		));
 	}
 

@@ -18,10 +18,14 @@ class UserController extends Controller
         	'order'=>'id desc',
     	));
 
-    	if(!empty($_GET['username']))
-    		$criteria->addSearchCondition('username',$_GET['username']);
+        if(!empty($_GET['User']['username']))
+            $criteria->addSearchCondition('username',$_GET['User']['username']);
 
-        $criteria->addNotInCondition('status', Yii::app()->params['status']['isdelete']);
+        if(isset($_GET['User']['status'])) {
+            $criteria->compare('status', $_GET['User']['status']);
+        } else {
+            $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
+        }
 
 	    $dataProvider = new CActiveDataProvider('User',array(
 			'criteria'=> $criteria,
@@ -33,6 +37,7 @@ class UserController extends Controller
 
 		$this->render('index',array(
 			'dataProvider'=> $dataProvider,
+            'model' => AdminUser::model(),
 //			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
 		));
 	}

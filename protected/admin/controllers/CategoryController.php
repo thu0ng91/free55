@@ -20,6 +20,12 @@ class CategoryController extends Controller
             'order'=>'sort desc',
         ));
 
+        if(!empty($_GET['Category']['title']))
+            $criteria->addSearchCondition('title',$_GET['Category']['title']);
+
+        if(isset($_GET['Category']['isnav']))
+            $criteria->compare('isnav', $_GET['Category']['isnav']);
+
         $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
 
 		$dataProvider=new CActiveDataProvider('Category',array(
@@ -34,6 +40,7 @@ class CategoryController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'category' => $categoryList,
+            'model' => Category::model(),
 		));
 		
 	}

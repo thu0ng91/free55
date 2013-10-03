@@ -17,14 +17,17 @@ class ArticleController extends Controller
 		$criteria=new CDbCriteria(array(
         	'order'=>'id desc',
     	));
+
+        $book = null;
+
     	if(!empty($_GET['bid'])){
-//    		$categoryList=array();
-//    		$categoryList[]=$_GET['bid'];
-//			Category::model()->getAllCategoryIds($categoryList,Category::model()->findAll('module='.Yii::app()->params['module']['article']),$_GET['bid']);
 		    $criteria->compare('bookid', $_GET['bid']);
+
+            $book = Book::model()->findByPk($_GET['bid']);
     	}
-    	if(!empty($_GET['title']))
-    		$criteria->addSearchCondition('title',$_GET['title']);
+
+        if(!empty($_GET['Article']['title']))
+            $criteria->addSearchCondition('title',$_GET['Article']['title']);
 
         $criteria->compare('status', Yii::app()->params['status']['ischecked']);
 
@@ -38,6 +41,8 @@ class ArticleController extends Controller
 
 		$this->render('index',array(
 			'dataProvider'=> $dataProvider,
+            'model' => Article::model(),
+            'book' => $book,
 //			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
 		));
 	}

@@ -15,12 +15,13 @@ $this->pageTitle=Yii::app()->name;
     'type'=>'striped bordered condensed',
     'dataProvider'=>$dataProvider,
     'template'=>"{items}",
+    'filter' => $model,
     'columns'=>array(
 //        array('name'=>'id', 'header'=>'#'),
-        array('name'=>'id', 'header' => '#'),
+        array('name'=>'id', 'header' => '#', 'filter' => false),
         array('name'=>'title', ),
-        array('name'=>'parentid', 'value' => '$data->parent->title'),
-        array('name'=>'isnav',  'value' =>  '$data->isnav == 0 ? "否" : "是"'),
+        array('name'=>'parentid', 'value' => '$data->parent->title', 'filter' => false),
+        array('name'=>'isnav',  'value' =>  '$data->isnav == 0 ? "否" : "是"', 'filter' => array('否', '是')),
 //        array('name'=>'language', 'header'=>'Language'),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
