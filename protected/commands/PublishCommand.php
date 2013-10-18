@@ -88,6 +88,8 @@ class PublishCommand extends CConsoleCommand {
             $chapter->bookid = $book->id;
             $chapter->content = $content;
             $chapter->save();
+            // 更新章节信息
+//            $book->updateLastChapter($chapter);
         }
 
         return 0;

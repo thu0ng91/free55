@@ -30,7 +30,7 @@
       <div class="control-group ">
           <label for="Book_imagefile1" class="control-label">封面图</label>
           <div class="controls">
-              <?php echo CHtml::image(Yii::app()->baseUrl . $model->imgurl);?>
+              <?php echo CHtml::image(H::getNovelImageUrl($model->imgurl));?>
           </div>
       </div>
       <?php endif; ?>

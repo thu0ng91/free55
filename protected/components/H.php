@@ -49,4 +49,19 @@ class H {
         mb_internal_encoding("UTF-8");
         return mb_substr($str, 0, $len) . $suffix;
     }
+
+    /**
+     * 获取小说图片的WEB可访问地址
+     * @param $imageUrl
+     * @return string
+     */
+    public static function getNovelImageUrl($imageUrl)
+    {
+        if (preg_match('/^http:\/\//', $imageUrl) > 0) return $imageUrl;
+
+        $baseUrl = Yii::app()->baseUrl;
+        if (preg_match('/^\//', $imageUrl) == 0 && preg_match('/\/$/', $baseUrl) == 0) $baseUrl .= '/';
+
+        return $baseUrl . $imageUrl;
+    }
 }

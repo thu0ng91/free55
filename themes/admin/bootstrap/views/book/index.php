@@ -23,7 +23,7 @@ $this->pageTitle=Yii::app()->name;
         array(
             'name'=>'imgurl',
             'type' => 'html',
-            'value' => 'CHtml::image(Yii::app()->baseUrl . $data->imgurl, "", array("style"=>"width: 50px;height:50px"))',
+            'value' => 'CHtml::image(H::getNovelImageUrl($data->imgurl), "", array("style"=>"width: 50px;height:50px"))',
             'htmlOptions'=>array('style'=>'width: 20px;height:20px'),
              'filter' => false
         ),

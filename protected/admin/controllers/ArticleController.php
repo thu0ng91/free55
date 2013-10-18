@@ -63,6 +63,8 @@ class ArticleController extends Controller
             $this->redirect($this->createUrl('book/index'));
         }
 
+        $model->chapternum = $book->chaptercount + 1;
+
 		if(isset($_POST['Article']))
 		{
 			$model->attributes = $_POST['Article'];
@@ -74,7 +76,7 @@ class ArticleController extends Controller
 
 			if($model->save()){
                 // 更新最后章节信息
-                $book->updateLastChapter($model);
+//                $book->updateLastChapter($model);
 				Yii::app()->user->setFlash('actionInfo',Yii::app()->params['actionInfo']['saveSuccess']);
 				$this->refresh();
 			}else if($model->validate()){
