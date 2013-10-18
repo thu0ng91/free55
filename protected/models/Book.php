@@ -82,7 +82,7 @@ class Book extends BaseModel
 		// class name for the relations automatically generated below.
 		return array(
             'category' => array(CActiveRecord::BELONGS_TO, 'Category', 'cid'),
-            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.id ASC',),
+            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.chapternum ASC, chapter.id ASC',),
 		);
 	}
 
