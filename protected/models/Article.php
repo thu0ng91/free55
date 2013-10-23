@@ -50,7 +50,7 @@ class Article extends BaseModel
 		return array(
 			array('bookid,title', 'required'),
 			array('imgurl','file','allowEmpty'=>true,'types'=>'jpg, gif, png','maxSize'=>1024 * 1024 * 10,'tooLarge'=>'上传图片已超过10M'),
-			array('id,chapter,chapternum,createtime, updatetime, recommendlevel, status, hits', 'numerical', 'integerOnly'=>true),
+			array('id,chapter,createtime, updatetime, recommendlevel, status, hits', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=> 100),
 			array('imgurl, linkurl', 'length', 'max'=>200),
 //			array('summary', 'length', 'max'=>500),
@@ -88,7 +88,7 @@ class Article extends BaseModel
 			'imgurl' => '封面图',
 			'seotitle'=>'页面标题',
 			'keywords' => '关键词',
-			'chapternum' => '实际章节号',
+//			'chapternum' => '实际章节号',
 			'createtime' => '创建时间',
 			'updatetime' => '更新时间',
 //			'recommend' => '推荐类型',

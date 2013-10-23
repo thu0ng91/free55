@@ -45,7 +45,7 @@
     </div>
 
       <?php echo $form->textFieldRow($model, 'title'); ?>
-      <?php echo $form->textFieldRow($model, 'chapternum'); ?>
+<!--      --><?php //echo $form->textFieldRow($model, 'chapternum'); ?>
       <?php echo $form->hiddenField($model, 'bookid'); ?>
 
 <!--        --><?php //echo $form->dropDownListRow($model, 'parentid', $categorys); ?>

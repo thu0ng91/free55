@@ -63,7 +63,7 @@ class ArticleController extends Controller
             $this->redirect($this->createUrl('book/index'));
         }
 
-        $model->chapternum = $book->chaptercount + 1;
+//        $model->chapternum = $book->chaptercount + 1;
 
 		if(isset($_POST['Article']))
 		{
