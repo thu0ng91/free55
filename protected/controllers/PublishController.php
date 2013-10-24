@@ -1,26 +1,23 @@
 <?php
 /**
- * 采集发布接口
+ * Class ArticleController
  *
- * @author pizigou
+ * Web Post 发布接口
+ * @author pizigou <pizigou@yeah.net>
  */
-class PublishCommand extends CConsoleCommand {
-
+class PublishController extends Controller
+{
     /**
      * 小说发布
      */
     public function actionNovel()
     {
-        $argv = $this->trimArgv();
 
-        if (count($argv) < 5) {
-            return 1;
-        }
-        $name = iconv("GBK", "UTF-8//IGNORE",  $argv[0]);
-        $author = iconv("GBK", "UTF-8//IGNORE", $argv[1]);
-        $catName = iconv("GBK", "UTF-8//IGNORE", $argv[2]);
-        $intro = iconv("GBK", "UTF-8//IGNORE", $argv[3]);
-        $imgUrl = iconv("GBK", "UTF-8//IGNORE", $argv[4]);
+        $name = iconv("GBK", "UTF-8//IGNORE",  $_POST['name']);
+        $author = iconv("GBK", "UTF-8//IGNORE", $_POST['author']);
+        $catName = iconv("GBK", "UTF-8//IGNORE", $_POST['category']);
+        $intro = iconv("GBK", "UTF-8//IGNORE", $_POST['intro']);
+        $imgUrl = iconv("GBK", "UTF-8//IGNORE", $_POST['imgurl']);
 
         Yii::log("novel1 " . $name);
 
@@ -54,7 +51,7 @@ class PublishCommand extends CConsoleCommand {
         }
         Yii::log("novel2 " . $name);
 
-        return 0;
+        $this->outputAndEnd(0);
     }
 
     /**
@@ -62,22 +59,16 @@ class PublishCommand extends CConsoleCommand {
      */
     public function actionChapter()
     {
-        $argv = $this->trimArgv();
-
-        if (count($argv) < 3) {
-            $this->outputAndEnd();
-        }
-
-        $title = iconv("GBK", "UTF-8//IGNORE", $argv[0]);
-        $content = iconv("GBK", "UTF-8//IGNORE", $argv[1]);
-        $name = iconv("GBK", "UTF-8//IGNORE", $argv[2]);
+        $title = iconv("GBK", "UTF-8//IGNORE", $_POST['title']);
+        $content = iconv("GBK", "UTF-8//IGNORE", $_POST['content']);
+        $name = iconv("GBK", "UTF-8//IGNORE", $_POST['name']);
 
         $book = Book::model()->find('title=:title', array(
             ':title' => $name,
         ));
 
         if (!$book) {
-            return 1;
+            $this->outputAndEnd(-1);
         }
 
         $chapter = Article::model()->find('title=:title', array(
@@ -94,21 +85,7 @@ class PublishCommand extends CConsoleCommand {
 //            $book->updateLastChapter($chapter);
         }
 
-        return 0;
-    }
-
-    /**
-     * 整理命令行参数，取出系统所需要的参数
-     * @return mixed
-     */
-    private function trimArgv()
-    {
-        $argv = $GLOBALS['argv'];
-        array_shift($argv);
-        array_shift($argv);
-        array_shift($argv);
-
-        return $argv;
+        $this->outputAndEnd(0);
     }
 
     /**
@@ -121,5 +98,3 @@ class PublishCommand extends CConsoleCommand {
         Yii::app()->end();
     }
 }
-
-?>
