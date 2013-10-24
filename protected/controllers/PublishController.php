@@ -7,6 +7,11 @@
  */
 class PublishController extends Controller
 {
+    protected function beforeAction($action)
+    {
+        $this->requestIsValid();
+        return true;
+    }
     /**
      * 小说发布
      */
@@ -51,7 +56,7 @@ class PublishController extends Controller
         }
         Yii::log("novel2 " . $name);
 
-        $this->outputAndEnd(0);
+        return 0;
     }
 
     /**
@@ -86,6 +91,18 @@ class PublishController extends Controller
         }
 
         $this->outputAndEnd(0);
+    }
+
+    /**
+     * 检查采集请求是否合法
+     */
+    private function requestIsValid()
+    {
+        $authKey = $_POST['auth_key'];
+        if ($authKey != Yii::app()->params['gather_auth_key'])
+        {
+            $this->outputAndEnd(-1);
+        }
     }
 
     /**
