@@ -40,7 +40,7 @@ class PublishCommand extends CConsoleCommand {
 
         $book = Book::model()->find('title=:title and cid=:cid', array(
             ':title' => $name,
-            ':cid' => $category->cid,
+            ':cid' => $category->id,
         ));
 
         if (!$book) {

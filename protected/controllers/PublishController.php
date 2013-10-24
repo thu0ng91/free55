@@ -42,7 +42,7 @@ class PublishController extends Controller
 
         $book = Book::model()->find('title=:title and cid=:cid', array(
             ':title' => $name,
-            ':cid' => $category->cid,
+            ':cid' => $category->id,
         ));
 
         if (!$book) {
@@ -56,7 +56,7 @@ class PublishController extends Controller
         }
         Yii::log("novel2 " . $name);
 
-        return 0;
+        $this->outputAndEnd(0);
     }
 
     /**
