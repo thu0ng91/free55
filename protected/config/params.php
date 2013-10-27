@@ -30,6 +30,7 @@ return array(
 		'article'=>10,
 		'product'=>10,
 	),
+    'girdpagesize' => 100,
 	'status'=>array(
 		'isstop' => 0, //待审
         'isdelete' => -1, // 删除

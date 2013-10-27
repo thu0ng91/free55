@@ -72,7 +72,7 @@
             ),
         ),
 )); ?>
-
+<div class="clear"></div>
 <div class="container" id="page">
 
 	<?php if(isset($this->breadcrumbs)):?>

@@ -24,7 +24,7 @@ $this->pageTitle = "关键字 " . CHtml::encode($title) . "  搜索结果 - " . 
                 <?php $this->widget('bootstrap.widgets.TbGridView', array(
                     'type'=>'condensed',
                     'dataProvider' => $dataProvider,
-                    'template'=>"{items}",
+                    'template'=>"{items}\n{pager}",
                     'hideHeader' => true,
                     'columns'=>array(
                         array(

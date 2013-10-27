@@ -20,7 +20,7 @@ $this->pageTitle = Yii::app()->name;
                         'active' => true,
                         'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                             'dataProvider'=> $recommendDataProvider,
-                            'template'=>"{items}\n{pager}",
+                            'template'=>"{items}",
                             'itemView'=>'_thumb',
                         ), true),
                     ),
@@ -28,7 +28,7 @@ $this->pageTitle = Yii::app()->name;
                         'label' => '最新小说',
                         'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                             'dataProvider'=> $newestDataProvider,
-                            'template'=>"{items}\n{pager}",
+                            'template'=>"{items}",
                             'itemView'=>'_thumb',
                         ), true),
                         'active' => false,
@@ -94,7 +94,7 @@ $this->pageTitle = Yii::app()->name;
                                 'active' => true,
                                 'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                     'dataProvider'=> $dayDataProvider,
-                                    'template'=>"{items}\n{pager}",
+                                    'template'=>"{items}",
                                     'itemView'=>'_item',
                                 ), true),
                             ),
@@ -103,7 +103,7 @@ $this->pageTitle = Yii::app()->name;
                                 'active' => false,
                                 'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                     'dataProvider'=> $weekDataProvider,
-                                    'template'=>"{items}\n{pager}",
+                                    'template'=>"{items}",
                                     'itemView'=>'_item',
                                 ), true),
                             ),
@@ -112,7 +112,7 @@ $this->pageTitle = Yii::app()->name;
                                 'active' => false,
                                 'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                     'dataProvider'=> $monthDataProvider,
-                                    'template'=>"{items}\n{pager}",
+                                    'template'=>"{items}",
                                     'itemView'=>'_item',
                                 ), true),
                             ),

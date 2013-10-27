@@ -14,9 +14,7 @@ class BookController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$criteria=new CDbCriteria(array(
-        	'order'=>'id desc',
-    	));
+		$criteria=new CDbCriteria();
 //        $criteria->addCondition('status=:stauts');
 //        $criteria->params[':status'] = Yii::app()->params['status']['ischecked'];
 
@@ -43,7 +41,16 @@ class BookController extends Controller
 			'criteria'=>$criteria,
 			'pagination'=>array(
         		'pageSize'=>Yii::app()->params['girdpagesize'],
-    		),	
+    		),
+            'sort'=>array(
+                'defaultOrder'=>array(
+                    'id' => CSort::SORT_DESC,
+                ),
+                'attributes'=>array(
+                    'id',
+                    'createtime',
+                ),
+            ),
 		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

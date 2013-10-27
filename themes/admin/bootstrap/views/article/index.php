@@ -25,15 +25,18 @@ $this->pageTitle = "小说章节管理" . " - " . Yii::app()->name;
 <?php endif; ?>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'chapter-grid',
     'type'=>'striped bordered condensed',
     'dataProvider'=>$dataProvider,
-    'template'=>"{items}",
+    'template'=>"{items}\n{pager}",
+    'enablePagination' => true,
     'filter' => $model,
     'columns'=>array(
-//        array('name'=>'id', 'header'=>'#'),
-        array('name'=>'id', 'header' => '#', 'filter' => false),
+        array('name'=>'id', 'header'=>'内容编号'),
+        array('name'=>'chapter'),
         array('name'=>'title', ),
         array('name'=>'bookid', 'value' => '$data->book->title', 'filter' => false),
+        array('name'=>'createtime', 'value' => 'date("Y-m-d H:i:s", $data->createtime)', 'filter' => false),
 //        array('name'=>'language', 'header'=>'Language'),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',

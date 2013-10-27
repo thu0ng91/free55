@@ -52,7 +52,7 @@
 
 
 
-    <?php echo $form->dropDownListRow($model, 'chapter', explode("\n", isset($book) ? $book->sections : $model->book->sections)); ?>
+    <?php echo $form->textFieldRow($model, 'chapter'); ?>
 
     <?php echo $form->textAreaRow($model, 'content'); ?>
 

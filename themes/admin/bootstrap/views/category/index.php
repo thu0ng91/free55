@@ -14,7 +14,7 @@ $this->pageTitle=Yii::app()->name;
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$dataProvider,
-    'template'=>"{items}",
+    'template'=>"{items}\n{pager}",
     'filter' => $model,
     'columns'=>array(
 //        array('name'=>'id', 'header'=>'#'),

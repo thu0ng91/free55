@@ -52,7 +52,7 @@ class Article extends BaseModel
 			array('imgurl','file','allowEmpty'=>true,'types'=>'jpg, gif, png','maxSize'=>1024 * 1024 * 10,'tooLarge'=>'上传图片已超过10M'),
 			array('id,chapter,createtime, updatetime, recommendlevel, status, hits', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=> 100),
-			array('imgurl, linkurl', 'length', 'max'=>200),
+			array('imgurl, linkurl', 'length', 'max'=>255),
 //			array('summary', 'length', 'max'=>500),
 			array('tags, keywords, seotitle', 'length', 'max'=>100),
 			array('content', 'safe'),
@@ -80,16 +80,16 @@ class Article extends BaseModel
 	public function attributeLabels()
 	{
 		return array(
-            'id' => '章节编号',
+            'id' => '编号',
             'bookid' => '所属小说',
-            'chapter' => '所属分卷',
+            'chapter' => '章节',
 			'title' => '章节标题',
 			'content' => '内容',
 			'imgurl' => '封面图',
 			'seotitle'=>'页面标题',
 			'keywords' => '关键词',
 //			'chapternum' => '实际章节号',
-			'createtime' => '创建时间',
+			'createtime' => '发布时间',
 			'updatetime' => '更新时间',
 //			'recommend' => '推荐类型',
 			'recommendlevel' => '排序级别',
@@ -143,20 +143,21 @@ class Article extends BaseModel
      */
     protected function afterSave()
     {
-        if (parent::afterSave()) {
-            if ($this->isNewRecord) {
-                $this->book->chaptercount += 1;
-                $this->book->wordcount += mb_strlen($this->content);
-                $this->book->lastchapterid = $this->id;
-                $this->book->lastchaptertitle = $this->title;
-                $this->book->lastchaptertime = $this->createtime;
-                $this->book->save();
-            }
 
-            return true;
+        if ($this->isNewRecord) {
+            $this->book->chaptercount += 1;
+            $this->book->wordcount += mb_strlen($this->content);
+            $this->book->lastchapterid = $this->id;
+            $this->book->lastchaptertime = $this->createtime;
+            $this->book->save();
+        } else {
+            $this->book->lastchapterid = $this->id;
+            $this->book->lastchaptertitle = $this->title;
+            $this->book->lastchaptertime = $this->createtime;
+            $this->book->save();
         }
 
-        return false;
+        return parent::afterSave();
     }
 
     /**

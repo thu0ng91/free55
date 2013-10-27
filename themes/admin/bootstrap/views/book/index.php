@@ -14,11 +14,11 @@ $this->pageTitle=Yii::app()->name;
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$dataProvider,
-    'template'=>"{items}",
+    'template'=>"{items}\n{pager}",
     'filter' => $model,
     'columns'=>array(
 //        array('name'=>'id', 'header'=>'#'),
-        array('name'=>'id', 'header' => '#', 'filter' => false),
+        array('name'=>'id', 'header' => '小说编号', 'filter' => false),
         array('name'=>'title', ),
         array(
             'name'=>'imgurl',
@@ -31,6 +31,7 @@ $this->pageTitle=Yii::app()->name;
         array('name'=>'cid', 'value' => '$data->category->title', 'filter' => $categorys),
         array('name'=> 'recommendlevel', 'value' => 'Yii::app()->params["recommendLevel"][$data->recommendlevel]', 'filter' => Yii::app()->params["recommendLevel"]),
 //        array('name'=>'language', 'header'=>'Language'),
+        array('name'=>'createtime', 'value' => 'date("Y-m-d H:i:s", $data->createtime)', 'filter' => false),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'template'=>"{view}{add}{update}{delete}",

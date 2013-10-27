@@ -19,7 +19,7 @@ $this->pageTitle = $category->title . "-" . Yii::app()->name;
                         'label' => '最新更新',
                         'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                             'dataProvider'=> $lastUpdateDataProvider,
-                            'template'=>"{items}\n{pager}",
+                            'template'=>"{items}",
                             'itemView'=>'_thumb',
                         ), true),
                         'active' => true,
@@ -29,7 +29,7 @@ $this->pageTitle = $category->title . "-" . Yii::app()->name;
                         'active' => false,
                         'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                             'dataProvider'=> $recommendDataProvider,
-                            'template'=>"{items}\n{pager}",
+                            'template'=>"{items}",
                             'itemView'=>'_thumb',
                         ), true),
                     ),
@@ -95,7 +95,7 @@ $this->pageTitle = $category->title . "-" . Yii::app()->name;
                             'active' => true,
                             'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                 'dataProvider'=> $dayDataProvider,
-                                'template'=>"{items}\n{pager}",
+                                'template'=>"{items}",
                                 'itemView'=>'//site/_item',
                             ), true),
                         ),
@@ -104,7 +104,7 @@ $this->pageTitle = $category->title . "-" . Yii::app()->name;
                             'active' => false,
                             'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                 'dataProvider'=> $weekDataProvider,
-                                'template'=>"{items}\n{pager}",
+                                'template'=>"{items}",
                                 'itemView'=>'//site/_item',
                             ), true),
                         ),
@@ -113,7 +113,7 @@ $this->pageTitle = $category->title . "-" . Yii::app()->name;
                             'active' => false,
                             'content'=> $this->widget('bootstrap.widgets.TbThumbnails', array(
                                 'dataProvider'=> $monthDataProvider,
-                                'template'=>"{items}\n{pager}",
+                                'template'=>"{items}",
                                 'itemView'=>'//site/_item',
                             ), true),
                         ),

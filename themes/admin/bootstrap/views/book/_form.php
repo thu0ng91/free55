@@ -63,11 +63,11 @@
       ?>
 <!--        </div>-->
 <!--    </div>-->
-      <?php echo $form->textAreaRow($model, 'sections', array(
-          'hint' => '每个分卷一行',
-          'cols' => 80,
-          'rows' => 10,
-      )); ?>
+<!--      --><?php //echo $form->textAreaRow($model, 'sections', array(
+//          'hint' => '每个分卷一行',
+//          'cols' => 80,
+//          'rows' => 10,
+//      )); ?>
       <?php echo $form->textFieldRow($model, 'tags', array(
           'hint'=> '提示：逗号分隔'
       )); ?>

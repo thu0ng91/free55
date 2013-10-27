@@ -82,7 +82,7 @@ class Book extends BaseModel
 		// class name for the relations automatically generated below.
 		return array(
             'category' => array(CActiveRecord::BELONGS_TO, 'Category', 'cid'),
-            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.id ASC',),
+            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.chapter ASC',),
 		);
 	}
 
@@ -103,7 +103,7 @@ class Book extends BaseModel
 			'tags' => '标签',
 			'seotitle' => '搜索优化标题',
 			'keywords' => '关键字',
-			'createtime' => '创建时间',
+			'createtime' => '发布时间',
 			'updatetime' => '更新时间',
 //			'recommend' => '编辑推荐',
 			'recommendlevel' => '推荐类型',

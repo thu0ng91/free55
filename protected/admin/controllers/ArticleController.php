@@ -14,9 +14,7 @@ class ArticleController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$criteria=new CDbCriteria(array(
-        	'order'=>'id desc',
-    	));
+		$criteria=new CDbCriteria();
 
         $book = null;
 
@@ -29,6 +27,9 @@ class ArticleController extends Controller
         if(!empty($_GET['Article']['title']))
             $criteria->addSearchCondition('title',$_GET['Article']['title']);
 
+        if(!empty($_GET['Article']['chapter']))
+            $criteria->addSearchCondition('chapter',$_GET['Article']['chapter']);
+
         $criteria->compare('status', Yii::app()->params['status']['ischecked']);
 
 	    $dataProvider = new CActiveDataProvider('Article',array(
@@ -36,6 +37,15 @@ class ArticleController extends Controller
 			'pagination'=>array(
         		'pageSize'=>Yii::app()->params['girdpagesize'],
     		),
+            'sort'=>array(
+                'defaultOrder'=>array(
+                    'chapter' => CSort::SORT_DESC,
+                ),
+                'attributes'=>array(
+                    'chapter',
+                    'createtime',
+                ),
+            ),
 		));
 
 

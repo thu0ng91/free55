@@ -40,6 +40,7 @@ class JChinese extends Chinese
 
     function __destruct()
     {
-        fclose($this->ctf);
+        if (null != $this->ctf && is_resource($this->ctf))
+            fclose($this->ctf);
     }
 }

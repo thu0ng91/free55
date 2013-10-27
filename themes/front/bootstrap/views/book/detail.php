@@ -84,7 +84,7 @@ $this->pageTitle = $book->title . "-" . Yii::app()->name;
                 foreach ($book->chapter as $k => $v):
 //                    if ($v->chapter == $key):
             ?>
-                <?php if (($k + 1) % 4 == 0): ?>
+                <?php if (($k % 4) == 0): ?>
                 </tr><tr>
                 <?php endif;?>
                 <td><a href="<?php echo $this->createUrl('article/view', array('id' => $v->id));?>"><?php echo $v->title;?></a></td>
