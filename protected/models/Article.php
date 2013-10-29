@@ -23,6 +23,9 @@
 class Article extends BaseModel
 {
 	public $imagefile;
+
+    public $content = null;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Article the static model class
@@ -156,8 +159,20 @@ class Article extends BaseModel
             $this->book->lastchaptertime = $this->createtime;
             $this->book->save();
         }
+        // 保存小说章节内容
+        $this->saveContentToFile();
 
         return parent::afterSave();
+    }
+
+    /**
+     * 填充 content 字段
+     */
+    public function afterFind()
+    {
+        $this->content = $this->getContentFromFile();
+
+        return parent::afterFind();
     }
 
     /**
@@ -166,6 +181,8 @@ class Article extends BaseModel
      */
     protected function beforeDelete()
     {
+        $this->deleteContentFile();
+
         if ($this->book->chaptercount >= 1) {
             $this->book->chaptercount -= 1;
         }
@@ -178,5 +195,80 @@ class Article extends BaseModel
         $this->book->save();
 
         return parent::beforeDelete();
+    }
+
+    /**
+     * 删除小说章节内容文件
+     * @return bool
+     */
+    protected function deleteContentFile()
+    {
+        $p = $this->getArticleDataPath();
+
+        if (file_exists($p)) return @unlink($p);
+
+        return false;
+    }
+
+    /**
+     * 保存小说章节内容
+     * @return bool|int
+     */
+    protected function saveContentToFile()
+    {
+        if (null != $this->content) {
+            $p = $this->getArticleDataPath();
+
+            if (null == p) return false;
+
+            if (!$this->makeArticleDataDir($p)) return false;
+
+            return @file_put_contents($p, $this->content);
+        }
+
+        return false;
+    }
+
+    /**
+     * 从文件中读到小说章节内容
+     * @return null|string
+     */
+    protected function getContentFromFile()
+    {
+        $p = $this->getArticleDataPath();
+        if (!file_exists($p)) return null;
+
+        return @file_get_contents($p);
+    }
+
+    /**
+     * 获得小说章节内容路径
+     * @return null|string
+     */
+    protected function getArticleDataPath()
+    {
+        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR  . ".." . DIRECTORY_SEPARATOR  . "runtime" . DIRECTORY_SEPARATOR . "data";
+        if (null != $this->bookid && $this->bookid > 0) {
+            $dir .= DIRECTORY_SEPARATOR . ($this->bookid % 500) . DIRECTORY_SEPARATOR . $this->bookid;
+
+            return $dir . DIRECTORY_SEPARATOR . $this->id . ".txt";
+        }
+
+        return null;
+    }
+
+    /**
+     * 创建小说章节内容目录
+     * @param $path
+     * @return bool
+     */
+    protected function makeArticleDataDir($path)
+    {
+        $dir = dirname($path);
+        if (!is_dir($dir)) {
+            return @mkdir($dir, 0777, true);
+        }
+
+        return true;
     }
 }

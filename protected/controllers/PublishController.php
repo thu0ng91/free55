@@ -66,10 +66,11 @@ class PublishController extends Controller
 //            $v = iconv("GBK", "UTF-8//IGNORE", $v);
 
             $sourceUrl = $this->getAbsoluteUrl($baseUrl, $v);
+            $sourceUrl = trim($sourceUrl);
 
-            $chapter = Article::model()->find('bookid=:bookid and linkurl=:linkurl', array(
+            $chapter = Article::model()->find('bookid=:bookid and chapter=:chapter', array(
                 ':bookid' => $book->id,
-                ':linkurl' => $sourceUrl,
+                ':chapter' => $k + 1,
             ));
             if (!$chapter)
             {
@@ -78,12 +79,12 @@ class PublishController extends Controller
                 $chapter->bookid = $book->id;
                 $chapter->chapter = $k + 1;
                 $chapter->linkurl = $sourceUrl;
+                $chapter->status = Yii::app()->params['status']['isstop'];
                 $chapter->save();
             } else {
-                // 章节纠正
-                if ($chapter->chapter != ($k + 1))
-                {
-                    $chapter->chapter = $k + 1;
+                // 章节号已经存在，但是还没有实际内容并且上次采集的地址与本次采集地址不一致，则上次采集地址修正为本次采集地址
+                if ($chapter->linkurl != $sourceUrl && Yii::app()->params['status']['isstop'] == $chapter->status) {
+                    $chapter->linkurl = $sourceUrl;
                     $chapter->save();
                 }
             }
@@ -119,26 +120,30 @@ class PublishController extends Controller
             $this->outputAndEnd(-1);
         }
 
+        $sourceUrl = trim($sourceUrl);
+
         $chapter = Article::model()->find('bookid=:bookid and linkurl=:linkurl', array(
             ':bookid' => $book->id,
             ':linkurl' => $sourceUrl,
         ));
 
+        // 如果发现对硬采集地址没有章节信息，则表示可能没有采集到小说章节目录，则返回失败
         if (!$chapter) {
-            $chapter = new Article();
-            $chapter->title = $title;
-            $chapter->bookid = $book->id;
-            $chapter->content = $content;
-            $chapter->linkurl = $sourceUrl;
-            $chapter->save();
-            // 更新章节信息
-//            $book->updateLastChapter($chapter);
+//            $chapter = new Article();
+//            $chapter->title = $title;
+//            $chapter->bookid = $book->id;
+//            $chapter->content = $content;
+//            $chapter->linkurl = $sourceUrl;
+//            $chapter->chapter = $book->chaptercount + 1;
+//            $chapter->save();
+            $this->outputAndEnd(-1);
         } else {
-            if ($chapter->title != $title) {
+            if (Yii::app()->params['status']['isstop'] == $chapter->status) {
                 $chapter->title = $title;
+                $chapter->content = $content;
+                $chapter->status = Yii::app()->params['status']['ischecked'];
+                $chapter->save();
             }
-            $chapter->content = $content;
-            $chapter->save();
         }
 
         $this->outputAndEnd(0);
@@ -157,12 +162,17 @@ class PublishController extends Controller
     }
 
     /**
-     * 输出并停止
+     * 输出运行结果并停止，如果遇到错误则向采集端返回404
      * @param $r
      */
     private function outputAndEnd($r = 0)
     {
-        echo $r;
+        if ($r < 0) {
+            header("HTTP/1.0 501 Not Implemented");
+        } else {
+            // equal header 200
+            echo $r;
+        }
         Yii::app()->end();
     }
 
