@@ -122,7 +122,7 @@ class PublishController extends Controller
 
         $sourceUrl = trim($sourceUrl);
 
-        $chapter = Article::model()->find('bookid=:bookid and linkurl=:linkurl', array(
+        $chapter = Article::model()->find('bookid=:bookid and linkurl=:linkurl and chapter>0', array(
             ':bookid' => $book->id,
             ':linkurl' => $sourceUrl,
         ));

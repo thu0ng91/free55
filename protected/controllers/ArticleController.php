@@ -17,15 +17,17 @@ class ArticleController extends Controller
         }
 
         $prevChapter = Article::model()->find(
-            'id<:chapter order by chapter desc',
+            'bookid=:bookid and chapter<:chapter order by chapter desc',
             array(
+                ':bookid' => $chapter->bookid,
                 ':chapter' => $chapter->chapter,
             )
         );
 
         $nextChapter = Article::model()->find(
-            'chapter>:chapter order by chapter asc',
+            'bookid=:bookid and chapter>:chapter order by chapter asc',
             array(
+                ':bookid' => $chapter->bookid,
                 ':chapter' => $chapter->chapter,
             )
         );
