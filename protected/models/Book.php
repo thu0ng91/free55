@@ -82,7 +82,7 @@ class Book extends BaseModel
 		// class name for the relations automatically generated below.
 		return array(
             'category' => array(CActiveRecord::BELONGS_TO, 'Category', 'cid'),
-            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.chapter ASC, chapter.id asc',),
+            'chapter' => array(CActiveRecord::HAS_MANY, 'Article', 'bookid', 'order'=>'chapter.chapter ASC, chapter.id asc', 'on' => 'chapter.status=' . Yii::app()->params['status']['ischecked']),
 		);
 	}
 
