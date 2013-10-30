@@ -200,6 +200,5 @@ CREATE TABLE IF NOT EXISTS `user_book_favorites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--------------------------------------
 INSERT INTO `admin` (`id`, `username`, `password`, `realname`, `roleid`, `telephone`, `qq`, `email`, `address`, `createtime`, `updatetime`, `lastlogintime`, `status`, `loginhits`) VALUES
 (1, 'admin', '90464b75b6cd4a65d6c832389b09a449', '', 1, '', '', '', '', NULL, 1380713128, 1380713128, 1, 12);

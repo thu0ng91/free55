@@ -86,11 +86,11 @@ return array(
 				array(
                 	'class'=>'CFileLogRoute', 
 					'levels'=>'error,warning,trace,info',
-           	 	),
+                    'categories' => 'application.*,system.*',
 //           	 	array(
 //                    'class' => 'CWebLogRoute',
 //					  'levels'=>'trace,info,error, warning',
-//                ),
+                ),
 			),
 		),
 		'image'=>array(
