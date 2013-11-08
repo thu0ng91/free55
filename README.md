@@ -29,6 +29,10 @@
 
 [安装步骤](http://git.oschina.net/pizigou/free55novel/wikis/%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4 "安装步骤")
 
+### 演示 ###
+
+[演示地址](http://free55.net/demo "演示地址")
+
 ### 开发者 ###
 
 pizigou <pizigou@yeah.net>
