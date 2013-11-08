@@ -7,7 +7,8 @@
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 
 $webUrl = pathinfo($_SERVER['SCRIPT_NAME']);
-$webUrl = $webUrl['dirname'];
+$webUrl = str_replace('\\', '/', $webUrl['dirname']);
+$webUrl = rtrim($webUrl, '/');
 $basePath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..';
 
 return array(
