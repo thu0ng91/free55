@@ -20,6 +20,8 @@ class Category extends BaseModel
 	const SHOW_TOPCATGORY='————顶级分类————';
 	const SHOW_ALLCATGORY='————查看全部分类————';
 	public $imagefile;
+
+    public $url;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Category the static model class
@@ -177,14 +179,16 @@ class Category extends BaseModel
         $criteria->compare('status', Yii::app()->params['status']['ischecked']);
         $criteria->compare('isnav', 1);
 
-        $models = Category::model()->select('id,title,shorttitle')->order('sort desc')->findAll($criteria);
+//        $models = Category::model()->select('id,title,shorttitle')->order('sort desc')->findAll($criteria);
+        $models = Category::model()->order('sort desc')->findAll($criteria);
 
-        $menus = array();
-
-        foreach ($models as $m) {
-            $menus[] = $m->attributes;
-        }
-
-        return $menus;
+        return $models;
+//        $menus = array();
+//
+//        foreach ($models as $m) {
+//            $menus[] = $m->attributes;
+//        }
+//
+//        return $menus;
     }
 }

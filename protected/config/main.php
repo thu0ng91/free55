@@ -28,16 +28,16 @@ return array(
     'application.extensions.image.*',
 	),
 
-    'theme' => 'bootstrap',
+    'theme' => 'biquge',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-      'generatorPaths'=>array(
-          'bootstrap.gii',
-      ),
+            'generatorPaths'=>array(
+              'bootstrap.gii',
+            ),
 			'password'=>'123456',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			//'ipFilters'=>array('127.0.0.1','::1'),
@@ -101,18 +101,38 @@ return array(
 					// ImageMagick setup path
 					//'params'=>array('directory'=>'D:/Program Files/ImageMagick-6.4.8-Q16'),
 				),	
-		'yexcel' => array(
-			'class' => 'ext.yexcel.Yexcel'
-		),
+//		'yexcel' => array(
+//			'class' => 'ext.yexcel.Yexcel'
+//		),
 
-    'bootstrap'=>array(
-        'class'=>'bootstrap.components.Bootstrap',
-    ),  
-    
-    'themeManager' => array(
-      'basePath' => $basePath . '/../themes/front',
-      'baseUrl' => $webUrl . '/themes/front',
-    ),
+        'bootstrap'=>array(
+            'class'=>'bootstrap.components.Bootstrap',
+        ),
+
+        'themeManager' => array(
+          'basePath' => $basePath . '/../themes/front',
+          'baseUrl' => $webUrl . '/themes/front',
+        ),
+
+        'viewRenderer' => array(
+            'class'=>'application.extensions.yiiext.renderers.smarty.ESmartyViewRenderer',
+            'fileExtension' => '.tpl',
+        ),
+
+        'cache'=>array(
+            'class'=>'system.caching.CFileCache',
+        ),
+
+        'settings'=>array(
+            'class'                 => 'application.extensions.onetwist.CmsSettings',
+            'cacheComponentId'  => 'cache',
+            'cacheId'           => 'global_website_settings',
+            'cacheTime'         => 84000,
+            'tableName'     => '{{settings}}',
+            'dbComponentId'     => 'db',
+            'createTable'       => true,
+//            'dbEngine'      => 'InnoDB',
+        ),
 	),
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
