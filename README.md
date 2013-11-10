@@ -1,5 +1,9 @@
 # 飞舞小说系统 #
 
+### 官方网站 ###
+
+1. 飞舞小说网 http://www.free55.net/
+
 ### 提示 ###
 1. 开发版本中尚不稳定，最新稳定版下载地址：http://www.free55.net/pizigou-free55novel-v1.1.zip
 
