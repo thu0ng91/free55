@@ -1,4 +1,4 @@
-
+<div id="main">
 <div id="hotcontent">
 
 
@@ -78,7 +78,7 @@
 <div class="clear"></div></div>
 <ul>
     {novel_book limit=12 cid=[2]}
-        <li><a href="{$item->url}">{$item->title}</a>/{$item->author}</li>
+        <li><a href="{novel_book_link id=$item->id}">{$item->title}</a>/{$item->author}</li>
     {/novel_book}
 </ul>
 </div>
@@ -101,7 +101,7 @@
         <div class="clear"></div></div>
     <ul>
         {novel_book limit=12 cid=[1]}
-            <li><a href="{$item->url}">{$item->title}</a>/{$item->author}</li>
+            <li><a href="{novel_book_link id=$item->id}">{$item->title}</a>/{$item->author}</li>
         {/novel_book}
     </ul>
   </div>
@@ -117,7 +117,7 @@
 <h2>最近更新小说列表</h2>
 <ul>
     {novel_book limit=30 order='lastchaptertime desc'}
-    <li><span class="s1">[{$item->category->title}]</span><span class="s2"><a href="{novel_book_link id=$item->id}" target="_blank">{$item->title}</a></span><span class="s3"><a href="{novel_chapter_link id=$item->lastchapterid}" target="_blank">{$item->lastchaptertitle}</a></span><span class="s4">{$item->author}</span><span class="s5">{$item->lastchaptertime|date_format:"%m-%d"}/span></li>
+    <li><span class="s1">[{$item->category->title}]</span><span class="s2"><a href="{novel_book_link id=$item->id}" target="_blank">{$item->title}</a></span><span class="s3"><a href="{novel_chapter_link id=$item->lastchapterid}" target="_blank">{$item->lastchaptertitle}</a></span><span class="s4">{$item->author}</span><span class="s5">{$item->lastchaptertime|date_format:"%m-%d"}</span></li>
     {/novel_book}
 </ul>
 </div>
@@ -133,4 +133,5 @@
 </ul>
 </div><div class="clear"></div>
 
-</div></div>
+</div>
+</div>

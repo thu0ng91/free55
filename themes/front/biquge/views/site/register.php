@@ -55,6 +55,7 @@ $this->pageTitle =  '用户注册'  . ' - ' . Yii::app()->name;
       ),
     )); ?>
 
+     <br />
       <?php
         $roles = array_flip(Yii::app()->params['role']);
 

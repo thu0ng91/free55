@@ -43,6 +43,7 @@ $this->pageTitle =  '安装'  . ' - ' . Yii::app()->name;
 
 </style>
 
+<br />
 
 <div class="form form-signin">
     <?php $this->renderPartial('//layouts/flash-message'); ?>

@@ -86,7 +86,7 @@ function cookie_encode(string){
 		'width' :200,
 		'height' :100
 	};
-	this.title = 'ĞÅÏ¢ÌáÊ¾';
+	this.title = 'ä¿¡æ¯æç¤º';
 	this.time = 4000;
 	this.anims = {
 		'type' :'slide',
@@ -105,7 +105,7 @@ function cookie_encode(string){
 								+ this.layer.width
 								+ 'px;height:'
 								+ this.layer.height
-								+ 'px;position:absolute;display:none;background:#cfdef4;bottom:0;left:0; overflow:hidden;border:#b9c9ef 1px solid;z-index:100;"><div style="border:1px solid #fff;border-bottom:none;width:100%;height:25px;font-size:12px;overflow:hidden;color:#FF0000;"><span id="message_close" style="float:right;padding:5px 0 5px 0;width:16px;line-height:auto;color:red;font-size:12px;font-weight:bold;text-align:center;cursor:pointer;overflow:hidden;">¡Á</span><div style="padding:5px 0 5px 5px;width:100px;line-height:18px;text-align:left;overflow:hidden;">'
+								+ 'px;position:absolute;display:none;background:#cfdef4;bottom:0;left:0; overflow:hidden;border:#b9c9ef 1px solid;z-index:100;"><div style="border:1px solid #fff;border-bottom:none;width:100%;height:25px;font-size:12px;overflow:hidden;color:#FF0000;"><span id="message_close" style="float:right;padding:5px 0 5px 0;width:16px;line-height:auto;color:red;font-size:12px;font-weight:bold;text-align:center;cursor:pointer;overflow:hidden;">Ã—</span><div style="padding:5px 0 5px 5px;width:100px;line-height:18px;text-align:left;overflow:hidden;">'
 								+ title
 								+ '</div><div style="clear:both;"></div></div> <div style="padding-bottom:5px;border:1px solid #fff;border-top:none;width:100%;height:auto;font-size:12px;"><div id="message_content" style="margin:0 5px 0 5px;border:#b9c9ef 1px solid;padding:10px 0 10px 5px;font-size:12px;width:'
 								+ (this.layer.width - 17)
@@ -231,7 +231,7 @@ function cookie_encode(string){
 			'width' :200,
 			'height' :100
 		};
-		this.title = 'ĞÅÏ¢ÌáÊ¾';
+		this.title = 'ä¿¡æ¯æç¤º';
 		this.time = 4000;
 		this.anims = {
 			'type' :'slide',
@@ -253,7 +253,7 @@ document.onkeydown = function(e){
 	}
 /*	if(e.keyCode==13 && kw.value!="") {
 		if($.browser.is == 'msie') {
-			kw.value = kw.value + ' ±ÊÈ¤¸ó'; 
+			kw.value = kw.value + ' é£èˆå°è¯´'; 
 		}
 		document.getElementById('sform').submit.click();
 	}
@@ -272,7 +272,7 @@ $(document).ready(function(){
 	var wd = $('#wd');
 
 	wd.focusin(function() {
-	if($(this).val()=="¿ÉËÑÊéÃûºÍ×÷Õß£¬ÇëÄúÉÙ×ÖÒ²±ğÊä´í×Ö¡£") $(this).val("");
+	if($(this).val()=="å¯æœä¹¦åå’Œä½œè€…ï¼Œè¯·æ‚¨å°‘å­—ä¹Ÿåˆ«è¾“é”™å­—ã€‚") $(this).val("");
 	});
 	// down
 	
@@ -287,7 +287,7 @@ $(document).ready(function(){
 	}
 
 	wd.focusout(function() {
-	if($(this).val()=='') $(this).val("¿ÉËÑÊéÃûºÍ×÷Õß£¬ÇëÄúÉÙ×ÖÒ²±ğÊä´í×Ö¡£");
+	if($(this).val()=='') $(this).val("å¯æœä¹¦åå’Œä½œè€…ï¼Œè¯·æ‚¨å°‘å­—ä¹Ÿåˆ«è¾“é”™å­—ã€‚");
 	}); 
 	if( typeof(next_page) != "undefined" ) {
 		next_page = next_page;
@@ -317,16 +317,16 @@ $(document).ready(function(){
 		document.ondblclick=scrollwindow;
 	}
 
-	if(jieqiUserId != 0 && jieqiUserName != '' && (document.cookie.indexOf('PHPSESSID') != -1 || jieqiUserPassword != '')){
-		timestamp = Math.ceil((new Date()).valueOf()/1000); //µ±Ç°Ê±¼ä´Á
-		flag_overtime = $.cookie("overtime");//¿ÉÄÜÎªnull
+	if(fwUserId != 0 && fwUserName != '' && (document.cookie.indexOf('PHPSESSID') != -1 || fwUserPassword != '')){
+		timestamp = Math.ceil((new Date()).valueOf()/1000); //å½“å‰æ—¶é—´æˆ³
+		flag_overtime = $.cookie("overtime");//å¯èƒ½ä¸ºnull
 		if((flag_overtime<1 || flag_overtime==null || flag_overtime=='' || timestamp>flag_overtime) && flag_overtime!=-99) {
-			$.get("/exchange.php?ajax=1&uid="+jieqiUserId+"&rnd="+timestamp, 
+			$.get("/exchange.php?ajax=1&uid="+fwUserId+"&rnd="+timestamp, 
 				function(overtime){
 					if(overtime<timestamp) {
 						$.cookie("overtime",-99);
 					} else {
-						$.cookie("overtime",overtime);//µÇÂ½Ê×ÉèÖÃcookie
+						$.cookie("overtime",overtime);//ç™»é™†é¦–è®¾ç½®cookie
 					}
 					window.location.reload();
 				}
@@ -339,7 +339,7 @@ function showpop(url) {
 	$.get(url, function(data){
 		$.messager.lays(260, 120);
 		$.messager.anim('fade', 1000);
-		$.messager.show("ÌáÊ¾ĞÅÏ¢", data ,5000);
+		$.messager.show("æç¤ºä¿¡æ¯", data ,5000);
 	});
 }
 
@@ -465,43 +465,44 @@ function setAutopage(){
 
 //
 
-var jieqiUserId = 0;
-var jieqiUserName = '';
-var jieqiUserPassword = '';
-var jieqiUserGroup = 0;
+var fwUserId = 0;
+var fwUserName = '';
+var fwUserPassword = '';
+var fwUserGroup = 0;
 var jieqiNewMessage = 0;
-var jieqiUserVip = 0;
-var jieqiUserHonor = '';
-var jieqiUserGroupName = '';
-var jieqiUserVipName = '';
+var fwUserVip = 0;
+var fwUserHonor = '';
+var fwUserGroupName = '';
+var fwUserVipName = '';
+var fwBaseUrl = '';
 
 
-var timestamp = Math.ceil((new Date()).valueOf()/1000); //µ±Ç°Ê±¼ä´Á
+var timestamp = Math.ceil((new Date()).valueOf()/1000); //å½“å‰æ—¶é—´æˆ³
 var flag_overtime = -1;
-if(document.cookie.indexOf('jieqiUserInfo') >= 0){
-	var jieqiUserInfo = get_cookie_value('jieqiUserInfo');
-	//document.write(jieqiUserInfo);
+if(document.cookie.indexOf('fwUserInfo') >= 0){
+	var fwUserInfo = get_cookie_value('fwUserInfo');
+	//document.write(fwUserInfo);
 	start = 0;
-	offset = jieqiUserInfo.indexOf(',', start); 
+	offset = fwUserInfo.indexOf(',', start); 
 	while(offset > 0){
-		tmpval = jieqiUserInfo.substring(start, offset);
+		tmpval = fwUserInfo.substring(start, offset);
 		tmpidx = tmpval.indexOf('=');
 		if(tmpidx > 0){
            tmpname = tmpval.substring(0, tmpidx);
 		   tmpval = tmpval.substring(tmpidx+1, tmpval.length);
-		   if(tmpname == 'jieqiUserId') jieqiUserId = tmpval;
-		   else if(tmpname == 'jieqiUserName_un') jieqiUserName = tmpval;
-		   else if(tmpname == 'jieqiUserPassword') jieqiUserPassword = tmpval;
-		   else if(tmpname == 'jieqiUserGroup') jieqiUserGroup = tmpval;
+		   if(tmpname == 'fwUserId') fwUserId = tmpval;
+		   else if(tmpname == 'fwUserName_un') fwUserName = tmpval;
+		   else if(tmpname == 'fwUserPassword') fwUserPassword = tmpval;
+		   else if(tmpname == 'fwUserGroup') fwUserGroup = tmpval;
 		   else if(tmpname == 'jieqiNewMessage') jieqiNewMessage = tmpval;
-		   else if(tmpname == 'jieqiUserVip') jieqiUserVip = tmpval;
-		   else if(tmpname == 'jieqiUserHonor_un') jieqiUserHonor = tmpval;
-		   else if(tmpname == 'jieqiUserGroupName_un') jieqiUserGroupName = tmpval;
+		   else if(tmpname == 'fwUserVip') fwUserVip = tmpval;
+		   else if(tmpname == 'fwUserHonor_un') fwUserHonor = tmpval;
+		   else if(tmpname == 'fwUserGroupName_un') fwUserGroupName = tmpval;
 		}
 		start = offset+1;
-		if(offset < jieqiUserInfo.length){
-		  offset = jieqiUserInfo.indexOf(',', start); 
-		  if(offset == -1) offset =  jieqiUserInfo.length;
+		if(offset < fwUserInfo.length){
+		  offset = fwUserInfo.indexOf(',', start); 
+		  if(offset == -1) offset =  fwUserInfo.length;
 		}else{
           offset = -1;
 		}
@@ -518,20 +519,20 @@ function delCookie(name){
 
 function get_cookie_value(Name) { 
   var search = Name + "=";
-¡¡var returnvalue = ""; 
-¡¡if (document.cookie.length > 0) { 
-¡¡  offset = document.cookie.indexOf(search) 
-¡¡¡¡if (offset != -1) { 
-¡¡¡¡  offset += search.length 
-¡¡¡¡  end = document.cookie.indexOf(";", offset); 
-¡¡¡¡  if (end == -1) 
-¡¡¡¡  end = document.cookie.length; 
-¡¡¡¡  returnvalue=unescape(document.cookie.substring(offset, end));
-¡¡¡¡} 
-¡¡} 
-¡¡return returnvalue; 
+ã€€var returnvalue = ""; 
+ã€€if (document.cookie.length > 0) { 
+ã€€  offset = document.cookie.indexOf(search) 
+ã€€ã€€if (offset != -1) { 
+ã€€ã€€  offset += search.length 
+ã€€ã€€  end = document.cookie.indexOf(";", offset); 
+ã€€ã€€  if (end == -1) 
+ã€€ã€€  end = document.cookie.length; 
+ã€€ã€€  returnvalue=unescape(document.cookie.substring(offset, end));
+ã€€ã€€} 
+ã€€} 
+ã€€return returnvalue; 
 }
-//»¬¶¯ÃÅ
+//æ»‘åŠ¨é—¨
 	function getNames(obj,name,tij)
 	{	
 		var p = document.getElementById(obj);
@@ -566,48 +567,49 @@ function get_cookie_value(Name) {
 			}
 		}
 		
-document.writeln("<script type=\"text/javascript\">BAIDU_CLB_preloadSlots(\"680594\",\"680590\",\"680566\",\"680562\",\"680561\",\"680560\");</script>");
+//document.writeln("<script type=\"text/javascript\">BAIDU_CLB_preloadSlots(\"680594\",\"680590\",\"680566\",\"680562\",\"680561\",\"680560\");</script>");
 function login(){
-document.writeln("<div class=\"ywtop\"><div class=\"ywtop_con\"><div class=\"ywtop_sethome\"><a href=\"/zhuomian.php\">½«±ÊÈ¤¸ó¿ì½İ¼üÏÂÔØµ½×ÀÃæ</a></div>");
-document.writeln("		<div class=\"ywtop_addfavorite\"><a href=\"javascript:window.external.addFavorite(\'http://www.biquge.com\',\'±ÊÈ¤¸ó_ÊéÓÑ×îÖµµÃÊÕ²ØµÄÍøÂçĞ¡ËµÔÄ¶ÁÍø\')\">ÊÕ²Ø±ÊÈ¤¸ó</a></div>");
+document.writeln("<div class=\"ywtop\"><div class=\"ywtop_con\"><div class=\"ywtop_sethome\"><a href=\"#\">å°†é£èˆå°è¯´å¿«æ·é”®ä¸‹è½½åˆ°æ¡Œé¢</a></div>");
+document.writeln("		<div class=\"ywtop_addfavorite\"><a href=\"javascript:window.external.addFavorite(\'http://www.free55.net\',\'é£èˆå°è¯´_ä¹¦å‹æœ€å€¼å¾—æ”¶è—çš„ç½‘ç»œå°è¯´é˜…è¯»ç½‘\')\">æ”¶è—é£èˆå°è¯´</a></div>");
 document.write('<div class="nri">');
-if(jieqiUserId != 0 && jieqiUserName != '' && (document.cookie.indexOf('PHPSESSID') != -1 || jieqiUserPassword != '')){
-  if(jieqiUserVip == 1) jieqiUserVipName='<span class="hottext">ÖÁ×ğVIP-</span>';
-  document.write('Hi,<a href="/userdetail.php?uid='+jieqiUserId+'" target="_top">'+jieqiUserName+'</a>&nbsp;&nbsp;<a href="/modules/article/bookcase.php?uid='+jieqiUserId+'" target="_top">ÎÒµÄÊé¼Ü</a>');
-  if(jieqiNewMessage > 0){
-	  document.write(' | <a href="/message.php?uid='+jieqiUserId+'&box=inbox" target="_top"><span class=\"hottext\">ÄúÓĞ¶ÌĞÅ</span></a>');
-  }else{
-	  document.write(' | <a href="/message.php?uid='+jieqiUserId+'&box=inbox" target="_top">²é¿´¶ÌĞÅ</a>');
-  }
-  document.write(' | <a href="/userdetail.php?uid='+jieqiUserId+'" target="_top">²é¿´×ÊÁÏ</a> | <a href="/logout.php" target="_self">ÍË³öµÇÂ¼</a>&nbsp;');
+if(fwUserId != 0 && fwUserName != '' && (document.cookie.indexOf('PHPSESSID') != -1 || fwUserPassword != '')){
+  if(fwUserVip == 1) fwUserVipName='<span class="hottext">è‡³å°ŠVIP-</span>';
+  document.write('Hi,<a href="#" target="_top">'+fwUserName+'</a>&nbsp;&nbsp;<a href="' + fwBaseUrl + '/user/favorites" target="_top">æˆ‘çš„ä¹¦æ¶</a>');
+//  if(jieqiNewMessage > 0){
+//	  document.write(' | <a href="/message.php?uid='+fwUserId+'&box=inbox" target="_top"><span class=\"hottext\">æ‚¨æœ‰çŸ­ä¿¡</span></a>');
+//  }else{
+//	  document.write(' | <a href="/message.php?uid='+fwUserId+'&box=inbox" target="_top">æŸ¥çœ‹çŸ­ä¿¡</a>');
+//  }
+  document.write(' | <a href="' + fwBaseUrl + '/user/like" target="_top">æˆ‘çš„æ¨è</a> | <a href="' + fwBaseUrl + '/logout" target="_self">é€€å‡ºç™»å½•</a>&nbsp;');
 }else{
   var jumpurl="";
   if(location.href.indexOf("jumpurl") == -1){
     jumpurl=location.href;
   }
-  document.write('<form name="frmlogin" id="frmlogin" method="post" action="/login.php?do=submit&action=login&usecookie=1&jumpurl="'+jumpurl+'&jumpreferer=1>');
-  document.write('<div class="cc"><div class="txt">ÕËºÅ£º</div><div class="inp"><input type="text" name="username" id="username" /></div></div>');
-  document.write('<div class="cc"><div class="txt">ÃÜÂë£º</div><div class="inp"><input type="password" name="password" id="password" /></div></div>');
-  document.write('<div class="frii"><input type="submit" class="int" value=" " /></div><div class="ccc"><div class="txtt"><a href="/getpass.php">Íü¼ÇÃÜÂë</a></div><div class="txtt"><a href="/register.php">ÓÃ»§×¢²á</a></div></div></form>');
+//  document.write('<form name="frmlogin" id="frmlogin" method="post" action="/login.php?do=submit&action=login&usecookie=1&jumpurl="'+jumpurl+'&jumpreferer=1>');
+//  document.write('<div class="cc"><div class="txt">è´¦å·ï¼š</div><div class="inp"><input type="text" name="username" id="username" /></div></div>');
+//  document.write('<div class="cc"><div class="txt">å¯†ç ï¼š</div><div class="inp"><input type="password" name="password" id="password" /></div></div>');
+//  document.write('<div class="frii"><input type="submit" class="int" value=" " /></div><div class="ccc"><div class="txtt"><a href="#">å¿˜è®°å¯†ç </a></div><div class="txtt"><div class="txtt"><a href="/login">ç”¨æˆ·ç™»é™†</a></div><a href="/register">ç”¨æˆ·æ³¨å†Œ</a></div></div></form>');
+  document.write('<div class="frii"><input type="submit" class="int" value=" " /></div><div class="ccc"><div class="txtt"><a href="#">å¿˜è®°å¯†ç </a></div><div class="txtt"><div class="txtt"><a href="' + fwBaseUrl + '/login">ç”¨æˆ·ç™»é™†</a></div><a href="' + fwBaseUrl + '/register">ç”¨æˆ·æ³¨å†Œ</a></div></div>');
 }
  document.write('</div></div></div>');
 }
 
 function textselect(){
 document.writeln("<div id=\"page_set\">");
-document.writeln("<select onchange=\"javascript:setFont(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"ËÎÌå\">×ÖÌå</option><option value=\"·½ÕıÆôÌå¼òÌå\">Ä¬ÈÏ</option><option value=\"ºÚÌå\">ºÚÌå</option><option value=\"¿¬Ìå_GB2312\">¿¬Ìå</option><option value=\"Î¢ÈíÑÅºÚ\">ÑÅºÚ</option><option value=\"·½ÕıÆôÌå¼òÌå\">ÆôÌå</option><option value=\"ËÎÌå\">ËÎÌå</option></select>");
-document.writeln("<select onchange=\"javascript:setColor(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#000\">ÑÕÉ«</option><option value=\"#000\">Ä¬ÈÏ</option><option value=\"#9370DB\">°µ×Ï</option><option value=\"#2E8B57\">ÔåÂÌ</option><option value=\"#2F4F4F\">Éî»Ò</option><option value=\"#778899\">Çà»Ò</option><option value=\"#800000\">ÀõÉ«</option><option value=\"#6A5ACD\">ÇàÀ¶</option><option value=\"#BC8F8F\">ÃµºÖ</option><option value=\"#F4A460\">»ÆºÖ</option><option value=\"#F5F5DC\">Ã×É«</option><option value=\"#F5F5F5\">Îí°×</option></select>");
-document.writeln("<select onchange=\"javascript:setSize(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#E9FAFF\">´óĞ¡</option><option value=\"19pt\">Ä¬ÈÏ</option><option value=\"10pt\">10pt</option><option value=\"12pt\">12pt</option><option value=\"14pt\">14pt</option><option value=\"16pt\">16pt</option><option value=\"18pt\">18pt</option><option value=\"20pt\">20pt</option><option value=\"22pt\">22pt</option><option value=\"25pt\">25pt</option><option value=\"30pt\">30pt</option></select>");
-document.write('<select name=scrollspeed id=scrollspeed  onchange="javascript:setSpeed(this.options[this.selectedIndex].value);" ><option value=5>¹öÆÁ</option><option value=1>×îÂı</option><option value=2>Âı2</option><option value=3>Âı3</option><option value=4>ÖĞ4</option><option value=5>ÖĞ5</option><option value=6>ÖĞ6</option><option value=7>¿ì7</option><option value=8>¿ì8</option><option value=9>¿ì9</option><option value=10>×î¿ì</option></select>');
-document.writeln("<select onchange=\"javascript:setBGColor(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#E9FAFF\" style=\"background-color: #E9FAFF;\">±³¾°</option><option value=\"#E9FAFF\" style=\"background-color: #E9FAFF;\">Ä¬ÈÏ</option><option value=\"#FFFFFF\" style=\"background-color: #FFFFFF;\">°×Ñ©</option><option value=\"#000000\" style=\"background-color: #000000;color:#FFFFFF;\">ÆáºÚ</option><option value=\"#FFFFED\" style=\"background-color: #FFFFED;\">Ã÷»Æ</option><option value=\"#EEFAEE\" style=\"background-color: #EEFAEE;\">µ­ÂÌ</option><option value=\"#CCE8CF\" style=\"background-color: #CCE8CF;\">²İÂÌ</option><option value=\"#FCEFFF\" style=\"background-color: #FCEFFF;\">ºì·Û</option><option value=\"#EFEFEF\" style=\"background-color: #EFEFEF;\">Éî»Ò</option><option value=\"#F5F5DC\" style=\"background-color: #F5F5DC;\">Ã×É«</option><option value=\"#D2B48C\" style=\"background-color: #D2B48C;\">²èÉ«</option><option value=\"#C0C0C0\" style=\"background-color: #E7F4FE;\">ÒøÉ«</option></select>");
-document.writeln("<select onchange=\"javascript:setWidth(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"95%\">¿í¶È</option><option value=\"95%\">Ä¬ÈÏ</option><option value=\"85%\">85%</option><option value=\"76%\">75%</option><option value=\"67%\">65%</option><option value=\"53%\">50%</option><option value=\"41%\">40%</option></select>");
-document.writeln("</select>·­Ò³<input type=checkbox name=autopage id=autopage onchange=\"javascript:setAutopage();\" value=\"\" />&nbsp;Ò¹¼ä<input type=checkbox name=night id=night onchange=\"javascript:setNight();\" value=\"\" /></div>");
+document.writeln("<select onchange=\"javascript:setFont(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"å®‹ä½“\">å­—ä½“</option><option value=\"æ–¹æ­£å¯ä½“ç®€ä½“\">é»˜è®¤</option><option value=\"é»‘ä½“\">é»‘ä½“</option><option value=\"æ¥·ä½“_GB2312\">æ¥·ä½“</option><option value=\"å¾®è½¯é›…é»‘\">é›…é»‘</option><option value=\"æ–¹æ­£å¯ä½“ç®€ä½“\">å¯ä½“</option><option value=\"å®‹ä½“\">å®‹ä½“</option></select>");
+document.writeln("<select onchange=\"javascript:setColor(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#000\">é¢œè‰²</option><option value=\"#000\">é»˜è®¤</option><option value=\"#9370DB\">æš—ç´«</option><option value=\"#2E8B57\">è—»ç»¿</option><option value=\"#2F4F4F\">æ·±ç°</option><option value=\"#778899\">é’ç°</option><option value=\"#800000\">æ —è‰²</option><option value=\"#6A5ACD\">é’è“</option><option value=\"#BC8F8F\">ç«è¤</option><option value=\"#F4A460\">é»„è¤</option><option value=\"#F5F5DC\">ç±³è‰²</option><option value=\"#F5F5F5\">é›¾ç™½</option></select>");
+document.writeln("<select onchange=\"javascript:setSize(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#E9FAFF\">å¤§å°</option><option value=\"19pt\">é»˜è®¤</option><option value=\"10pt\">10pt</option><option value=\"12pt\">12pt</option><option value=\"14pt\">14pt</option><option value=\"16pt\">16pt</option><option value=\"18pt\">18pt</option><option value=\"20pt\">20pt</option><option value=\"22pt\">22pt</option><option value=\"25pt\">25pt</option><option value=\"30pt\">30pt</option></select>");
+document.write('<select name=scrollspeed id=scrollspeed  onchange="javascript:setSpeed(this.options[this.selectedIndex].value);" ><option value=5>æ»šå±</option><option value=1>æœ€æ…¢</option><option value=2>æ…¢2</option><option value=3>æ…¢3</option><option value=4>ä¸­4</option><option value=5>ä¸­5</option><option value=6>ä¸­6</option><option value=7>å¿«7</option><option value=8>å¿«8</option><option value=9>å¿«9</option><option value=10>æœ€å¿«</option></select>');
+document.writeln("<select onchange=\"javascript:setBGColor(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"#E9FAFF\" style=\"background-color: #E9FAFF;\">èƒŒæ™¯</option><option value=\"#E9FAFF\" style=\"background-color: #E9FAFF;\">é»˜è®¤</option><option value=\"#FFFFFF\" style=\"background-color: #FFFFFF;\">ç™½é›ª</option><option value=\"#000000\" style=\"background-color: #000000;color:#FFFFFF;\">æ¼†é»‘</option><option value=\"#FFFFED\" style=\"background-color: #FFFFED;\">æ˜é»„</option><option value=\"#EEFAEE\" style=\"background-color: #EEFAEE;\">æ·¡ç»¿</option><option value=\"#CCE8CF\" style=\"background-color: #CCE8CF;\">è‰ç»¿</option><option value=\"#FCEFFF\" style=\"background-color: #FCEFFF;\">çº¢ç²‰</option><option value=\"#EFEFEF\" style=\"background-color: #EFEFEF;\">æ·±ç°</option><option value=\"#F5F5DC\" style=\"background-color: #F5F5DC;\">ç±³è‰²</option><option value=\"#D2B48C\" style=\"background-color: #D2B48C;\">èŒ¶è‰²</option><option value=\"#C0C0C0\" style=\"background-color: #E7F4FE;\">é“¶è‰²</option></select>");
+document.writeln("<select onchange=\"javascript:setWidth(this.options[this.selectedIndex].value);\" id=\"bcolor\" name=\"bcolor\"><option value=\"95%\">å®½åº¦</option><option value=\"95%\">é»˜è®¤</option><option value=\"85%\">85%</option><option value=\"76%\">75%</option><option value=\"67%\">65%</option><option value=\"53%\">50%</option><option value=\"41%\">40%</option></select>");
+document.writeln("</select>ç¿»é¡µ<input type=checkbox name=autopage id=autopage onchange=\"javascript:setAutopage();\" value=\"\" />&nbsp;å¤œé—´<input type=checkbox name=night id=night onchange=\"javascript:setNight();\" value=\"\" /></div>");
 }
 
 function footer(){
-document.writeln("<p>±¾Õ¾ËùÓĞĞ¡ËµÎª×ªÔØ×÷Æ·£¬ËùÓĞÕÂ½Ú¾ùÓÉÍøÓÑÉÏ´«£¬×ªÔØÖÁ±¾Õ¾Ö»ÊÇÎªÁËĞû´«±¾ÊéÈÃ¸ü¶à¶ÁÕßĞÀÉÍ¡£</p>");
-document.writeln("<p>Copyright &copy; 2012 ±ÊÈ¤¸ó All Rights Reserved.</p>");
-document.writeln("<p>¼½ICP±¸11007602ºÅ</p>");
+document.writeln("<p>æœ¬ç«™ä¸ºæ¼”ç¤ºç«™ç‚¹ï¼Œæ‰€æœ‰å°è¯´åŠç« èŠ‚å‡ç”±ç½‘å‹ä¸Šä¼ ï¼Œè½¬è½½è‡³æœ¬ç«™åªæ˜¯ä¸ºäº†å®£ä¼ æœ¬ä¹¦è®©æ›´å¤šè¯»è€…æ¬£èµã€‚</p>");
+document.writeln("<p>Copyright &copy; 2013 é£èˆå°è¯´ All Rights Reserved.</p>");
+//document.writeln("<p>å†€ICPå¤‡11007602å·</p>");
 if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680561\");</script><br /><br /><br /><br />");
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6949867c34e7741ebac3943050f04833' type='text/javascript'%3E%3C/script%3E"));
@@ -616,16 +618,16 @@ document.writeln("<script type=\"text/javascript\" id=\"bdshell_js\"></script>")
 document.writeln("<script type=\"text/javascript\">document.getElementById(\"bdshell_js\").src = \"http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=\" + Math.ceil(new Date()/3600000);</script>");
 }
 function read_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"¿ÉËÑÊéÃûºÍ×÷Õß£¬ÇëÄúÉÙ×ÖÒ²±ğÊä´í×Ö¡£\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> ËÑ Ë÷ </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">±¨´í£º</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">Í¨¹ıÓÊ¼ş</a>¡¢<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-ÕÂ½Ú´íÎó&content=´íÎóÕÂ½ÚÎª:"+readtitle+"\" >Õ¾ÄÚ¶ÌĞÅ</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>Ô­Í¼Æ¬°æ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">»ı·Ö¹æÔò</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">½â¾öÌøµ½±ğµÄÕ¾</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"å¯æœä¹¦åå’Œä½œè€…ï¼Œè¯·æ‚¨å°‘å­—ä¹Ÿåˆ«è¾“é”™å­—ã€‚\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> æœ ç´¢ </button></form></div>"); 
+document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">æŠ¥é”™ï¼š</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">é€šè¿‡é‚®ä»¶</a>ã€<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-ç« èŠ‚é”™è¯¯&content=é”™è¯¯ç« èŠ‚ä¸º:"+readtitle+"\" >ç«™å†…çŸ­ä¿¡</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>åŸå›¾ç‰‡ç‰ˆ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">ç§¯åˆ†è§„åˆ™</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">è§£å†³è·³åˆ°åˆ«çš„ç«™</a></div>");
 }
 function list_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"¿ÉËÑÊéÃûºÍ×÷Õß£¬ÇëÄúÉÙ×ÖÒ²±ğÊä´í×Ö¡£\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> ËÑ Ë÷ </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">±¨´í£º</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">Í¨¹ıÓÊ¼ş</a>¡¢<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-ÕÂ½Ú´íÎó&content=´íÎóÎª:\" >Õ¾ÄÚ¶ÌĞÅ</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>Ô­Í¼Æ¬°æ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">»ı·Ö¹æÔò</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">½â¾öÌøµ½±ğµÄÕ¾</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"å¯æœä¹¦åå’Œä½œè€…ï¼Œè¯·æ‚¨å°‘å­—ä¹Ÿåˆ«è¾“é”™å­—ã€‚\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> æœ ç´¢ </button></form></div>"); 
+document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">æŠ¥é”™ï¼š</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">é€šè¿‡é‚®ä»¶</a>ã€<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-ç« èŠ‚é”™è¯¯&content=é”™è¯¯ä¸º:\" >ç«™å†…çŸ­ä¿¡</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>åŸå›¾ç‰‡ç‰ˆ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">ç§¯åˆ†è§„åˆ™</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">è§£å†³è·³åˆ°åˆ«çš„ç«™</a></div>");
 }
 function bqg_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"¿ÉËÑÊéÃûºÍ×÷Õß£¬ÇëÄúÉÙ×ÖÒ²±ğÊä´í×Ö¡£\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> ËÑ Ë÷ </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">ÁôÑÔ£º</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">Í¨¹ıÓÊ¼ş</a>¡¢<a href=\"http://www.biquge.com/newmessage.php?tosys=1\" >Õ¾ÄÚ¶ÌĞÅ</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>Ô­Í¼Æ¬°æ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">»ı·Ö¹æÔò</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">½â¾öÌøµ½±ğµÄÕ¾</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"å¯æœä¹¦åå’Œä½œè€…ï¼Œè¯·æ‚¨å°‘å­—ä¹Ÿåˆ«è¾“é”™å­—ã€‚\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> æœ ç´¢ </button></form></div>"); 
+document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">ç•™è¨€ï¼š</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">é€šè¿‡é‚®ä»¶</a>ã€<a href=\"http://www.biquge.com/newmessage.php?tosys=1\" >ç«™å†…çŸ­ä¿¡</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>åŸå›¾ç‰‡ç‰ˆ</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">ç§¯åˆ†è§„åˆ™</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">è§£å†³è·³åˆ°åˆ«çš„ç«™</a></div>");
 }
 function mark(){
 document.writeln("<div class=\"reader_mark1\"><a href=\"javascript:;\" onclick=\"showpop('/modules/article/addbookcase.php?id="+bookid+"&cid="+readid+"&ajax_request=1');\"></a></div>");
@@ -644,7 +646,7 @@ function read3(){
 	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680590\");</script>");
 }
 function bdshare(){
-document.writeln("<div id=\"bdshare\" class=\"bdshare_t bds_tools get-codes-bdshare\"><span class=\"bds_more\">·ÖÏí±¾Êéµ½£º</span><a class=\"bds_mshare\">Ò»¼ü·ÖÏí</a><a class=\"bds_tsina\">ĞÂÀËÎ¢²©</a><a class=\"bds_qzone\">QQ¿Õ¼ä</a><a class=\"bds_sqq\">QQºÃÓÑ</a><a class=\"bds_tieba\">°Ù¶ÈÌù°É</a><a class=\"bds_tqq\">ÌÚÑ¶Î¢²©</a><a class=\"bds_baidu\">°Ù¶ÈËÑ²Ø</a><a class=\"bds_bdhome\">°Ù¶ÈĞÂÊ×Ò³</a><a class=\"bds_copy\">¸´ÖÆÍøÖ·</a></div>");
+document.writeln("<div id=\"bdshare\" class=\"bdshare_t bds_tools get-codes-bdshare\"><span class=\"bds_more\">åˆ†äº«æœ¬ä¹¦åˆ°ï¼š</span><a class=\"bds_mshare\">ä¸€é”®åˆ†äº«</a><a class=\"bds_tsina\">æ–°æµªå¾®åš</a><a class=\"bds_qzone\">QQç©ºé—´</a><a class=\"bds_sqq\">QQå¥½å‹</a><a class=\"bds_tieba\">ç™¾åº¦è´´å§</a><a class=\"bds_tqq\">è…¾è®¯å¾®åš</a><a class=\"bds_baidu\">ç™¾åº¦æœè—</a><a class=\"bds_bdhome\">ç™¾åº¦æ–°é¦–é¡µ</a><a class=\"bds_copy\">å¤åˆ¶ç½‘å€</a></div>");
 }
 function read4(){
 	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680594\");</script>");

@@ -20,6 +20,13 @@ function smarty_function_novel_category_link($params, &$smarty){
 
     $id = intval($params['id']);
 
-    return $c->createUrl('category/index', array('id' => $id));
+    $criteria = new CDbCriteria();
+    $criteria->compare("id", $id);
+
+
+    $m = Category::model()->find($criteria);
+    if (!$m) return "";
+
+    return $c->createUrl('category/index', array('title' => $m->shorttitle));
 
 }

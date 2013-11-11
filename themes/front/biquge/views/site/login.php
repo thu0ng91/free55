@@ -43,7 +43,7 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
 
     </style>
   
-
+    <br />
     <div class="form form-signin">
     <?php $this->renderPartial('//layouts/flash-message'); ?>
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
