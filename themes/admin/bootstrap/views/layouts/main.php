@@ -20,6 +20,7 @@
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
+                array('label'=> '系统', 'url'=> $this->createUrl('system/base'), 'active' => $this->menupanel[0] == 'system' ? true : false),
                 array('label'=> '小说管理', 'url'=> $this->createUrl('book/index'), 'active' => $this->menupanel[0] == 'book' ? true : false),
                 array('label'=> '用户管理', 'url'=> $this->createUrl('user/index'), 'active' => $this->menupanel[0] == 'user' ? true : false),
             )

@@ -12,6 +12,11 @@
             array('label'=>'会员管理', 'url'=> $this->createUrl('user/index'), 'active'=> $this->id == 'user' ? true : false),
             array('label'=>'管理员管理', 'url'=> $this->createUrl('adminuser/index'), 'active'=> $this->id == 'adminuser' ? true : false),
         );
+    } elseif ($this->menupanel[0] == 'system') {
+        $menus = array(
+            array('label'=>'基础属性', 'url'=> $this->createUrl('system/base'), 'active'=> $this->action->id == 'base' ? true : false),
+            array('label'=>'SEO配置', 'url'=> $this->createUrl('system/seo'), 'active'=> $this->action->id == 'seo' ? true : false),
+        );
     } else {
         $menus = array(
             array('label'=>'小说', 'url'=> $this->createUrl('site/index'), 'active'=> $this->id == 'site' ? true : false),

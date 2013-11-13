@@ -46,20 +46,20 @@ class CmsSettings extends CApplicationComponent
 
     /**
      * CmsSettings::set()
-     * 
-     * @param string $category name of the category 
+     *
      * @param mixed $key 
      * can be either a single item (string) or an array of item=>value pairs 
      * @param mixed $value value to set for the key, leave this empty if $key is an array
+     * @param string $category name of the category
      * @param bool $toDatabase whether to save the items to the database
      * @return CmsSettings
      */
-    public function set($category='system', $key='', $value='', $toDatabase=true)
+    public function set($key='', $value='', $category='system',$toDatabase=true)
     { 
         if(is_array($key))
         {
             foreach($key AS $k=>$v)
-                $this->set($category, $k, $v, $toDatabase);
+                $this->set($k, $v, $category, $toDatabase);
         }
         else
         {
@@ -80,9 +80,9 @@ class CmsSettings extends CApplicationComponent
 
     /**
      * CmsSettings::get()
-     * 
+     *
+     * @param mixed $key
      * @param string $category name of the category
-     * @param mixed $key 
      * can be either :
      * empty, returning all items of the selected category
      * a string, meaning a single key will be returned
@@ -90,7 +90,7 @@ class CmsSettings extends CApplicationComponent
      * @param string $default the default value to be returned
      * @return mixed
      */
-    public function get($category='system', $key='', $default=null)
+    public function get($key='', $category='system', $default=null)
     {
         if(!isset($this->loaded[$category]))
             $this->load($category);
@@ -104,13 +104,13 @@ class CmsSettings extends CApplicationComponent
 			foreach($key AS $k=>$v)
             {
 				if(is_numeric($k))
-					$toReturn[$v]=$this->get($category, $v);
+					$toReturn[$v]=$this->get($v, $category);
                 else
-                    $toReturn[$k]=$this->get($category, $k, $v);
+                    $toReturn[$k]=$this->get($k,$category, $v);
 			}
 			return $toReturn;
         }
-        
+
         if(isset($this->items[$category][$key]))
             return $this->items[$category][$key];
         return $default;
@@ -263,7 +263,7 @@ class CmsSettings extends CApplicationComponent
         if(isset($this->items[$category]))
             $items=CMap::mergeArray($items, $this->items[$category]);
         
-        $this->set($category, $items, null, false); 
+        $this->set($items, null, $category, false);
         return $items;
     }
     
