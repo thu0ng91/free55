@@ -121,6 +121,7 @@ return array(
 
         'cache'=>array(
             'class'=>'system.caching.CFileCache',
+            'cachePath' => $basePath . '/../runtime/front/cache',
         ),
 
         'settings'=>array(

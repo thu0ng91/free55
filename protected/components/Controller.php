@@ -25,5 +25,6 @@ class Controller extends CController
 	public function init(){
 //		$this->optionInfo=Option::model()->findByPk(1);
 
+        Yii::app()->name = Yii::app()->settings->get("SiteName");
 	}
 }
