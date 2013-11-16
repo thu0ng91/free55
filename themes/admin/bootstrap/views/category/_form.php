@@ -8,6 +8,20 @@
 //	'Login',
 //);
 ?>
+<style type="text/css">
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+    .the-fieldset {
+        border: 2px groove threedface #444;
+        -webkit-box-shadow:  0px 0px 0px 0px #000;
+        box-shadow:  0px 0px 0px 0px #000;
+    }
+</style>
 
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
       'id'=>'category-form',
@@ -27,6 +41,12 @@
 
         <?php echo $form->dropDownListRow($model, 'isnav', array('否', '是')); ?>
 
+        <fieldset class="well the-fieldset">
+            <legend class="the-legend">分类 SEO 设置</legend>
+            <?php echo $form->textFieldRow($model, 'seotitle'); ?>
+            <?php echo $form->textFieldRow($model, 'keywords'); ?>
+            <?php echo $form->textAreaRow($model, 'description'); ?>
+        </fieldset>
 
       <div class="form-actions">
         <?php $this->widget('bootstrap.widgets.TbButton', array(

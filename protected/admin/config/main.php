@@ -26,8 +26,9 @@ $backendArray=array(
     'backend.models.*',
     'backend.components.*',      
 	),
-  'theme' => 'bootstrap',
-	'components'=>array(
+    'theme' => 'bootstrap',
+    'behaviors' => null,
+    'components'=>array(
         'user'=>array(
             // enable cookie-based authentication
             'stateKeyPrefix' => '_free55admin',
@@ -63,6 +64,6 @@ $backendArray=array(
       'baseUrl' => $webUrl . '/themes/admin',
     ),
 	),
-	'params'=>CMap::mergeArray(require($frontend.'/config/params.php'),require($backend.'/config/params.php')),
+	'params'=> require($backend.'/config/params.php'),
 );
 return CMap::mergeArray($frontendArray,$backendArray);

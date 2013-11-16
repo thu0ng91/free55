@@ -15,7 +15,7 @@
     } elseif ($this->menupanel[0] == 'system') {
         $menus = array(
             array('label'=>'基础属性', 'url'=> $this->createUrl('system/base'), 'active'=> $this->action->id == 'base' ? true : false),
-            array('label'=>'SEO配置', 'url'=> $this->createUrl('system/seo'), 'active'=> $this->action->id == 'seo' ? true : false),
+            array('label'=>'伪静态设置', 'url'=> $this->createUrl('system/rewrite'), 'active'=> $this->action->id == 'rewrite' ? true : false),
         );
     } else {
         $menus = array(

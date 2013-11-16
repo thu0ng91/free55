@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class UserController extends Controller
+class UserController extends FWFrontController
 {
     /**
      * 用户收藏小说

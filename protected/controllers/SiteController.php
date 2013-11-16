@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class SiteController extends Controller
+class SiteController extends FWFrontController
 {
     public function actions(){
         return array(

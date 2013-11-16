@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class BookController extends Controller
+class BookController extends FWFrontController
 {
 	/**
 	 * This is the default 'index' action that is invoked

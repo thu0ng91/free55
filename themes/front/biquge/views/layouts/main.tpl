@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 <head>
-<title>{Yii::app()->name}_书友最值得收藏的网络小说阅读网</title>
+<title>{$this->pageTitle}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="{Yii::app()->name},网络小说,小说阅读网,小说,biquge" />
-<meta name="description" content="{Yii::app()->name}是广大书友最值得收藏的网络小说阅读网，网站收录了当前最火热的网络小说，免费提供高质量的小说最新章节，是广大网络小说爱好者必备的小说阅读网。" />
+<meta name="keywords" content="{$this->pageKeywords}" />
+<meta name="description" content="{$this->pageDescription}" />
 <link rel="stylesheet" type="text/css" href="{Yii::app()->theme->baseUrl}/css/biquge.css"/>
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/jquery.min.js"></script>
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/m.js"></script>

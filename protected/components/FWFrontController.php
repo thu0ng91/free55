@@ -1,12 +1,17 @@
 <?php
 /**
- * Controller is the customized base controller class.
- * All controller classes for this application should extend from this base class.
+ * Class FWFrontController
  */
-class Controller extends CController
+class FWFrontController extends CController
 {
 	public $optionInfo;
 	public $viewSeo;
+
+    public $pageTitle = "";
+
+    public $pageKeywords = "";
+
+    public $pageDescription = "";
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
@@ -23,8 +28,14 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 	public function init(){
-//		$this->optionInfo=Option::model()->findByPk(1);
+        // defualt value
 
-        Yii::app()->name = Yii::app()->settings->get("SiteName");
+        $this->pageTitle = Yii::app()->name;
+
+        $m = Yii::app()->settings->get("SystemBaseConfig");
+        if ($m) {
+            $this->pageKeywords = $m->SiteKeywords;
+            $this->pageDescription = $m->SiteIntro;
+        }
 	}
 }

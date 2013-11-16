@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class CategoryController extends Controller
+class CategoryController extends FWFrontController
 {
 	/**
 	 * This is the default 'index' action that is invoked

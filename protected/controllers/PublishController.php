@@ -5,7 +5,7 @@
  * Web Post 发布接口
  * @author pizigou <pizigou@yeah.net>
  */
-class PublishController extends Controller
+class PublishController extends FWFrontController
 {
     protected function beforeAction($action)
     {

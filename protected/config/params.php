@@ -13,13 +13,9 @@ return array(
 		'deleteFail'=>'信息删除失败！',
 	),
 	'module'=>array(
-		'article'=>1,
-		'product'=>2,
-		'link'=>3,
-		'picture'=>4,
-		'job'=>5,
-		'brand'=>6,
-        'video' => 7,
+		'novel'=> 1,
+		'news'=> 2,
+		'link'=> 3,
 	),
 	'pager'=>array(
 		'prevPageLabel'=>'上一页',
@@ -42,4 +38,5 @@ return array(
         '3' => '网站会员',
     ),
     'gather_auth_key' => '52694e26e7b55',
+    'urlSuffix' => array('.html', '.htm', '.shtml', '.asp', '.aspx', '.php'),
 );

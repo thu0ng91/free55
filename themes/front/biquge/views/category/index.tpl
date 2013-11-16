@@ -1,3 +1,4 @@
+{$this->pageTitle}
 <div id="main">
     <div id="hotcontent">
         <div class="ll">

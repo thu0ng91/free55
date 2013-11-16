@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class ArticleController extends Controller
+class ArticleController extends FWFrontController
 {
     /**
      * 小说章节详情

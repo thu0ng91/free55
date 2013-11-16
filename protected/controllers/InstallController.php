@@ -4,7 +4,7 @@
  *
  * @author pizigou <pizigou@yeah.net>
  */
-class InstallController extends Controller
+class InstallController extends FWFrontController
 {
     public $layout = 'setup';
 

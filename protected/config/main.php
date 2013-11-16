@@ -13,7 +13,7 @@ $basePath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..';
 
 return array(
 	'basePath'=> $basePath,
-	'name'=> '飞舞小说网',
+	'name'=> '飞舞小说系统',
 	'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -23,12 +23,17 @@ return array(
 	'import'=>array(
     'application.models.*',
     'application.components.*',
+    'application.behaviors.*',
 //    'application.extensions.gallerymanager.*',
 //    'application.extensions.gallerymanager.models.*',
     'application.extensions.image.*',
 	),
 
     'theme' => 'biquge',
+
+    'behaviors' => array(
+        'urlManager' => 'application.behaviors.ApplicationBehavior',
+    ),
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -122,13 +127,16 @@ return array(
         'cache'=>array(
             'class'=>'system.caching.CFileCache',
             'cachePath' => $basePath . '/../runtime/front/cache',
+            'hashKey' => true,
+            'keyPrefix' => 'free55_cache_',
         ),
 
         'settings'=>array(
             'class'                 => 'application.extensions.onetwist.CmsSettings',
             'cacheComponentId'  => 'cache',
             'cacheId'           => 'global_website_settings',
-            'cacheTime'         => 84000,
+            // default 0, never expire
+//            'cacheTime'         => 84000,
             'tableName'     => '{{settings}}',
             'dbComponentId'     => 'db',
             'createTable'       => true,
