@@ -10,7 +10,7 @@
 ?>
 
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-      'id'=>'baseconfig-form',
+      'id'=>'friendlink-form',
       'type'=>'horizontal',
       'enableClientValidation'=>true,
       'clientOptions'=>array(
@@ -20,15 +20,22 @@
       'htmlOptions'=>array('enctype' => 'multipart/form-data'),
     )); ?>
 
-      <?php echo $form->textFieldRow($model, 'SiteName'); ?>
-      <?php echo $form->dropDownListRow($model, 'SiteTheme', SystemBaseConfig::getThemeList()); ?>
-      <?php echo $form->textFieldRow($model, 'SiteAdminEmail'); ?>
-      <?php echo $form->textAreaRow($model, 'SiteKeywords', array(
-        'hint'=> '多个关键字逗号分隔'
+      <?php echo $form->textFieldRow($model, 'title'); ?>
+      <?php echo $form->textFieldRow($model, 'linkurl'); ?>
+
+      <?php echo $form->fileFieldRow($model, 'imagefile'); ?>
+      <?php if ($this->action->id == 'update'):?>
+      <div class="control-group ">
+          <label for="FriendLink_imagefile1" class="control-label">站点LOGO</label>
+          <div class="controls">
+              <?php echo CHtml::image(H::getNovelImageUrl($model->imgurl));?>
+          </div>
+      </div>
+      <?php endif; ?>
+
+    <?php echo $form->textFieldRow($model, 'sort', array(
+        'hint'=> '提示：数值越大越靠前'
     )); ?>
-      <?php echo $form->textAreaRow($model, 'SiteIntro'); ?>
-<!--      --><?php //echo $form->textFieldRow($model, 'SiteAttachmentPath'); ?>
-      <?php echo $form->textAreaRow($model, 'SiteCopyright'); ?>
 
 
       <div class="form-actions">

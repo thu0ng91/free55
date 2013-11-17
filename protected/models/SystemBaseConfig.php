@@ -19,6 +19,8 @@ class SystemBaseConfig extends CFormModel
 
     public $SiteAttachmentPath;
 
+    public $SiteTheme;
+
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -30,7 +32,7 @@ class SystemBaseConfig extends CFormModel
 			array('SiteName', 'required'),
 			array('SiteAdminEmail', 'email'),
             array('SiteName', 'length', 'max'=> 100),
-            array('SiteKeywords,SiteIntro,SiteCopyright,SiteAttachmentPath', 'length', 'max'=> 255),
+            array('SiteKeywords,SiteIntro,SiteCopyright,SiteAttachmentPath,SiteTheme', 'length', 'max'=> 255),
 //			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 		);
 	}
@@ -47,6 +49,21 @@ class SystemBaseConfig extends CFormModel
 			'SiteAdminEmail' => '管理员邮箱',
 			'SiteCopyright' => '站点版权信息',
 			'SiteAttachmentPath' => '站点附件地址',
+			'SiteTheme' => '站点主题',
 		);
 	}
+
+    public static function getThemeList()
+    {
+        $dir = BASE_THEME_PATH . DS . "/front";
+
+        $iterator = new DirectoryIterator($dir);
+        $themes = array();
+        foreach ($iterator as $f) {
+            if ($f->isDir() && !$f->isDot()) {
+                $themes[$f->getFilename()] = $f->getFilename();
+            }
+        }
+        return $themes;
+    }
 }

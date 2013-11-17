@@ -67,6 +67,8 @@ return array(
         		'chapter/<id:\d+>' => 'article/view',
         		'book/<id:\d+>' => 'book/view',
         		'category/<title:\w+>' => 'category/index',
+        		'news/list-<id:\d+>' => 'news/index',
+        		'news/<id:\d+>' => 'news/view',
         		'login' => 'site/login',
         		'logout' => 'site/logout',
         		'register' => 'site/register',
@@ -115,8 +117,8 @@ return array(
         ),
 
         'themeManager' => array(
-          'basePath' => $basePath . '/../themes/front',
-          'baseUrl' => $webUrl . '/themes/front',
+            'basePath' => BASE_THEME_PATH . DS . 'front',
+            'baseUrl' => $webUrl . '/' . BASE_THEME_DIR . '/front',
         ),
 
         'viewRenderer' => array(

@@ -34,27 +34,30 @@ class CategoryController extends FWFrontController
 
 //        $criteria->compare('recommendlevel', 1);
 
-        $dataProvider = new CActiveDataProvider('Book',array(
-            'criteria'=> $criteria,
-            'pagination'=> array(
-                'pageSize'=> Yii::app()->params['girdpagesize'],
-            ),
-        ));
+//        $dataProvider = new CActiveDataProvider('Book',array(
+//            'criteria'=> $criteria,
+//            'pagination'=> array(
+//                'pageSize'=> Yii::app()->params['girdpagesize'],
+//            ),
+//        ));
 
-        $book = Book::model();
+        $count = Book::model()->count($criteria);
+        $pages = new CPagination($count);
 
-        $s = BookViewStatsByDay::model();
-        $w = BookViewStatsByWeek::model();
-        $mn = BookViewStatsByMonth::model();
+        // results per page
+        $pages->pageSize = Yii::app()->params['pagesize']['book'];
+        $pages->applyLimit($criteria);
 
-		$this->render('index', array(
+        $list = Book::model()->findAll($criteria);
+
+        $page = $this->widget('CLinkPager', array(
+            'pages' => $pages,
+        ), true);
+
+        $this->render('index', array(
+            'list' => $list,
+            'page' => $page,
             'category' => $category,
-            'dataProvider' => $dataProvider,
-            'recommendDataProvider' => $book->getRecommendDataProvider(2, $category->id),
-            'lastUpdateDataProvider' => $book->getLastUpdateDataProvider($category->id),
-            'dayDataProvider' => $s->getTopHitsDataProvider(date('Y-m-d'), $category->id, 4),
-            'weekDataProvider' => $w->getTopHitsDataProvider(date('W'), $category->id, 4),
-            'monthDataProvider' => $mn->getTopHitsDataProvider(date('Y-m'), $category->id, 4),
         ));
 	}
 

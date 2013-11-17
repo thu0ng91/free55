@@ -23,10 +23,13 @@ class ApplicationBehavior extends CBehavior {
 //        var_dump($rules);
         //Yii::app()->urlManager->rules = array();
 
-        // 网站标题
+
         $m = Yii::app()->settings->get("SystemBaseConfig");
         if ($m) {
+            // 网站标题
             Yii::app()->name = $m->SiteName;
+            // 主题控制
+            Yii::app()->theme = $m->SiteTheme;
         }
 
         // Url 重写
@@ -54,7 +57,20 @@ class ApplicationBehavior extends CBehavior {
                 $r = array( $r =>  'article/view');
                 Yii::app()->urlManager->addRules($r, false);
             }
-        }
 
+            if ($m->NewsListRule) {
+                $r = $m->NewsListRule;
+                $r = str_replace('{id}', '<id:\d+>', $r);
+                $r = array( $r =>  'news/index');
+                Yii::app()->urlManager->addRules($r, false);
+            }
+
+            if ($m->NewsDetailRule) {
+                $r = $m->NewsDetailRule;
+                $r = str_replace('{id}', '<id:\d+>', $r);
+                $r = array( $r =>  'news/view');
+                Yii::app()->urlManager->addRules($r, false);
+            }
+        }
     }
 }

@@ -60,8 +60,8 @@ $backendArray=array(
     ),
 
     'themeManager' => array(
-      'basePath' => $frontend . '/../themes/admin',
-      'baseUrl' => $webUrl . '/themes/admin',
+      'basePath' => BASE_THEME_PATH . DS . 'admin',
+      'baseUrl' => $webUrl . '/' . BASE_THEME_DIR . '/admin',
     ),
 	),
 	'params'=> require($backend.'/config/params.php'),

@@ -9,56 +9,6 @@ class SystemController extends Controller
         );
     }
 
-	/**
-//	 * Lists all models.
-//	 */
-//	public function actionIndex()
-//	{
-//		$criteria=new CDbCriteria();
-////        $criteria->addCondition('status=:stauts');
-////        $criteria->params[':status'] = Yii::app()->params['status']['ischecked'];
-//
-//        if(!empty($_GET['SystemBaseConfig']['title']))
-//            $criteria->addSearchCondition('title',$_GET['SystemBaseConfig']['title']);
-//
-//        if(!empty($_GET['SystemBaseConfig']['author']))
-//            $criteria->addSearchCondition('author',$_GET['SystemBaseConfig']['author']);
-//
-//    	if(!empty($_GET['SystemBaseConfig']['cid'])){
-//    		$categoryList=array();
-//    		$categoryList[] = $_GET['SystemBaseConfig']['cid'];
-//			Category::model()->getAllCategoryIds($categoryList,Category::model()->findAll(), $_GET['SystemBaseConfig']['cid']);
-//		    $criteria->addInCondition('cid',$categoryList);
-//    	}
-//
-//        if(isset($_GET['SystemBaseConfig']['recommendlevel'])){
-//            $criteria->compare('recommendlevel', $_GET['SystemBaseConfig']['recommendlevel']);
-//        }
-//
-//        $criteria->addNotInCondition('status', array(Yii::app()->params['status']['isdelete']));
-//
-//		$dataProvider=new CActiveDataProvider('SystemBaseConfig',array(
-//			'criteria'=>$criteria,
-//			'pagination'=>array(
-//        		'pageSize'=>Yii::app()->params['girdpagesize'],
-//    		),
-//            'sort'=>array(
-//                'defaultOrder'=>array(
-//                    'id' => CSort::SORT_DESC,
-//                ),
-//                'attributes'=>array(
-//                    'id',
-//                    'createtime',
-//                ),
-//            ),
-//		));
-//		$this->render('index',array(
-//			'dataProvider'=>$dataProvider,
-//			'categorys'=> Category::model()->showAllSelectCategory(Category::SHOW_ALLCATGORY),
-//            'model' => SystemBaseConfig::model(),
-//		));
-//	}
-
 	public function actionBase()
 	{
         $cacheCategory =  'system';

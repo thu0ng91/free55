@@ -23,8 +23,8 @@ return array(
     	'header'=>'',
 	),
 	'pagesize'=>array(
-		'article'=>10,
-		'product'=>10,
+		'book'=>10,
+		'news'=>10,
 	),
     'girdpagesize' => 100,
 	'status'=>array(

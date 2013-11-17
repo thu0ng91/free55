@@ -41,6 +41,10 @@
 
         <?php echo $form->dropDownListRow($model, 'isnav', array('否', '是')); ?>
 
+        <?php echo $form->textFieldRow($model, 'sort', array(
+            'hint'=> '提示：数值越大越靠前'
+        )); ?>
+
         <fieldset class="well the-fieldset">
             <legend class="the-legend">分类 SEO 设置</legend>
             <?php echo $form->textFieldRow($model, 'seotitle'); ?>

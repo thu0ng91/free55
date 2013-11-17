@@ -6,33 +6,6 @@
  */
 class BookController extends FWFrontController
 {
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
-	public function actionIndex()
-	{
-//        $criteria=new CDbCriteria(array(
-//            'order' => 'createtime desc',
-//        ));
-//
-//        $criteria->compare('status', Yii::app()->params['status']['ischecked']);
-//        $criteria->compare('recommendlevel', 1);
-//
-//        $recommendDataProvider = new CActiveDataProvider('Book',array(
-//            'criteria'=> $criteria,
-//            'pagination'=>array(
-//                'pageSize'=>Yii::app()->params['girdpagesize'],
-//            ),
-//        ));
-
-//        $m = Book::model();
-//		$this->render('index', array(
-//            'recommendDataProvider'=>  $m->getRecommendDataProvider(),
-//            'newestDataProvider' => $m->getNewestDataProvider(),
-//            'lastUpdateDataProvider' => $m->getLastUpdateDataProvider(100),
-//        ));
-	}
 
     /**
      * 小说详情

@@ -19,10 +19,10 @@
     <div class="r">
      <h2>公告牌</h2>
 		 		<ul>
-			<li><span class="s1">[公告]</span><span class="s2"><a>爆赚积分和积分兑换功能正式上线
-</a></span></li>
-			<li><span class="s1">[公告]</span><span class="s2"><a href="/jifen.html">用户等级以及获取积分的详细规则</a></span></li>
-			<li><span class="s1">[帮助]</span><span class="s2"><a href="/dns.html">笔趣阁被跳转到别站的处理办法</a></span></li>
+                    {novel_news}
+			<li><span class="s1">[公告]</span><span class="s2"><a href="{novel_news_link id=$item->id}">{$item->title|truncate:10}</a></span></li>
+                    {/novel_news}
+
 		</ul> 
 	 <h2>上期强推</h2>
 	    <ul>

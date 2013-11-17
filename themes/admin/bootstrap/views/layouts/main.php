@@ -23,9 +23,8 @@
                 array('label'=> '系统', 'url'=> $this->createUrl('system/base'), 'active' => $this->menupanel[0] == 'system' ? true : false),
                 array('label'=> '小说管理', 'url'=> $this->createUrl('book/index'), 'active' => $this->menupanel[0] == 'book' ? true : false),
                 array('label'=> '用户管理', 'url'=> $this->createUrl('user/index'), 'active' => $this->menupanel[0] == 'user' ? true : false),
+                array('label'=> '友链管理', 'url'=> $this->createUrl('friendlink/index'), 'active' => $this->menupanel[0] == 'friendlink' ? true : false),
                 array('label'=> '新闻管理', 'url'=> $this->createUrl('news/index'), 'active' => $this->menupanel[0] == 'news' ? true : false),
-                array('label'=> '友链管理', 'url'=> $this->createUrl('link/index'), 'active' => $this->menupanel[0] == 'link' ? true : false),
-                array('label'=> '广告管理', 'url'=> $this->createUrl('advertise/index'), 'active' => $this->menupanel[0] == 'advertise' ? true : false),
             )
         ),
         array(
