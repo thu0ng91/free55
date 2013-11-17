@@ -1,22 +1,3 @@
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `realname` varchar(32) DEFAULT NULL,
-  `roleid` tinyint(2) DEFAULT NULL,
-  `telephone` varchar(32) DEFAULT NULL,
-  `qq` varchar(32) DEFAULT NULL,
-  `email` varchar(32) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
-  `createtime` int(10) DEFAULT NULL,
-  `updatetime` int(11) DEFAULT NULL COMMENT '更新时间',
-  `lastlogintime` int(10) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `loginhits` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 -- --------------------------------------------------------
 
 --
@@ -43,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   KEY `chapter` (`chapter`),
   KEY `linkurl` (`linkurl`),
   KEY `bookid` (`bookid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -78,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -95,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_day` (
   `hits` int(11) NOT NULL COMMENT '点击数',
   `day` date NOT NULL COMMENT '日期',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -112,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_month` (
   `hits` int(11) NOT NULL COMMENT '点击数',
   `month` date NOT NULL COMMENT '日期，年月',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -130,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_week` (
   `year` year(4) NOT NULL COMMENT '当年年份',
   `week` tinyint(4) NOT NULL COMMENT '当年第几周',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,7 +136,88 @@ CREATE TABLE IF NOT EXISTS `category` (
   `sort` tinyint(2) DEFAULT '0',
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `friend_link`
+--
+
+DROP TABLE IF EXISTS `friend_link`;
+CREATE TABLE IF NOT EXISTS `friend_link` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '站点名',
+  `imgurl` varchar(200) DEFAULT NULL COMMENT '站点LOGO',
+  `linkurl` varchar(500) DEFAULT NULL COMMENT '站点地址',
+  `sort` tinyint(2) NOT NULL DEFAULT '0' COMMENT '排序号',
+  `createtime` int(10) DEFAULT NULL,
+  `updatetime` int(10) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '新闻标题',
+  `author` varchar(32) DEFAULT NULL COMMENT '作者',
+  `cid` int(10) DEFAULT NULL COMMENT '栏目',
+  `imgurl` varchar(200) DEFAULT NULL COMMENT '封面图',
+  `summary` varchar(255) DEFAULT NULL COMMENT '简介',
+  `content` text COMMENT '内容',
+  `createtime` int(10) DEFAULT NULL,
+  `updatetime` int(10) DEFAULT NULL,
+  `hits` int(10) DEFAULT NULL COMMENT '点击数',
+  `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
+  PRIMARY KEY (`id`),
+  KEY `cid` (`cid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `news_category`
+--
+
+DROP TABLE IF EXISTS `news_category`;
+CREATE TABLE IF NOT EXISTS `news_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `shorttitle` varchar(100) DEFAULT NULL COMMENT '英文、拼音名称',
+  `parentid` int(10) DEFAULT NULL,
+  `imgurl` varchar(200) DEFAULT NULL,
+  `seotitle` varchar(100) DEFAULT NULL,
+  `keywords` varchar(100) DEFAULT NULL,
+  `description` text,
+  `createtime` int(10) NOT NULL COMMENT '创建时间',
+  `updatetime` int(10) NOT NULL COMMENT '更新时间',
+  `sort` tinyint(2) DEFAULT '0',
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(64) NOT NULL DEFAULT 'system',
+  `key` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_key` (`category`,`key`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -180,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `loginhits` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -198,7 +260,29 @@ CREATE TABLE IF NOT EXISTS `user_book_favorites` (
   `updatetime` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+---
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `realname` varchar(32) DEFAULT NULL,
+  `roleid` tinyint(2) DEFAULT NULL,
+  `telephone` varchar(32) DEFAULT NULL,
+  `qq` varchar(32) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `createtime` int(10) DEFAULT NULL,
+  `updatetime` int(11) DEFAULT NULL COMMENT '更新时间',
+  `lastlogintime` int(10) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `loginhits` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 INSERT INTO `admin` (`id`, `username`, `password`, `realname`, `roleid`, `telephone`, `qq`, `email`, `address`, `createtime`, `updatetime`, `lastlogintime`, `status`, `loginhits`) VALUES
 (1, 'admin', '90464b75b6cd4a65d6c832389b09a449', '', 1, '', '', '', '', NULL, 1380713128, 1380713128, 1, 12);
