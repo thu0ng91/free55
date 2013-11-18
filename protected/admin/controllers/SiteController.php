@@ -19,7 +19,7 @@ class SiteController extends Controller
 			Yii::app()->user->setFlash('actionInfo','您尚未登录系统！');
 			$this->redirect(array('site/login'));
 		}
-		$this->render('index');
+		$this->redirect(array('system/index'));
 	}
 	public function actionLogin()
 	{

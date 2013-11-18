@@ -37,7 +37,7 @@ class ApplicationBehavior extends CBehavior {
         // Url 重写
         $m = Yii::app()->settings->get("SystemRewriteConfig");
         if ($m) {
-            if ($m->UrlSuffix) {
+            if ($m->UrlSuffix >= 0) {
                 Yii::app()->urlManager->urlSuffix = Yii::app()->params['urlSuffix'][$m->UrlSuffix];
             }
 

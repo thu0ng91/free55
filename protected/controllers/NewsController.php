@@ -26,6 +26,12 @@ class NewsController extends FWFrontController
             }
         }
 
+        if ($category) {
+            $this->pageTitle = !empty($category->seotitle) ? $category->seotitle : $category->title;
+            $this->pageKeywords = $category->keywords;
+            $this->pageKeywords = $category->description;
+        }
+
         $criteria->compare('status', Yii::app()->params['status']['ischecked']);
 
         $count = News::model()->count($criteria);
@@ -57,6 +63,10 @@ class NewsController extends FWFrontController
         if (!$news) {
             return new CHttpException(404);
         }
+
+        $this->pageTitle = $news->title;
+        $this->pageKeywords = $news->keywords;
+        $this->pageDescription = $news->summary;
 
         $this->render('detail', array(
             'news' => $news,

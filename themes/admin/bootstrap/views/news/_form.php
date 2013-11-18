@@ -24,6 +24,10 @@
 
       <?php echo $form->dropDownListRow($model, 'cid', $categorys); ?>
 
+      <?php echo $form->textFieldRow($model, 'keywords', array(
+          'hint'=> '提示：多个关键字逗号分隔'
+      )); ?>
+
       <?php echo $form->textFieldRow($model, 'author'); ?>
 
       <?php echo $form->fileFieldRow($model, 'imagefile'); ?>

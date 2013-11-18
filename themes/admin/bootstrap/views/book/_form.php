@@ -22,8 +22,11 @@
 
       <?php echo $form->textFieldRow($model, 'title'); ?>
       <?php echo $form->textFieldRow($model, 'author'); ?>
-
+    <?php echo $form->textFieldRow($model, 'keywords', array(
+        'hint'=> '提示：逗号分隔'
+    )); ?>
       <?php echo $form->dropDownListRow($model, 'cid', $categorys); ?>
+      <?php echo $form->dropDownListRow($model, 'type', Yii::app()->params['novelType']); ?>
       <?php echo $form->fileFieldRow($model, 'imagefile'); ?>
 
       <?php if ($this->action->id == 'update'):?>
@@ -68,12 +71,10 @@
 //          'cols' => 80,
 //          'rows' => 10,
 //      )); ?>
-      <?php echo $form->textFieldRow($model, 'tags', array(
-          'hint'=> '提示：逗号分隔'
-      )); ?>
-      <?php echo $form->textFieldRow($model, 'keywords', array(
-          'hint'=> '提示：逗号分隔'
-      )); ?>
+<!--      --><?php //echo $form->textFieldRow($model, 'tags', array(
+//          'hint'=> '提示：逗号分隔'
+//      )); ?>
+
 
     <?php echo $form->dropDownListRow($model, 'recommendlevel', Yii::app()->params['recommendLevel']); ?>
 

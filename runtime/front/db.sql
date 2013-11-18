@@ -1,3 +1,26 @@
+--
+-- 表的结构 `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `realname` varchar(32) DEFAULT NULL,
+  `roleid` tinyint(2) DEFAULT NULL,
+  `telephone` varchar(32) DEFAULT NULL,
+  `qq` varchar(32) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `createtime` int(10) DEFAULT NULL,
+  `updatetime` int(11) DEFAULT NULL COMMENT '更新时间',
+  `lastlogintime` int(10) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `loginhits` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -24,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   KEY `chapter` (`chapter`),
   KEY `linkurl` (`linkurl`),
   KEY `bookid` (`bookid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -38,11 +61,10 @@ CREATE TABLE IF NOT EXISTS `book` (
   `title` varchar(100) NOT NULL COMMENT '书名',
   `author` varchar(32) DEFAULT NULL COMMENT '作者',
   `cid` int(10) DEFAULT NULL COMMENT '栏目',
+  `type` tinyint(1) DEFAULT NULL COMMENT '小说类型：1 连载 2 完本 ',
   `imgurl` varchar(200) DEFAULT NULL COMMENT '封面图',
   `linkurl` varchar(200) DEFAULT NULL,
   `summary` varchar(255) DEFAULT NULL COMMENT '简介',
-  `tags` varchar(100) DEFAULT NULL COMMENT '标签，以逗号分隔',
-  `seotitle` varchar(100) DEFAULT NULL COMMENT 'SEO标题',
   `keywords` varchar(100) DEFAULT NULL,
   `createtime` int(10) DEFAULT NULL,
   `updatetime` int(10) DEFAULT NULL,
@@ -168,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL COMMENT '新闻标题',
   `author` varchar(32) DEFAULT NULL COMMENT '作者',
+  `keywords` varchar(100) DEFAULT NULL COMMENT '关键字',
   `cid` int(10) DEFAULT NULL COMMENT '栏目',
   `imgurl` varchar(200) DEFAULT NULL COMMENT '封面图',
   `summary` varchar(255) DEFAULT NULL COMMENT '简介',
@@ -242,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `loginhits` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -261,27 +284,3 @@ CREATE TABLE IF NOT EXISTS `user_book_favorites` (
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 表的结构 `admin`
---
-
-
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `realname` varchar(32) DEFAULT NULL,
-  `roleid` tinyint(2) DEFAULT NULL,
-  `telephone` varchar(32) DEFAULT NULL,
-  `qq` varchar(32) DEFAULT NULL,
-  `email` varchar(32) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
-  `createtime` int(10) DEFAULT NULL,
-  `updatetime` int(11) DEFAULT NULL COMMENT '更新时间',
-  `lastlogintime` int(10) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `loginhits` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;

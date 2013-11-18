@@ -17,7 +17,7 @@ class InstallController extends FWFrontController
         parent::init();
 
         // 强制使用bootstrap 作为安装主题
-        Yii::app()->theme = 'bootstrap';
+        Yii::app()->theme = 'system';
     }
 
     public function beforeAction($action)

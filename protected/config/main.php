@@ -32,7 +32,7 @@ return array(
     'theme' => 'biquge',
 
     'behaviors' => array(
-        'urlManager' => 'application.behaviors.ApplicationBehavior',
+        'app' => 'application.behaviors.ApplicationBehavior',
     ),
 	
 	'modules'=>array(

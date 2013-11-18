@@ -11,8 +11,6 @@
  * @property string $imgurl
  * @property string $linkurl
  * @property string $summary
- * @property string $tags
- * @property string $seotitle
  * @property string $keywords
  * @property integer $createtime
  * @property integer $updatetime
@@ -57,7 +55,7 @@ class Book extends BaseModel
 		// will receive user inputs.
 		return array(
 			array('title,author,cid', 'required'),
-			array('cid, lastchapterid,lastchaptertime,createtime,updatetime,recommendlevel, hits, likenum, favoritenum, wordcount, status', 'numerical', 'integerOnly'=>true),
+			array('cid,type,lastchapterid,lastchaptertime,createtime,updatetime,recommendlevel, hits, likenum, favoritenum, wordcount, status', 'numerical', 'integerOnly'=>true),
 			array('title,lastchaptertitle', 'length', 'max'=>100),
 			array('author', 'length', 'max'=>32),
 			array('sections', 'length', 'max'=>500),
@@ -68,7 +66,7 @@ class Book extends BaseModel
             ),
 			array('imgurl, linkurl', 'length', 'max'=>200),
 			array('summary', 'length', 'max'=>500),
-			array('tags, seotitle, keywords', 'length', 'max'=>100),
+			array('keywords', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, author, cid, imgurl, linkurl, summary, tags, seotitle, keywords, createtime, updatetime, recommend, recommendlevel, hits, likenum, wordcount, sections, status', 'safe', 'on'=>'search'),
@@ -98,12 +96,13 @@ class Book extends BaseModel
 			'title' => '小说名',
 			'author' => '小说作者',
 			'cid' => '栏目',
+			'type' => '类型',
 			'imgurl' => '封面图',
 			'imagefile' => '封面图',
 			'linkurl' => 'Linkurl',
 			'summary' => '简介',
-			'tags' => '标签',
-			'seotitle' => '搜索优化标题',
+//			'tags' => '标签',
+//			'seotitle' => '搜索优化标题',
 			'keywords' => '关键字',
 			'createtime' => '发布时间',
 			'updatetime' => '更新时间',

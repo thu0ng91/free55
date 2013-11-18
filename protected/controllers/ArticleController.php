@@ -16,6 +16,8 @@ class ArticleController extends FWFrontController
             return new CHttpException(404);
         }
 
+        $this->pageTitle = $chapter->title;
+
         $prevChapter = Article::model()->find(
             'bookid=:bookid and chapter<:chapter order by chapter desc',
             array(

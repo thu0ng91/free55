@@ -17,6 +17,10 @@ class BookController extends FWFrontController
             return new CHttpException(404);
         }
 
+        $this->pageTitle = $book->title;
+        $this->pageKeywords = $book->keywords;
+        $this->pageDescription = $book->summary;
+
         // 更新小说统计信息
         $book->updateStats();
 

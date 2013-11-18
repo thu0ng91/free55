@@ -60,8 +60,9 @@ class SystemBaseConfig extends CFormModel
         $iterator = new DirectoryIterator($dir);
         $themes = array();
         foreach ($iterator as $f) {
-            if ($f->isDir() && !$f->isDot()) {
-                $themes[$f->getFilename()] = $f->getFilename();
+            $name = $f->getFilename();
+            if ($f->isDir() && !$f->isDot() && trim($name) != 'system' ) {
+                $themes[$name] = $name;
             }
         }
         return $themes;

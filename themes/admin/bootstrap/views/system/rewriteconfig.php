@@ -20,7 +20,7 @@
       'htmlOptions'=>array('enctype' => 'multipart/form-data'),
     )); ?>
 
-      <?php echo $form->dropDownListRow($model, 'UrlSuffix', CMap::mergeArray(array('' => '请选择'), Yii::app()->params['urlSuffix'])); ?>
+      <?php echo $form->dropDownListRow($model, 'UrlSuffix', CMap::mergeArray(array('-1' => '请选择'), Yii::app()->params['urlSuffix'])); ?>
       <?php echo $form->textFieldRow($model, 'CategoryRule', array(
           'hint'=> "可用变量：{shorttitle}，表示分类别名 <br />示例：<br /> category/{shorttitle} <br /> fenlei/{shorttitle}"
       )); ?>

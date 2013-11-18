@@ -25,6 +25,10 @@ class CategoryController extends FWFrontController
             return new CHttpException(404);
         }
 
+        $this->pageTitle = !empty($category->seotitle) ? $category->seotitle : $category->title;
+        $this->pageKeywords = $category->keywords;
+        $this->pageKeywords = $category->description;
+
         $criteria = new CDbCriteria(array(
             'order' => 'createtime desc',
         ));

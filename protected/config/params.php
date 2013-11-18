@@ -40,4 +40,8 @@ return array(
     'gather_auth_key' => '52694e26e7b55',
     'urlSuffix' => array('.html', '.htm', '.shtml', '.asp', '.aspx', '.php'),
     'lockFile' => 'install.lock',
+    'novelType' => array(
+       '1' => '连载',
+       '2' => '完本'
+    ),
 );
