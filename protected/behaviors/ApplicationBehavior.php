@@ -31,7 +31,7 @@ class ApplicationBehavior extends CBehavior {
             // 主题控制
             Yii::app()->theme = $m->SiteTheme;
             // 设定全局 smarty 变量
-            Yii::app()->viewRenderer->smarty->assign("siteinfo", $m);
+//            Yii::app()->viewRenderer->smarty->assign("siteinfo", $m);
         }
 
         // Url 重写

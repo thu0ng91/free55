@@ -3,10 +3,7 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-//$this->pageTitle=Yii::app()->name . ' - Login';
-//$this->breadcrumbs=array(
-//	'Login',
-//);
+$this->pageTitle=Yii::app()->name . ' - 伪静态设置';
 ?>
 
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
