@@ -21,7 +21,7 @@
     )); ?>
 
       <?php echo $form->textFieldRow($model, 'SiteName'); ?>
-      <?php echo $form->dropDownListRow($model, 'SiteTheme', SystemBaseConfig::getThemeList()); ?>
+      <?php echo $form->dropDownListRow($model, 'SiteTheme', CMap::mergeArray(array('' => '请选择'),SystemBaseConfig::getThemeList())); ?>
       <?php echo $form->textFieldRow($model, 'SiteAdminEmail'); ?>
       <?php echo $form->textAreaRow($model, 'SiteKeywords', array(
         'hint'=> '多个关键字逗号分隔'

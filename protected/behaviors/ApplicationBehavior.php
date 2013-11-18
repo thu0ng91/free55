@@ -30,6 +30,8 @@ class ApplicationBehavior extends CBehavior {
             Yii::app()->name = $m->SiteName;
             // 主题控制
             Yii::app()->theme = $m->SiteTheme;
+            // 设定全局 smarty 变量
+            Yii::app()->viewRenderer->smarty->assign("siteinfo", $m);
         }
 
         // Url 重写

@@ -64,6 +64,7 @@ return array(
 			'urlSuffix' => '',
 			'showScriptName' => false,
 			'rules' => array(
+        		'/' => 'site/index',
         		'chapter/<id:\d+>' => 'article/view',
         		'book/<id:\d+>' => 'book/view',
         		'category/<title:\w+>' => 'category/index',
@@ -142,7 +143,7 @@ return array(
             'tableName'     => '{{settings}}',
             'dbComponentId'     => 'db',
             'createTable'       => true,
-//            'dbEngine'      => 'InnoDB',
+            'dbEngine'      => 'MyISAM',
         ),
 	),
 	// application-level parameters that can be accessed

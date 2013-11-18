@@ -20,6 +20,9 @@
  */
 class AdminUser extends BaseModel
 {
+    // 确认密码字段
+    public $passwordAgain;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -46,10 +49,11 @@ class AdminUser extends BaseModel
 		// will receive user inputs.
 		return array(
 			array('username, password, roleid','required'),
-			array('username','unique'),
+			array('username','unique', 'message' => '账号已存在'),
 			array('roleid, createtime, lastlogintime, status, loginhits', 'numerical', 'integerOnly'=>true),
 			array('username, password, realname, telephone, qq, email', 'length', 'max'=>32),
 			array('address', 'length', 'max'=>200),
+            array('passwordAgain','compare', 'compareAttribute' => 'password', 'message' => '两次密码不一致'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, username, password, realname, roleid, telephone, qq, email, address, createtime, lastlogintime, status, loginhits', 'safe', 'on'=>'search'),
@@ -75,6 +79,7 @@ class AdminUser extends BaseModel
 		return array(
 			'username' => '用户名',
 			'password' => '密码',
+			'passwordAgain' => '确认密码',
 			'realname' => '真实姓名',
 			'roleid' => '用户角色',
 			'telephone' => '手机',

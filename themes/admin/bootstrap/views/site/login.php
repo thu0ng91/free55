@@ -54,7 +54,8 @@ $this->pageTitle=Yii::app()->name . ' - 管理登陆';
         'validateOnSubmit'=>true,
       ),
     )); ?>
-
+        <fieldset class="well the-fieldset">
+            <legend class="the-legend"><b>管理员登陆</b></legend>
       <?php echo $form->textFieldRow($model,'username'); ?>
 
       <?php echo $form->passwordFieldRow($model,'password',array(
@@ -70,7 +71,7 @@ $this->pageTitle=Yii::app()->name . ' - 管理登陆';
                 'label'=>'登陆',
             )); ?>
       </div>
-
+    </fieldset>
     <?php $this->endWidget(); ?>
 
     </div><!-- form -->

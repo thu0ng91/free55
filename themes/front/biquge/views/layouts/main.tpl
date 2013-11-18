@@ -1,10 +1,14 @@
 <!doctype html>
 <html>
 <head>
-<title>{$this->pageTitle}</title>
+{if $this->pageTitle != ""}
+<title>{$this->pageTitle}_{$siteinfo->SiteName}</title>
+{else}
+    <title>{$siteinfo->SiteName}</title>
+{/if}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="{$this->pageKeywords}" />
-<meta name="description" content="{$this->pageDescription}" />
+<meta name="keywords" content="{$this->pageKeywords}{$siteinfo->SiteKeywords}" />
+<meta name="description" content="{$this->pageDescription}{$siteinfo->SiteIntro}" />
 <link rel="stylesheet" type="text/css" href="{Yii::app()->theme->baseUrl}/css/biquge.css"/>
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/jquery.min.js"></script>
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/m.js"></script>
@@ -60,3 +64,4 @@
 </body>
 </html>
 <!-- spend time:{$TIME} -->
+{debug}

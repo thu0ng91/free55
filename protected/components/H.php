@@ -64,4 +64,15 @@ class H {
 
         return $baseUrl . $imageUrl;
     }
+
+    /**
+     * 检查是否已经安装过程序
+     * @return bool
+     */
+    public static function checkIsInstall()
+    {
+        $lockFile = Yii::app()->runtimePath . "/" . Yii::app()->params['lockFile'];
+
+        return file_exists($lockFile);
+    }
 }

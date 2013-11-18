@@ -14,7 +14,7 @@
  * @return string 
  * @author pizigou <pizigou@yeah.net>
  */
-function smarty_block_friend_link($params, $content, $template, &$repeat) {
+function smarty_block_novel_friend_link($params, $content, $template, &$repeat) {
     if(empty($params['name'])){
         $name = "block_novel_friend_link";
     } else {

@@ -25,18 +25,11 @@ class SiteController extends FWFrontController
 	public function actionIndex()
 	{
 
-        $m = Book::model();
-        $s = BookViewStatsByDay::model();
-        $w = BookViewStatsByWeek::model();
-        $mn = BookViewStatsByMonth::model();
-		$this->render('index', array(
-            'recommendDataProvider'=>  $m->getRecommendDataProvider(1),
-            'newestDataProvider' => $m->getNewestDataProvider(),
-            'lastUpdateDataProvider' => $m->getLastUpdateDataProvider(0, 100),
-            'dayDataProvider' => $s->getTopHitsDataProvider(date('Y-m-d'),0, 4),
-            'weekDataProvider' => $w->getTopHitsDataProvider(date('W'), 0, 4),
-            'monthDataProvider' => $mn->getTopHitsDataProvider(date('Y-m'), 0, 4),
-        ));
+        if (!H::checkIsInstall()) {
+            $this->redirect(array('install/index'));
+        }
+
+        $this->render("index");
 	}
 
     /**

@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   KEY `chapter` (`chapter`),
   KEY `linkurl` (`linkurl`),
   KEY `bookid` (`bookid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_day` (
   `hits` int(11) NOT NULL COMMENT '点击数',
   `day` date NOT NULL COMMENT '日期',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_month` (
   `hits` int(11) NOT NULL COMMENT '点击数',
   `month` date NOT NULL COMMENT '日期，年月',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `book_view_stats_by_week` (
   `year` year(4) NOT NULL COMMENT '当年年份',
   `week` tinyint(4) NOT NULL COMMENT '当年第几周',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `sort` tinyint(2) DEFAULT '0',
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `friend_link` (
   `updatetime` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `status` tinyint(1) DEFAULT NULL COMMENT '状态：0 待审 1 审核通过 -1 删除',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `news_category` (
   `sort` tinyint(2) DEFAULT '0',
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `value` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_key` (`category`,`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `loginhits` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -260,9 +260,12 @@ CREATE TABLE IF NOT EXISTS `user_book_favorites` (
   `updatetime` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
----
+--
+-- 表的结构 `admin`
+--
+
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -281,8 +284,4 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `status` tinyint(1) DEFAULT NULL,
   `loginhits` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
-INSERT INTO `admin` (`id`, `username`, `password`, `realname`, `roleid`, `telephone`, `qq`, `email`, `address`, `createtime`, `updatetime`, `lastlogintime`, `status`, `loginhits`) VALUES
-(1, 'admin', '90464b75b6cd4a65d6c832389b09a449', '', 1, '', '', '', '', NULL, 1380713128, 1380713128, 1, 12);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;

@@ -30,12 +30,12 @@ class FWFrontController extends CController
 	public function init(){
         // defualt value
 
-        $this->pageTitle = Yii::app()->name;
-
-        $m = Yii::app()->settings->get("SystemBaseConfig");
-        if ($m) {
-            $this->pageKeywords = $m->SiteKeywords;
-            $this->pageDescription = $m->SiteIntro;
-        }
+//        $this->pageTitle = Yii::app()->name;
+//
+//        $m = Yii::app()->settings->get("SystemBaseConfig");
+//        if ($m) {
+//            $this->pageKeywords = $m->SiteKeywords;
+//            $this->pageDescription = $m->SiteIntro;
+//        }
 	}
 }

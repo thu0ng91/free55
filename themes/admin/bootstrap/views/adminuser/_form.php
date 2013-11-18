@@ -31,8 +31,12 @@
       <?php echo $form->passwordFieldRow($model, 'password', array(
           'value' => 'password',
       )); ?>
+        <?php echo $form->passwordFieldRow($model, 'passwordAgain', array(
+            'value' => 'password',
+        )); ?>
     <?php elseif ($this->action->id == 'create'): ?>
         <?php echo $form->passwordFieldRow($model, 'password'); ?>
+        <?php echo $form->passwordFieldRow($model, 'passwordAgain'); ?>
     <?php endif; ?>
 
 

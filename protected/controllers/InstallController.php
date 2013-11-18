@@ -8,8 +8,26 @@ class InstallController extends FWFrontController
 {
     public $layout = 'setup';
 
-    protected $lockFile = 'install.lock';
+//    protected $lockFile = 'install.lock';
     protected $dbFile = 'db.sql';
+
+
+    public function init()
+    {
+        parent::init();
+
+        // 强制使用bootstrap 作为安装主题
+        Yii::app()->theme = 'bootstrap';
+    }
+
+    public function beforeAction($action)
+    {
+        if ($action->id != 'finish' && H::checkIsInstall()) {
+            Yii::app()->user->setFlash('actionInfo','已经成功安装了小说系统，不需要重新安装！');
+            $this->redirect(array('install/finish'));
+        }
+        return true;
+    }
 
     public function actionIndex()
     {
@@ -17,16 +35,10 @@ class InstallController extends FWFrontController
     }
 
     /**
-     * 安装
+     * 数据库安装
      */
     public function actionSetup()
     {
-
-        if ($this->checkIsInstall()) {
-            Yii::app()->user->setFlash('actionInfo','已经成功安装了小说系统，不需要重新安装！');
-            $this->redirect(array('install/finish'));
-        }
-
         $model = new SetupForm();
 
         if(isset($_POST['SetupForm']))
@@ -61,10 +73,8 @@ class InstallController extends FWFrontController
 
                 $db->setActive(false);
 
-                $this->createLockFile();
-
-                Yii::app()->user->setFlash('actionInfo','恭喜，安装成功！');
-                $this->redirect(array('install/finish'));
+//                Yii::app()->user->setFlash('actionInfo','恭喜，安装成功！');
+                $this->redirect(array('setupBaseConfig'));
 
             } else {
                 $msg = "";
@@ -78,6 +88,75 @@ class InstallController extends FWFrontController
         //$this->render('login',array('model'=>$model));
         $this->render('setup',array('model'=>$model));
     }
+
+    /**
+     * 基础信息安装
+     */
+    public function actionSetupBaseConfig()
+    {
+        $cacheCategory =  'system';
+        $model = new SystemBaseConfig();
+
+        if(isset($_POST['SystemBaseConfig']))
+        {
+            $model->attributes = $_POST['SystemBaseConfig'];
+
+            if(!$model->validate()){
+                $msg = "";
+                foreach ($model->getErrors() as $err) {
+                    $msg .= array_shift($err) . "<br />";
+                }
+                Yii::app()->user->setFlash('actionInfo', $msg);
+                $this->refresh();
+            } else {
+                Yii::app()->settings->set(get_class($model), $model, $cacheCategory);
+                Yii::app()->settings->deleteCache($cacheCategory);
+//                Yii::app()->user->setFlash('actionInfo','恭喜，安装成功！');
+                $this->redirect('setupAdminUser');
+            }
+        }
+
+        $this->render('baseconfig',array(
+            'model'=> $model,
+//			'categorys'=>Category::model()->showAllSelectCategory(),
+        ));
+    }
+
+    /**
+     * 后台用户安装
+     */
+    public function actionSetupAdminUser()
+    {
+        $cacheCategory =  'system';
+        $model = new AdminUser();
+
+        if(isset($_POST['AdminUser']))
+        {
+            $model->attributes = $_POST['AdminUser'];
+
+            if(!$model->validate()){
+                $msg = "";
+                foreach ($model->getErrors() as $err) {
+                    $msg .= array_shift($err) . "<br />";
+                }
+                Yii::app()->user->setFlash('actionInfo', $msg);
+                $this->refresh();
+            } else {
+
+                $model->save();
+
+                // 安装成功，创建安装锁定文件
+                $this->createLockFile();
+                Yii::app()->user->setFlash('actionInfo','恭喜，飞舞小说系统安装成功！');
+                $this->redirect('finish');
+            }
+        }
+
+        $this->render('adminuser',array(
+            'model'=> $model,
+//			'categorys'=>Category::model()->showAllSelectCategory(),
+        ));
+    }    
 
     /**
      * 安装完成提示
@@ -112,24 +191,15 @@ class InstallController extends FWFrontController
         return file_put_contents($dbConfigFile, $s, LOCK_EX);
     }
 
-    /**
-     * 检查是否已经安装过
-     * @return bool
-     */
-    protected function checkIsInstall()
-    {
-        $lockFile = Yii::app()->runtimePath . "/" . $this->lockFile;
 
-        return file_exists($lockFile);
-    }
 
     /**
      * 创建安装锁定文件
      */
     protected function createLockFile()
     {
-        $lockFile = Yii::app()->runtimePath . "/" . $this->lockFile;
-        file_put_contents($lockFile, 'install', LOCK_EX);
+        $lockFile = Yii::app()->runtimePath . "/" . Yii::app()->params['lockFile'];
+        file_put_contents($lockFile, date('Y-m-d H:i:s'), LOCK_EX);
     }
 
     /**
