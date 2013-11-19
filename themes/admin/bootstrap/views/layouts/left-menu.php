@@ -14,9 +14,10 @@
         );
     } elseif ($this->menupanel[0] == 'system') {
         $menus = array(
+            array('label'=>'系统信息', 'url'=> $this->createUrl('system/index'), 'active'=> $this->action->id == 'index' ? true : false),
             array('label'=>'基础属性', 'url'=> $this->createUrl('system/base'), 'active'=> $this->action->id == 'base' ? true : false),
             array('label'=>'伪静态设置', 'url'=> $this->createUrl('system/rewrite'), 'active'=> $this->action->id == 'rewrite' ? true : false),
-            array('label'=>'系统信息', 'url'=> $this->createUrl('system/index'), 'active'=> $this->action->id == 'index' ? true : false),
+            array('label'=>'缓存管理', 'url'=> $this->createUrl('system/cache'), 'active'=> $this->action->id == 'cache' ? true : false),
         );
     } elseif ($this->menupanel[0] == 'friendlink') {
         $menus = array(

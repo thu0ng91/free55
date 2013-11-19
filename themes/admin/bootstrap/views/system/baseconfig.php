@@ -27,6 +27,7 @@ $this->pageTitle=Yii::app()->name . ' - 基础属性';
 <!--      --><?php //echo $form->textFieldRow($model, 'SiteAttachmentPath'); ?>
       <?php echo $form->textAreaRow($model, 'SiteCopyright'); ?>
 
+      <?php echo $form->dropDownListRow($model, 'SiteIsUsedCache', array('0' => '否', '1' => '是')); ?>
 
       <div class="form-actions">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -35,6 +36,7 @@ $this->pageTitle=Yii::app()->name . ' - 基础属性';
                 'label'=>'确定',
             )); ?>
       </div>
+
 
     <?php $this->endWidget(); ?>
 

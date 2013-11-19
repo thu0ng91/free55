@@ -21,6 +21,9 @@ class SystemBaseConfig extends CFormModel
 
     public $SiteTheme;
 
+    // 站点是否启用缓存
+    public $SiteIsUsedCache = 0;
+
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -31,6 +34,7 @@ class SystemBaseConfig extends CFormModel
 		return array(
 			array('SiteName', 'required'),
 			array('SiteAdminEmail', 'email'),
+			array('SiteIsUsedCache', 'boolean'),
             array('SiteName', 'length', 'max'=> 100),
             array('SiteKeywords,SiteIntro,SiteCopyright,SiteAttachmentPath,SiteTheme', 'length', 'max'=> 255),
 //			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
@@ -50,6 +54,7 @@ class SystemBaseConfig extends CFormModel
 			'SiteCopyright' => '站点版权信息',
 			'SiteAttachmentPath' => '站点附件地址',
 			'SiteTheme' => '站点主题',
+			'SiteIsUsedCache' => '是否启用缓存',
 		);
 	}
 

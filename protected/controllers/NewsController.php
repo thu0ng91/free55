@@ -6,6 +6,37 @@
  */
 class NewsController extends FWFrontController
 {
+
+    public function filters() {
+        $ret = array();
+        if ($this->siteConfig && $this->siteConfig->SiteIsUsedCache) {
+            $ret[] = array (
+                'FWOutputCache + index',
+                'duration' => 2592000,
+                'varyByParam' => array('id', 'page'),
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey'=> 'news-category' . $_GET['id'] . $_GET['page'],
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'news-category' . $_GET['id'] . $_GET['page'],
+//                )
+            );
+            $ret[] = array (
+                'FWOutputCache + view',
+                'duration' => 2592000,
+                'varyByParam' => array('id'),
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey'=> 'news' . $_GET['id'],
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'news' . $_GET['id'],
+//                )
+            );
+        }
+
+        return $ret;
+    }
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -55,7 +86,7 @@ class NewsController extends FWFrontController
 	}
 
     /**
-     * 小说详情
+     * 新闻详情
      */
     public function actionView($id)
     {

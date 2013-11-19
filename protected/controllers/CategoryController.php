@@ -6,6 +6,24 @@
  */
 class CategoryController extends FWFrontController
 {
+    public function filters() {
+        $ret = array();
+        if ($this->siteConfig && $this->siteConfig->SiteIsUsedCache) {
+            $ret[] = array (
+                'FWOutputCache + index',
+                'duration' => 2592000,
+                'varyByParam' => array('title'),
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey' => 'book-category' . $_GET['title'],
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'book-category' . $_GET['title'],
+//                )
+            );
+        }
+        return $ret;
+    }
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.

@@ -84,6 +84,75 @@ class SystemController extends Controller
         ));
     }
 
+    /**
+     * 缓存管理界面
+     */
+    public function actionCache()
+    {
+        $this->render('cache');
+    }
+
+    public function actionClearCache()
+    {
+        $sucStr = '缓存清除成功';
+
+        $type = $_REQUEST['type'];
+
+        $keyPrefix = "__FWOutputCache";
+
+        $key = "";
+        $id = intval($_REQUEST['id']);
+        switch ($type)
+        {
+            case 'siteindex':
+                $key = $keyPrefix . "novel-index";
+                break;
+            case 'bookcategory':
+                if ($id > 0) {
+                    $m = Category::model()->findByPk($id);
+                    if ($m) {
+                        $key = $m->shorttitle;
+                    }
+                }
+                if ($key != "") $key = $keyPrefix . "book-category" . $key;
+                break;
+            case 'book':
+                if ($id > 0) {
+                    $key = $keyPrefix . "book" . $id;
+                }
+                break;
+            case 'chapter':
+                if ($id > 0) {
+                    $key = $keyPrefix . "article" . $id;
+                }
+                break;
+            case 'newscategory':
+                if ($id > 0) {
+                    $key = $keyPrefix . "news-category" . $id;
+                }
+                break;
+            case 'news':
+                if ($id > 0) {
+                    $key = $keyPrefix . "news" . $id;
+                }
+                break;
+        }
+
+        if ($key != "") {
+            Yii::app()->cache->set($key, time());
+            echo '缓存清除成功';
+        }  else {
+            if ($type == 'all') {
+                Yii::app()->cache->flush();
+                echo '缓存清除成功';
+            } else {
+                echo '操作错误';
+            }
+        }
+
+        Yii::app()->end();
+    }
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

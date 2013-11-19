@@ -12,6 +12,12 @@ class FWFrontController extends CController
     public $pageKeywords = "";
 
     public $pageDescription = "";
+
+    /**
+     * @var SystemBaseConfig
+     */
+    protected $siteConfig = null;
+
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
@@ -27,15 +33,11 @@ class FWFrontController extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	public function init(){
-        // defualt value
 
-//        $this->pageTitle = Yii::app()->name;
-//
-//        $m = Yii::app()->settings->get("SystemBaseConfig");
-//        if ($m) {
-//            $this->pageKeywords = $m->SiteKeywords;
-//            $this->pageDescription = $m->SiteIntro;
-//        }
+	public function init(){
+        $m = Yii::app()->settings->get("SystemBaseConfig");
+        if ($m) {
+            $this->siteConfig = $m;
+        }
 	}
 }

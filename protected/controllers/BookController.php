@@ -7,6 +7,26 @@
 class BookController extends FWFrontController
 {
 
+    public function filters() {
+
+        $ret = array();
+        if ($this->siteConfig && $this->siteConfig->SiteIsUsedCache) {
+            $ret[] = array (
+                'FWOutputCache + view',
+                'duration' => 2592000,
+                'varyByParam' => array('id'),
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey'=> 'book' . $_GET['id'],
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'book' . $_GET['id'],
+//                )
+            );
+        }
+
+        return $ret;
+    }
+
     /**
      * 小说详情
      */

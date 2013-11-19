@@ -6,6 +6,25 @@
  */
 class ArticleController extends FWFrontController
 {
+    public function filters() {
+        $ret = array();
+        if ($this->siteConfig && $this->siteConfig->SiteIsUsedCache) {
+            $ret[] = array (
+                'FWOutputCache + view',
+                'duration' => 2592000,
+                'varyByParam' => array('id'),
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey'=> 'article' . $_GET['id'],
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'article' . $_GET['id'],
+//                )
+            );
+        }
+
+        return $ret;
+    }
+
     /**
      * 小说章节详情
      */

@@ -6,6 +6,24 @@
  */
 class SiteController extends FWFrontController
 {
+    public function filters() {
+        $ret = array();
+        if ($this->siteConfig && $this->siteConfig->SiteIsUsedCache) {
+            $ret[] = array (
+                'FWOutputCache + index',
+                'duration' => 2592000,
+//                'varyByParam' => '',
+                'varyByExpression' => array('FWOutputCache', 'getExpression'),
+                'dependCacheKey'=> 'novel-index',
+//                'dependency' => array(
+//                    'class'=> 'FWCacheDependency',
+//                    'dependCacheKey'=> 'novel-index',
+//                )
+            );
+        }
+        return $ret;
+    }
+
     public function actions(){
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page

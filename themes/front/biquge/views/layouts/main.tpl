@@ -64,4 +64,4 @@
 </body>
 </html>
 <!-- spend time:{$TIME} -->
-{debug}
+{*{debug}*}

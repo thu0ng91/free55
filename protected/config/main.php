@@ -132,6 +132,7 @@ return array(
             'cachePath' => $basePath . '/../runtime/front/cache',
             'hashKey' => true,
             'keyPrefix' => 'free55_cache_',
+            'directoryLevel' => 2,
         ),
 
         'settings'=>array(
