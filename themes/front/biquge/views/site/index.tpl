@@ -26,7 +26,7 @@
 		</ul> 
 	 <h2>上期强推</h2>
 	    <ul>
-            {novel_book_rank type='week'}
+            {novel_book_rank type='week' limit=4}
             <li><span class="s1">[{$item->book->category->title}]</span><span class="s2"><a href="{novel_book_link id=$item->book->id}">{$item->book->title}</a></span><span class="s5">{$item->book->author}</span></li>
             {/novel_book_rank}
 		</ul>
@@ -63,12 +63,12 @@
   </div>
 
 <div class="content">
-    {novel_category id=2}
+    {novel_category id=3}
         <h2>{$item->title}</h2>
     {/novel_category}
   
 <div class="top">
-    {novel_book limit=1 cid=[2] recommend=[1]}
+    {novel_book limit=1 cid=[3] recommend=[1]}
         <div class="image"><img src="{$item->imgurl}" alt="{$item->title}"  width="67" height="82" /></div>
         <dl>
             <dt><a href="{novel_book_link id=$item->id}">{$item->title}</a></dt>
@@ -77,7 +77,7 @@
     {/novel_book}
 <div class="clear"></div></div>
 <ul>
-    {novel_book limit=12 cid=[2]}
+    {novel_book limit=12 cid=[3]}
         <li><a href="{novel_book_link id=$item->id}">{$item->title}</a>/{$item->author}</li>
     {/novel_book}
 </ul>
@@ -86,12 +86,12 @@
 
 
 <div class="content border">
-    {novel_category id=1}
+    {novel_category id=7}
         <h2>{$item->title}</h2>
     {/novel_category}
 
     <div class="top">
-        {novel_book limit=1 cid=[1] recommend=[1]}
+        {novel_book limit=1 cid=[7] recommend=[1]}
             <div class="image"><img src="{$item->imgurl}" alt="{$item->title}"  width="67" height="82" /></div>
             <dl>
                 <dt><a href="{novel_book_link id=$item->id}">{$item->title}</a></dt>
@@ -100,7 +100,7 @@
         {/novel_book}
         <div class="clear"></div></div>
     <ul>
-        {novel_book limit=12 cid=[1]}
+        {novel_book limit=12 cid=[7]}
             <li><a href="{novel_book_link id=$item->id}">{$item->title}</a>/{$item->author}</li>
         {/novel_book}
     </ul>

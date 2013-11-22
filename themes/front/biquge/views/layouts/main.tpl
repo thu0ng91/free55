@@ -14,7 +14,7 @@
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/m.js"></script>
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/bqg.js"></script>
 <script>
-    fwBaseUrl = '{Yii::app()->baseUrl}';
+    fwBaseUrl = '{Yii::app()->baseUrl}/';
     {if !Yii::app()->user->isGuest}
     fwUserId = '{Yii::app()->user->id}';
     fwUserName = '{Yii::app()->user->name}';
@@ -32,7 +32,7 @@
 		</div>
 		<div class="nav">
 			<ul>
-				<li><a href="{Yii::app()->baseUrl}">首页</a></li>
+				<li><a href="{Yii::app()->baseUrl}/">首页</a></li>
                 {*{foreach Category::getMenus() as $menu}*}
                     {*{assign var="url" value=$this->createUrl('category/index', ['title' => $menu.shorttitle])}*}
                     {*<li><a href="{menulink menu=$menu}">{$menu.title}</a></li>*}

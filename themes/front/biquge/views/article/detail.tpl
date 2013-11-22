@@ -3,7 +3,7 @@
     <div class="box_con">
         <div class="con_top">
             <script>textselect();</script>
-            <a href="{Yii::app()->baseUrl}">{Yii::app()->name}</a> &gt; <a href="{novel_category_link id=$chapter->book->category->id}">穿越小说</a>  &gt; <a href="{novel_book_link id=$chapter->book->id}">{$chapter->book->title}</a> &gt; {$chapter->title}
+            <a href="{Yii::app()->baseUrl}/">{Yii::app()->name}</a>  &gt; <a href="{novel_book_link id=$chapter->book->id}">{$chapter->book->title}</a> &gt; {$chapter->title}
         </div>
         <div class="bookname">
             <h1>{$chapter->title}</h1>
