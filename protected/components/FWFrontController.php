@@ -35,6 +35,7 @@ class FWFrontController extends CController
 	public $breadcrumbs=array();
 
 	public function init(){
+        if (!H::checkIsInstall()) return;
         $m = Yii::app()->settings->get("SystemBaseConfig");
         if ($m) {
             $this->siteConfig = $m;

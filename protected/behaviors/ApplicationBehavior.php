@@ -22,7 +22,7 @@ class ApplicationBehavior extends CBehavior {
 
 //        var_dump($rules);
         //Yii::app()->urlManager->rules = array();
-
+        if (!H::checkIsInstall()) return;
 
         $m = Yii::app()->settings->get("SystemBaseConfig");
         if ($m) {

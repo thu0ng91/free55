@@ -3,7 +3,7 @@
         <div class="ll">
             {novel_book limit=6 cid=[$category->id] order='recommendlevel asc'}
             <div class="item">
-                <div class="image"><a href="{novel_book_link id=$item->id}"><img src="{H::getNovelImageUrl($item->imgurl)}" alt="{$item->title}"  width="120" height="150" /></a></div>
+                <div class="image"><a href="{novel_book_link id=$item->id}"><img src="{$item->imgurl}" alt="{$item->title}"  width="120" height="150" /></a></div>
                 <dl>
                     <dt><span>{$item->author}</span><a href="{novel_book_link id=$item->id}">{$item->title}</a></dt>
                     <dd>{$item->summary}</dd>
