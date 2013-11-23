@@ -26,3 +26,8 @@
 
     </div>
 </div>
+
+<script language="javascript" type="text/javascript">
+    var preview_page = "{novel_chapter_link id=$prevChapter->id}";
+    var next_page = "{novel_chapter_link id=$nextChapter->id}";
+</script>
