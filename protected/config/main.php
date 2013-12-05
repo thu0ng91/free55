@@ -70,6 +70,7 @@ return array(
         		'category/<title:\w+>' => 'category/index',
         		'news/list-<id:\d+>' => 'news/index',
         		'news/<id:\d+>' => 'news/view',
+        		'search/<keywords:\w+>' => 'book/search',
         		'login' => 'site/login',
         		'logout' => 'site/logout',
         		'register' => 'site/register',

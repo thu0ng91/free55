@@ -61,31 +61,70 @@ class BookController extends FWFrontController
             'order' => 'createtime desc',
         ));
 
-        if (!empty($_GET['title'])) {
-            $criteria->addSearchCondition('title', $_GET['title']);
+        $keywords = "";
+        if (!empty($_GET['keywords'])) {
+            $keywords = $_GET['keywords'];
+            $criteria->addSearchCondition('title', $keywords);
+            $criteria->addSearchCondition('author',$keywords, true, 'OR');
+            $this->pageTitle = CHtml::encode($keywords) . " 搜索结果";
         }
 
         $criteria->compare('status', Yii::app()->params['status']['ischecked']);
 //        $criteria->compare('recommendlevel', 1);
 
-        $dataProvider = new CActiveDataProvider('Book',array(
-            'criteria'=> $criteria,
-            'pagination'=>array(
-                'pageSize'=>Yii::app()->params['girdpagesize'],
-            ),
-        ));
 
-        $s = BookViewStatsByDay::model();
-        $w = BookViewStatsByWeek::model();
-        $mn = BookViewStatsByMonth::model();
+        $count = Book::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        $pageSize = Yii::app()->params['pagesize']['book'];
+        $cookies = Yii::app()->request->getCookies();
+        if (isset($_GET['pagesize'])) {
+            $pageSize = intval($_GET['pagesize']);
+
+            if (isset($cookies['searchpagesize'])) {
+                unset($cookies['searchpagesize']);
+            }
+            $cookie = new CHttpCookie('searchpagesize', $pageSize);
+            $cookie->expire = time()+60*60*24*30;  //有限期30天
+            Yii::app()->request->cookies['searchpagesize'] = $cookie;
+        } elseif (isset($cookies['searchpagesize'])) {
+            $pageSize = intval($cookies['searchpagesize']);
+        }
+        // results per page
+        $pages->pageSize =$pageSize;
+        $pages->applyLimit($criteria);
+
+        $list = Book::model()->findAll($criteria);
+
+        $page = $this->widget('CLinkPager', array(
+            'pages' => $pages,
+        ), true);
 
         $this->render('search', array(
-            'title' => $_GET['title'],
-            'dataProvider' => $dataProvider,
-            'dayDataProvider' => $s->getTopHitsDataProvider(date('Y-m-d'),0, 4),
-            'weekDataProvider' => $w->getTopHitsDataProvider(date('W'), 0, 4),
-            'monthDataProvider' => $mn->getTopHitsDataProvider(date('Y-m'), 0, 4),
+            'list' => $list,
+            'page' => $page,
+            'keywords' => CHtml::encode($keywords),
+//            'category' => $category,
         ));
+
+//        $dataProvider = new CActiveDataProvider('Book',array(
+//            'criteria'=> $criteria,
+//            'pagination'=>array(
+//                'pageSize'=>Yii::app()->params['girdpagesize'],
+//            ),
+//        ));
+//
+//        $s = BookViewStatsByDay::model();
+//        $w = BookViewStatsByWeek::model();
+//        $mn = BookViewStatsByMonth::model();
+//
+//        $this->render('search', array(
+//            'title' => $_GET['title'],
+//            'dataProvider' => $dataProvider,
+//            'dayDataProvider' => $s->getTopHitsDataProvider(date('Y-m-d'),0, 4),
+//            'weekDataProvider' => $w->getTopHitsDataProvider(date('W'), 0, 4),
+//            'monthDataProvider' => $mn->getTopHitsDataProvider(date('Y-m'), 0, 4),
+//        ));
     }
 
 

@@ -10,8 +10,12 @@
 <meta name="keywords" content="{$this->pageKeywords}{$siteinfo->SiteKeywords}" />
 <meta name="description" content="{$this->pageDescription}{$siteinfo->SiteIntro}" />
 <link rel="stylesheet" type="text/css" href="{Yii::app()->theme->baseUrl}/css/biquge.css"/>
+{if $this->action->id != "login" && $this->action->id != "register"}
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/jquery.min.js"></script>
-<script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/m.js"></script>
+{else}
+<script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/bootstrap.min.js"></script>
+{/if}
+{*<script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/m.js"></script>*}
 <script type="text/javascript" src="{Yii::app()->theme->baseUrl}/js/bqg.js"></script>
 <script>
     fwBaseUrl = '{Yii::app()->baseUrl}/';
@@ -46,7 +50,7 @@
 
 
 	{$content}
-
+        <a name="footer"></a>
 		<div id="firendlink">
 		友情连接：
             {novel_friend_link name="friend_link"}

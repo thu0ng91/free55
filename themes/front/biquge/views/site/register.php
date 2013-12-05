@@ -42,8 +42,9 @@ $this->pageTitle =  '用户注册'  . ' - ' . Yii::app()->name;
       }
 
     </style>
-  
 
+
+    <br />
     <div class="form form-signin">
     <?php $this->renderPartial('//layouts/flash-message'); ?>
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -55,7 +56,6 @@ $this->pageTitle =  '用户注册'  . ' - ' . Yii::app()->name;
       ),
     )); ?>
 
-     <br />
       <?php
         $roles = array_flip(Yii::app()->params['role']);
 
@@ -75,6 +75,7 @@ $this->pageTitle =  '用户注册'  . ' - ' . Yii::app()->name;
       <?php echo $form->textFieldRow($model,'verifyCode', array(
           'hint' => $this->widget('CCaptcha', array(
               'buttonLabel' => '　看不清楚？换一个',
+              'showRefreshButton' => true,
           ), true),
       )); ?>
 <!--      --><?php //$this->widget('CCaptcha'); ?>

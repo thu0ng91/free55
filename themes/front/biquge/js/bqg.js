@@ -590,7 +590,7 @@ if(fwUserId != 0 && fwUserName != '' && (document.cookie.indexOf('PHPSESSID') !=
 //  document.write('<div class="cc"><div class="txt">账号：</div><div class="inp"><input type="text" name="username" id="username" /></div></div>');
 //  document.write('<div class="cc"><div class="txt">密码：</div><div class="inp"><input type="password" name="password" id="password" /></div></div>');
 //  document.write('<div class="frii"><input type="submit" class="int" value=" " /></div><div class="ccc"><div class="txtt"><a href="#">忘记密码</a></div><div class="txtt"><div class="txtt"><a href="/login">用户登陆</a></div><a href="/register">用户注册</a></div></div></form>');
-  document.write('<div class="frii"><input type="submit" class="int" value=" " /></div><div class="ccc"><div class="txtt"><a href="#">忘记密码</a></div><div class="txtt"><div class="txtt"><a href="' + fwBaseUrl + '/login">用户登陆</a></div><a href="' + fwBaseUrl + '/register">用户注册</a></div></div>');
+  document.write('<div class="ccc"><div class="txtt"><div class="txtt"><a href="' + fwBaseUrl + '/login">用户登陆</a></div><a href="' + fwBaseUrl + '/register">用户注册</a></div></div>');
 }
  document.write('</div></div></div>');
 }
@@ -618,32 +618,32 @@ document.writeln("<script type=\"text/javascript\" id=\"bdshell_js\"></script>")
 document.writeln("<script type=\"text/javascript\">document.getElementById(\"bdshell_js\").src = \"http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=\" + Math.ceil(new Date()/3600000);</script>");
 }
 function read_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">报错：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-章节错误&content=错误章节为:"+readtitle+"\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"" + fwBaseUrl + "book/search\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"keywords\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
+//document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">报错：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-章节错误&content=错误章节为:"+readtitle+"\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
 }
 function list_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">报错：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-章节错误&content=错误为:\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"" + fwBaseUrl + "book/search\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"keywords\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
+//document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">报错：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1&title="+booktitle+"-章节错误&content=错误为:\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
 }
 function bqg_panel(){
-document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"http://www.biquge.com/modules/article/search.php\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"searchkey\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
-document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">留言：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
+document.writeln("<div class=\"header_search\"><form name=\"form\" action=\"" + fwBaseUrl + "book/search\" id=\"sform\" target=\"_blank\"><input type=\"text\" value=\"可搜书名和作者，请您少字也别输错字。\" name=\"keywords\" class=\"search\" id=\"wd\" baiduSug=\"2\" /><button id=\"sss\" type=\"submit\"> 搜 索 </button></form></div>"); 
+//document.writeln("<div class=\"userpanel\">&nbsp;<font color=\"red\">留言：</font><a target=\"_blank\" href=\"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D\">通过邮件</a>、<a href=\"http://www.biquge.com/newmessage.php?tosys=1\" >站内短信</a><br /><a target=\"_blank\" href=\"/ziti.html\"><b>原图片版</b></a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/jifen.html\">积分规则</a>&nbsp;&nbsp;<a target=\"_blank\" href=\"/dns.html\">解决跳到别的站</a></div>");
 }
 function mark(){
-document.writeln("<div class=\"reader_mark1\"><a href=\"javascript:;\" onclick=\"showpop('/modules/article/addbookcase.php?id="+bookid+"&cid="+readid+"&ajax_request=1');\"></a></div>");
-document.writeln("<div class=\"reader_mark0\"><a href=\"javascript:;\" onclick=\"showpop('/modules/article/uservote.php?id="+bookid+"&ajax_request=1');\"></a></div>");
+//document.writeln("<div class=\"reader_mark1\"><a href=\"javascript:;\" onclick=\"showpop('/modules/article/addbookcase.php?id="+bookid+"&cid="+readid+"&ajax_request=1');\"></a></div>");
+//document.writeln("<div class=\"reader_mark0\"><a href=\"javascript:;\" onclick=\"showpop('/modules/article/uservote.php?id="+bookid+"&ajax_request=1');\"></a></div>");
 }
 function list1(){
-	if(timestamp>flag_overtime) document.writeln("<center><script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680562\");</script></center>");
+//	if(timestamp>flag_overtime) document.writeln("<center><script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680562\");</script></center>");
 }
 function read1(){
-	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680562\");</script>");
+//	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680562\");</script>");
 }
 function read2(){
-	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680566\");</script>");
+//	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680566\");</script>");
 }
 function read3(){
-	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680590\");</script>");
+//	if(timestamp>flag_overtime) document.writeln("<script type=\"text/javascript\">BAIDU_CLB_fillSlot(\"680590\");</script>");
 }
 function bdshare(){
 document.writeln("<div id=\"bdshare\" class=\"bdshare_t bds_tools get-codes-bdshare\"><span class=\"bds_more\">分享本书到：</span><a class=\"bds_mshare\">一键分享</a><a class=\"bds_tsina\">新浪微博</a><a class=\"bds_qzone\">QQ空间</a><a class=\"bds_sqq\">QQ好友</a><a class=\"bds_tieba\">百度贴吧</a><a class=\"bds_tqq\">腾讯微博</a><a class=\"bds_baidu\">百度搜藏</a><a class=\"bds_bdhome\">百度新首页</a><a class=\"bds_copy\">复制网址</a></div>");

@@ -52,13 +52,14 @@ class UserController extends FWFrontController
      */
     public function actionLike()
     {
-        $dataProvider = $this->getUserBookFavoritesDataProvider(1);
-
-        $this->render('favorites',array(
-            'dataProvider'=> $dataProvider,
-            'type' => 1,
-//			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
-        ));
+//        $dataProvider = $this->getUserBookFavoritesDataProvider(1);
+//
+//        $this->render('favorites',array(
+//            'dataProvider'=> $dataProvider,
+//            'type' => 1,
+////			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
+//        ));
+        $this->renderFavView(1);
     }
 
     /**
@@ -66,33 +67,63 @@ class UserController extends FWFrontController
      */
     public function actionFavorites()
     {
-        $dataProvider = $this->getUserBookFavoritesDataProvider(0);
-        $this->render('favorites',array(
-            'dataProvider'=> $dataProvider,
-            'type' => 0,
-//			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
-        ));
+//        $dataProvider = $this->getUserBookFavoritesDataProvider(0);
+//        $this->render('favorites',array(
+//            'dataProvider'=> $dataProvider,
+//            'type' => 0,
+////			'categorys'=> Category::model()->showAllSelectCategory(Yii::app()->params['module']['article'],Category::SHOW_ALLCATGORY),
+//        ));
+        $this->renderFavView(0);
     }
 
     /**
+     * 显示用户推荐、搜藏
      * @param $type integer
-     * @return CActiveDataProvider
+     * @return void
      */
-    protected function getUserBookFavoritesDataProvider($type)
+    protected function renderFavView($type)
     {
+        $this->pageTitle = $type == 1 ? "我的推荐" : "我的书架" . " - " . Yii::app()->name;
+
         $criteria=new CDbCriteria(array(
             'order'=>'id desc',
         ));
 
         $criteria->compare('type', $type);
 
-        $dataProvider = new CActiveDataProvider('UserBookFavorites',array(
-            'criteria'=> $criteria,
-            'pagination'=>array(
-                'pageSize'=>Yii::app()->params['girdpagesize'],
-            ),
-        ));
+        $count = UserBookFavorites::model()->count($criteria);
+        $pages = new CPagination($count);
 
-        return $dataProvider;
+        $pageSize = 60;
+        $cookies = Yii::app()->request->getCookies();
+        if (isset($_GET['pagesize'])) {
+            $pageSize = intval($_GET['pagesize']);
+
+            if (isset($cookies['favpagesize'])) {
+                unset($cookies['favpagesize']);
+            }
+            $cookie = new CHttpCookie('favpagesize', $pageSize);
+            $cookie->expire = time()+60*60*24*30;  //有限期30天
+            Yii::app()->request->cookies['favpagesize'] = $cookie;
+        } elseif (isset($cookies['favpagesize'])) {
+            $pageSize = intval($cookies['favpagesize']);
+        }
+        // results per page
+        $pages->pageSize =$pageSize;
+        $pages->applyLimit($criteria);
+
+        $list = UserBookFavorites::model()->findAll($criteria);
+
+        $page = $this->widget('CLinkPager', array(
+            'pages' => $pages,
+        ), true);
+
+        $this->render('favorites', array(
+            'list' => $list,
+            'page' => $page,
+            'type' => $type,
+//            'keywords' => CHtml::encode($keywords),
+//            'category' => $category,
+        ));
     }
 }

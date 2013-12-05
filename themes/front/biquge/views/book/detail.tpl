@@ -8,7 +8,7 @@
         <div id="info">
             <h1>{$book->title}</h1>
             <p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{$book->author}</p>
-            <p>动&nbsp;&nbsp;&nbsp;&nbsp;作：<a href="javascript:;" onclick="showpop('/modules/article/addbookcase.php?bid=5249&ajax_request=1');">加入书架</a>,  <a href="javascript:;" onclick="showpop('/modules/article/uservote.php?id=5249&ajax_request=1');">投推荐票</a>,  <a href="#footer">直达底部</a></p>
+            <p>动&nbsp;&nbsp;&nbsp;&nbsp;作：<a href="javascript:;" onclick="showpop('{$this->createUrl("user/addFavourite", [id=>$book->id])}');">加入书架</a>,  <a href="javascript:;" onclick="showpop('{$this->createUrl("book/like", [id=>$book->id])}');">投推荐票</a>,  <a href="#footer">直达底部</a></p>
             <p>最后更新：{$book->lastchaptertime|date_format:"%Y-%m-%d %H:%M:%S"}</p>
             {*<p>下&nbsp;&nbsp;&nbsp;&nbsp;载：<font color="gray">( TXT,CHM,UMD,JAR,APK,HTML )</font></p>*}
         </div>

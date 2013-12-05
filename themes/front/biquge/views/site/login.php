@@ -8,7 +8,6 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
 //	'Login',
 //);
 ?>
-
     <style type="text/css">
       /*body {*/
         /*padding-top: 40px;*/
@@ -63,11 +62,13 @@ $this->pageTitle =  '用户登陆'  . ' - ' . Yii::app()->name;
 
       <?php echo $form->textFieldRow($model,'verifyCode', array(
           'hint' => $this->widget('CCaptcha', array(
-              'buttonLabel' => '　看不清楚？换一个',
+              'buttonLabel' => ' 看不清楚？换一个',
+              'showRefreshButton' => true,
+              //'clickableImage' => true,
           ), true),
       )); ?>
 <!--      --><?php //$this->widget('CCaptcha'); ?>
-        <?php // echo $form->checkBoxRow($model,'rememberMe'); ?>
+<!--        --><?php // echo $form->checkBoxRow($model,'rememberMe'); ?>
 
       <div class="form-actions">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
