@@ -25,7 +25,9 @@ $this->pageTitle =  '第一步 数据库安装'  . ' - ' . Yii::app()->name;
         <fieldset class="well the-fieldset">
             <legend class="the-legend"><b>第一步 数据库安装</b></legend>
         <?php echo $form->textFieldRow($model,'dbhost'); ?>
-        <?php echo $form->textFieldRow($model,'dbname'); ?>
+        <?php echo $form->textFieldRow($model,'dbname', array(
+            'hint' => '提示：数据库不存在会自动创建',
+        )); ?>
 
       <?php echo $form->textFieldRow($model,'username'); ?>
 

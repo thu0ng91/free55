@@ -15,7 +15,7 @@
         </div>
         {*<script>read2();</script>*}
 
-        <div id="content">{$chapter->content}</div>
+        <div id="content">{$chapter->content|nl2br}</div>
         {*<script>read3();</script>*}
         <script>bdshare();</script>{*<div class="bdshare_t bds_tools get-codes-bdshare" id="bdshare"><span class="bds_more">分享本书到：</span><a class="bds_mshare" title="分享到一键分享" href="#">一键分享</a><a class="bds_tsina" title="分享到新浪微博" href="#">新浪微博</a><a class="bds_qzone" title="分享到QQ空间" href="#">QQ空间</a><a class="bds_sqq" title="分享到QQ好友" href="#">QQ好友</a><a class="bds_tieba" title="分享到百度贴吧" href="#">百度贴吧</a><a class="bds_tqq" title="分享到腾讯微博" href="#">腾讯微博</a><a class="bds_baidu" title="分享到百度云收藏" href="#">百度搜藏</a><a class="bds_bdhome" title="分享到百度新首页" href="#">百度新首页</a><a class="bds_copy" title="分享到复制网址" href="#">复制网址</a></div>*}
 

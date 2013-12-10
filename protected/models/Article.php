@@ -247,7 +247,7 @@ class Article extends BaseModel
      */
     protected function getArticleDataPath()
     {
-        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR  . ".." . DIRECTORY_SEPARATOR  . "runtime" . DIRECTORY_SEPARATOR . "data";
+        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR  . ".." . DIRECTORY_SEPARATOR  . "txt";
         if (null != $this->bookid && $this->bookid > 0) {
             $dir .= DIRECTORY_SEPARATOR . ($this->bookid % 500) . DIRECTORY_SEPARATOR . $this->bookid;
 

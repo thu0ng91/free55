@@ -47,16 +47,37 @@ class InstallController extends FWFrontController
 
             if($model->validate()){
 
+                $model->dbname = trim($model->dbname);
+
                 // 数据配置校验
                 $dsn = 'mysql:host='. $model->dbhost . ';dbname=' . $model->dbname;
 
-                $db = new CDbConnection($dsn, $model->username, $model->password);
-
                 try {
+                    $db = new CDbConnection($dsn, $model->username, $model->password);
                     $db->setActive(true);
                 } catch (Exception $e) {
-                    Yii::app()->user->setFlash('actionInfo','安装错误！数据库连接失败！请重新填写！');
-                    $this->refresh();
+
+                    try {
+                        $dsnTry =  'mysql:host='. $model->dbhost . ';dbname=';
+                        $db = new CDbConnection($dsnTry, $model->username, $model->password);
+                        $db->setActive(true);
+
+                        $sql = "CREATE DATABASE IF NOT EXISTS `" . $model->dbname . "` default charset utf8";
+                        $db->createCommand($sql)->execute();
+                        $db->setActive(false);
+
+                    } catch (Exception $ex) {
+                        Yii::app()->user->setFlash('actionInfo','安装错误！数据库创建失败！请确认数据库账号是否有权限！');
+                        $this->refresh();
+                    }
+
+                    try {
+                        $db = new CDbConnection($dsn, $model->username, $model->password);
+                        $db->setActive(true);
+                    } catch (Exception $e) {
+                        Yii::app()->user->setFlash('actionInfo','安装错误！数据库链接失败！请确认数据库账号是否有权限！');
+                        $this->refresh();
+                    }
                 }
 
 
