@@ -154,7 +154,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 .con_top #page_set{ float:right; text-align:right; height:20px; line-height:20px; padding-right:5px; padding-top:10px;}
 .bookname{border-bottom:1px dashed #88C6E5;line-height:30px;padding-top:10px; margin-bottom:10px;}
 .bookname h1{font:25px/35px 黑体;padding-top:10px;text-align:center;}
-.bottem1{clear:both!important;text-align:center;width:900px;margin:5px;}
+.bottem1{clear:both!important;text-align:center;width:900px;margin: auto 20px;padding: 15px;}
 .lm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:5px;}
 .box_con #content,.box_con #content div,.box_con #content a{font-family:方正启体简体,"Microsoft YaHei",微软雅黑,宋体;font-size:19pt; letter-spacing:0.2em;line-height:150%;padding-top:15px;width:85%;margin:auto;}
 .box_con #content p div img,.box_con #content p img,.imagecontent,.divimage{text-align:center;margin:auto;}
