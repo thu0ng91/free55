@@ -26,7 +26,7 @@ function smarty_block_novel_category($params, $content, $template, &$repeat) {
         $cid = intval($params['id']);
     }
 
-    $name = $params['name'];
+    //$name = $params['name'];
     $itemVarName = 'item';
     $dataVarName = $name . "_data";
     $dataIndexVarName = $name . "_data_index";
