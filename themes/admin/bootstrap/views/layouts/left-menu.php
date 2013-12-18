@@ -30,6 +30,12 @@
             array('label'=>'新闻管理', 'url'=> $this->createUrl('news/index'), 'active'=> $this->id == 'news' ? true : false),
 //            array('label'=>'伪静态设置', 'url'=> $this->createUrl('system/rewrite'), 'active'=> $this->action->id == 'rewrite' ? true : false),
         );
+    } elseif ($this->menupanel[0] == 'ads') {
+        $menus = array(
+            array('label'=>'广告管理', 'url'=> $this->createUrl('ads/index'), 'active'=> $this->id == 'ads' ? true : false),
+//            array('label'=>'新闻管理', 'url'=> $this->createUrl('news/index'), 'active'=> $this->id == 'news' ? true : false),
+    //            array('label'=>'伪静态设置', 'url'=> $this->createUrl('system/rewrite'), 'active'=> $this->action->id == 'rewrite' ? true : false),
+        );
     } else {
         $menus = array(
             array('label'=>'小说', 'url'=> $this->createUrl('site/index'), 'active'=> $this->id == 'site' ? true : false),
