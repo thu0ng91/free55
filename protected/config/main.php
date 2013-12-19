@@ -17,7 +17,7 @@ return array(
 	'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log'),
-	'viewPath'=>'views',
+	'viewPath'=>'.',
     'runtimePath'=> dirname(dirname(dirname(__FILE__))) .'/runtime/front',
 	// autoloading model and component classes
 	'import'=>array(
