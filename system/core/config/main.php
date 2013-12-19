@@ -12,6 +12,8 @@ $webUrl = rtrim($webUrl, '/');
 $basePath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..';
 
 Yii::setPathOfAlias('bootstrap', $basePath . '/extensions/bootstrap');
+Yii::setPathOfAlias('fwmodule', $basePath . '/../../modules/');
+
 return array(
 	'basePath'=> $basePath,
 	'name'=> '飞舞小说系统',
@@ -48,8 +50,8 @@ return array(
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			//'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		
-	),
+//        'fw',
+    ),
 
 	// application components
 	'components'=>array(

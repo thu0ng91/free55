@@ -2,6 +2,7 @@
 defined('DS') or define('DS',DIRECTORY_SEPARATOR);
 defined('BASE_THEME_DIR') or define('BASE_THEME_DIR',"themes");
 defined('BASE_THEME_PATH') or define('BASE_THEME_PATH', dirname(__FILE__) . DS . BASE_THEME_DIR);
+defined('ROOT_PATH') or define('ROOT_PATH', dirname(__FILE__));
 
 require_once('version.php');
 
