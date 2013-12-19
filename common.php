@@ -5,13 +5,14 @@ defined('BASE_THEME_PATH') or define('BASE_THEME_PATH', dirname(__FILE__) . DS .
 
 require_once('version.php');
 
-$yii=dirname(__FILE__).'/framework/yii.php';
-$globals=dirname(__FILE__).'/protected/globals.php';
+$yii=dirname(__FILE__).'/system/framework/yii.php';
+$globals=dirname(__FILE__).'/system/core/globals.php';
 
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 require_once($yii);
+
 $app=Yii::createWebApplication($config);
 require_once($globals);
 $app->run();
