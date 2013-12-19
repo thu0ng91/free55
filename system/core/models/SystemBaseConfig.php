@@ -60,7 +60,7 @@ class SystemBaseConfig extends CFormModel
 
     public static function getThemeList()
     {
-        $dir = BASE_THEME_PATH . DS . "/front";
+        $dir = BASE_THEME_PATH . DS . "front";
 
         $iterator = new DirectoryIterator($dir);
         $themes = array();

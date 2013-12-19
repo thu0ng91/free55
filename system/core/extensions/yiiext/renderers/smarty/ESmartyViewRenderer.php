@@ -254,7 +254,7 @@ class ESmartyViewRenderer extends CApplicationComponent implements IViewRenderer
 	public function renderFile($context,$sourceFile,$data,$return)
 	{
 		// current controller properties will be accessible as {$this->property}
-		$data['this'] = $context;
+		if (!isset($data['this'])) $data['this'] = $context;
 		// Yii::app()->... is available as {Yii->...} (deprecated, use {Yii::app()->...} instead, Smarty3 supports this.)
 		$data['Yii'] = Yii::app();
 		// time and memory information

@@ -66,18 +66,7 @@ return array(
 			'urlFormat' => 'path',
 			'urlSuffix' => '',
 			'showScriptName' => false,
-			'rules' => array(
-        		'/' => 'site/index',
-        		'chapter/<id:\d+>' => 'article/view',
-        		'book/<id:\d+>' => 'book/view',
-        		'category/<title:\w+>' => 'category/index',
-        		'news/list-<id:\d+>' => 'news/index',
-        		'news/<id:\d+>' => 'news/view',
-        		'search/<keywords:\w+>' => 'book/search',
-        		'login' => 'site/login',
-        		'logout' => 'site/logout',
-        		'register' => 'site/register',
-        	),
+			'rules' => require_once dirname(__FILE__) . "/url-rules.php",
 		),
         /*
 		'db'=>array(
