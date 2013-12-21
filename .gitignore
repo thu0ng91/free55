@@ -1,6 +1,6 @@
 /protected/admin/runtime/
 /protected/runtime/
-assets
+/assets
 runtime
 txt
 uploads

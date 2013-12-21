@@ -14,7 +14,7 @@
 模块访问示例：{literal}{$MODULE_BASE_URL}{/literal}/xxx
 效果：{$MODULE_BASE_URL}/xxx
 <br />
-模块静态资源访问示例：{literal}{MODULE_STATIC_BASE_URL}{/literal}/css/style.css
+模块静态资源访问示例：{literal}{$MODULE_STATIC_BASE_URL}{/literal}/css/style.css
 效果：{$MODULE_STATIC_BASE_URL}/css/style.css
 </body>
 </html>
