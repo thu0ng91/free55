@@ -26,7 +26,7 @@
 
     </div>
 </div>
-
+{*{novel_ads_link id=1}*}
 <script language="javascript" type="text/javascript">
     var preview_page = "{if isset($prevChapter)}{novel_chapter_link id=$prevChapter->id}{/if}";
     var next_page = "{if isset($nextChapter)}{novel_chapter_link id=$nextChapter->id}{/if}";

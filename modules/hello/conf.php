@@ -1,4 +1,8 @@
 <?php
+/**
+ * 扩展模块描述文件：必须
+ * 本模块未演示扩展模块
+ */
 return array(
 	'name' => 'Hello World Module', // 模块娶一个简单易醒目的名字
 	'author' => 'pizigou', // 模块作者

@@ -11,7 +11,7 @@ $this->pageTitle=Yii::app()->name;
     'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
     'size'=>'null', // null, 'large', 'small' or 'mini'
     'ajaxOptions' => array(
-        'success' => 'js:function(r){alert(r);}',
+        'success' => 'js:function(r){alert(r);window.location.reload();}',
         'error' => 'js:function(){alert("查找本地目录出现错误，请联系开发者！");}',
     ),
 )); ?>

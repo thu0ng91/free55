@@ -13,6 +13,7 @@ class ModulesController extends Controller
 
     protected $message = array(
         'install_error:module_is_installed' => '安装模块失败，模块已经安装',
+        'install_error:fwversion_not_support' => '安装模块失败，该模块依赖飞舞小说系统版本为：%s，当前飞舞系统版本为：%s',
         'install_error' => '安装模块失败',
         'install_success' => '安装模块成功',
         'uninstall_error' => '卸载模块失败',
@@ -120,6 +121,12 @@ class ModulesController extends Controller
 
         if ($m->status == 1) {
             echo $this->message['install_error:module_is_installed'];
+            Yii::app()->end();
+        }
+
+        if (version_compare(FWXSVersion, $m->fwversion) < 0) {
+            $s = sprintf($this->message['install_error:fwversion_not_support'], $m->fwversion, FWXSVersion);
+            echo $s;
             Yii::app()->end();
         }
 
