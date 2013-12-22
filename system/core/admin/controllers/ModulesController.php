@@ -12,14 +12,15 @@ class ModulesController extends Controller
     }
 
     protected $message = array(
+        'install_error:module_is_installed' => '安装模块失败，模块已经安装',
         'install_error' => '安装模块失败',
         'install_success' => '安装模块成功',
         'uninstall_error' => '卸载模块失败',
         'uninstall_success' => '卸载模块成功',
         'stop_error' => '停止模块失败',
         'stop_success' => '停止模块成功',
-        'start_error' => '停止模块失败',
-        'start_success' => '停止模块成功',
+        'start_error' => '启用模块失败',
+        'start_success' => '启用模块成功',
         'scan_result' => '共找到 %d 个未安装模块',
     );
 
@@ -117,7 +118,12 @@ class ModulesController extends Controller
             Yii::app()->end();
         }
 
-        $moduleFile = FW_MODULE_BASE_PATH . DS . $m->name . ".php";
+        if ($m->status == 1) {
+            echo $this->message['install_error:module_is_installed'];
+            Yii::app()->end();
+        }
+
+        $moduleFile = FW_MODULE_BASE_PATH . DS . $m->name . DS . $m->name . ".php";
 
         try {
             include_once $moduleFile;
@@ -127,10 +133,14 @@ class ModulesController extends Controller
                 if ($setup instanceof IModule) {
                     $r = $setup->install(Yii::app()->db);
                     if ($r) {
+                        $m->status = 1;
+                        $m->save();
                         echo $this->message['install_success'];
                         Yii::app()->end();
                     }
                 }
+            } else {
+                throw new Exception();
             }
         } catch (Exception $e) {
             echo $this->message['install_error'];
@@ -259,7 +269,7 @@ class ModulesController extends Controller
                         $m = new $moduleCls();
                         if ($m instanceof IModule) {
                             $modules[$name] = array();
-                            $modules[$name]['module'] = $m;
+//                            $modules[$name]['module'] = $m;
                             $modules[$name]['config'] = include_once $moduleConfigFile;
                         }
                     }

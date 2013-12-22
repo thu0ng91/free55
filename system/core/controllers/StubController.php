@@ -24,8 +24,20 @@ class StubController extends FWFrontController
         return $this->getControllerActions();
     }
 
+    /**
+     * 获得模块action映射表
+     * @return array
+     */
     protected function getControllerActions()
     {
+        //@todo 以后考虑缓存
+        $m = Modules::model()->find("name=:name and status=:status", array(
+           ':name' => $this->_id,
+            ':status' => Yii::app()->params['status']['ischecked'],
+        ));
+
+        if (!$m) return array();
+
         $dir = $this->_modulePath  . DS  . "actions" ;
 
         $iterator = new DirectoryIterator($dir);

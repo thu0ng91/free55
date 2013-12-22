@@ -297,3 +297,23 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态： -1 删除 0 待审 1 正常',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+--
+-- 表的结构 `modules`
+--
+
+DROP TABLE IF EXISTS `modules`;
+CREATE TABLE IF NOT EXISTS `modules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL COMMENT '模块标题',
+  `name` varchar(50) NOT NULL COMMENT '模块名称：与模块目录名一致',
+  `author` varchar(10) NOT NULL COMMENT '模块作者',
+  `version` varchar(10) NOT NULL COMMENT '模块版本',
+  `fwversion` varchar(10) NOT NULL COMMENT '模块所需最低飞舞系统版本',
+  `description` varchar(500) NOT NULL COMMENT '模块描述',
+  `createtime` int(11) NOT NULL COMMENT '模块引入系统时间',
+  `updatetime` int(11) NOT NULL COMMENT '模块调整时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0 未安装 1 已安装 -1 已禁用',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `module_name_uniq` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

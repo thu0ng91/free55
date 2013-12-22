@@ -46,34 +46,34 @@ $this->pageTitle=Yii::app()->name;
 //        array('name'=>'createtime', 'value' => 'date("Y-m-d H:i:s", $data->createtime)', 'filter' => false),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'template'=>"{install}{stop}{delete}",
+            'template'=>"{setup}{start}{stop}{delete}",
             'htmlOptions'=>array('style'=>'width: 50px'),
             'buttons' => array(
-                'install' => array(
+                'setup' => array(
                     'label'=>'安装该模块',     // text label of the button
                     'url'=>'Yii::app()->controller->createUrl("modules/setup",array("id"=>$data->id))',       // a PHP expression for generating the URL of the button
                     'imageUrl'=> '',  // image URL of the button. If not set or false, a text link is used
                     'icon' => 'plus',
                     'options'=> array('style'=>'cursor:pointer;'), // HTML options for the button tag
-//                    'click'=> 'js:function(){alert("aa");}',     // a JS function to be invoked when the button is clicked
+                    'click'=> 'js:function () {ajaxPost($(this).attr("href"));return false;}',     // a JS function to be invoked when the button is clicked
                     'visible'=> '$data->status == 0 ? true : false',
                 ),
-                'stop' => array(
+                'start' => array(
                     'label'=>'启用该模块',     // text label of the button
                     'url'=>'Yii::app()->controller->createUrl("modules/start",array("id"=>$data->id))',       // a PHP expression for generating the URL of the button
                     'imageUrl'=> '',  // image URL of the button. If not set or false, a text link is used
-                    'icon' => 'start',
+                    'icon' => 'play',
                     'options'=> array('style'=>'cursor:pointer;'), // HTML options for the button tag
-//                    'click'=> 'js:function(){}',     // a JS function to be invoked when the button is clicked
+                    'click'=> 'js:function () {ajaxPost($(this).attr("href"));return false;}',     // a JS function to be invoked when the button is clicked
                     'visible'=> '$data->status == -1 ? true : false',
                 ),
                 'stop' => array(
-                    'label'=>'禁用该模块',     // text label of the button
+                    'label'=>'停止该模块',     // text label of the button
                     'url'=>'Yii::app()->controller->createUrl("modules/stop",array("id"=>$data->id))',       // a PHP expression for generating the URL of the button
                     'imageUrl'=> '',  // image URL of the button. If not set or false, a text link is used
-                    'icon' => 'stop',
+                    'icon' => 'off',
                     'options'=> array('style'=>'cursor:pointer;'), // HTML options for the button tag
-//                    'click'=> 'js:function(){}',     // a JS function to be invoked when the button is clicked
+                    'click'=> 'js:function () {ajaxPost($(this).attr("href"));return false;}',     // a JS function to be invoked when the button is clicked
                     'visible'=> '$data->status == 1 ? true : false',
                 ),
                 'delete' => array(
@@ -89,3 +89,12 @@ $this->pageTitle=Yii::app()->name;
         ),
     ),
 )); ?>
+<script>
+    function ajaxPost(url)
+    {
+        $.post(url, function(r) {
+            alert(r);
+            window.location.reload();
+        });
+    }
+</script>
