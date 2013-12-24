@@ -72,7 +72,7 @@ class ModulesController extends Controller
 
         foreach ($modules as $k => $v) {
             if (isset($localModules[$v->name])) {
-                unset($localModules);
+                unset($localModules[$v->name]);
             }
         }
         $count = 0;
@@ -135,7 +135,7 @@ class ModulesController extends Controller
         try {
             include_once $moduleFile;
             $moduleCls = ucfirst($m->name) . "Module";
-            if (class_exists($moduleCls)) {
+            if (class_exists($moduleCls, false)) {
                 $setup = new $moduleCls();
                 if ($setup instanceof IModule) {
                     $r = $setup->install(Yii::app()->db);
@@ -178,7 +178,7 @@ class ModulesController extends Controller
             try {
                 include_once $moduleFile;
                 $moduleCls = ucfirst($m->name) . "Module";
-                if (class_exists($moduleCls)) {
+                if (class_exists($moduleCls, false)) {
                     $setup = new $moduleCls();
                     if ($setup instanceof IModule) {
                         $r = $setup->uninstall(Yii::app()->db);
@@ -272,7 +272,7 @@ class ModulesController extends Controller
                 if (is_file($moduleConfigFile) && is_file($moduleFile)) {
                     include_once $moduleFile;
                     $moduleCls = ucfirst($name) . "Module";
-                    if (class_exists($moduleCls)) {
+                    if (class_exists($moduleCls, false)) {
                         $m = new $moduleCls();
                         if ($m instanceof IModule) {
                             $modules[$name] = array();
